@@ -109,23 +109,72 @@ $(document).ready(function(){initNavTree('gGUIRadarChart_8h_source.html',''); in
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">void</span> draw() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> update() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classgGUIRadarChart.html#a540eb9278212a29ca68870174ce9591e">   31</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUIRadarChart.html#a540eb9278212a29ca68870174ce9591e">setValue</a>(std::size_t datasetIndex, std::size_t axisIndex, <span class="keywordtype">float</span> value);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">     * Sets specified quantitative variable of the specified dataset.</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">     * @param i     Dataset index.</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">     * @param j     Axis index.</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">     * @param value Quantitative data.</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> setValue(std::size_t i, std::size_t j, <span class="keywordtype">float</span> value);</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classgGUIRadarChart.html#a328c71ffcabfc96db5c4e9f2bbe8a415">   39</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUIRadarChart.html#a328c71ffcabfc96db5c4e9f2bbe8a415">setColor</a>(std::size_t datasetIndex, <span class="keyword">const</span> <a class="code" href="classgColor.html">gColor</a>&amp; color);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">     * Sets color of given dataset.</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">     * @param i      Dataset index.</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">     * @param color  An RGB color.</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> setColor(std::size_t i, <span class="keyword">const</span> <a class="code" href="classgColor.html">gColor</a> &amp;color);</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classgGUIRadarChart.html#a76f56e721bedfb0f1b14bf93aed2c1e7">   47</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUIRadarChart.html#a76f56e721bedfb0f1b14bf93aed2c1e7">setLabel</a>(std::size_t axisIndex, <span class="keyword">const</span> std::string&amp; label);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">     * Sets label of specified axis.</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">     * @param i     Axis index.</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">     * @param label A text label.</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> setLabel(std::size_t i, <span class="keyword">const</span> std::string &amp;label);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classgGUIRadarChart.html#a0ebf745a31769ef03a442d7d91021ae7">   54</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUIRadarChart.html#a0ebf745a31769ef03a442d7d91021ae7">setGrid</a>(<span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">     * Sets grid visibility.</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">     * @param enable Grid visibility state.</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> setGrid(<span class="keywordtype">bool</span> enable);</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classgGUIRadarChart.html#a033095499219638178507aa132d2a234">   61</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUIRadarChart.html#a033095499219638178507aa132d2a234">setGridSize</a>(std::size_t newSize);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">     * Sets grid size, number of polygons inside chart.</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">     * @param new_size Grid size.</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> setGridSize(std::size_t new_size);</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classgGUIRadarChart.html#a74641a78a362882abb27c66c7c4dc3ef">   68</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUIRadarChart.html#a74641a78a362882abb27c66c7c4dc3ef">setNumDataset</a>(std::size_t newSize);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">     * Sets number of datasets.</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">     * @param new_size Number of dataset.</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> setNumDataset(std::size_t new_size);</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classgGUIRadarChart.html#afc21669658d672f3b575160718e13581">   75</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUIRadarChart.html#afc21669658d672f3b575160718e13581">setNumAxes</a>(std::size_t newSize);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">     * Sets number of quantitative variables, number of axes.</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">     * @param new_size Number of variables.</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> setNumAxes(std::size_t new_size);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="classgGUIRadarChart.html#a02e244208d857169f38c19712a49b42c">   82</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUIRadarChart.html#a02e244208d857169f38c19712a49b42c">setMin</a>(<span class="keywordtype">float</span> min);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">     * Sets minimum value of datasets. Defaults to 0.</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">     * @param min A minimum value.</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> setMin(<span class="keywordtype">float</span> min);</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="classgGUIRadarChart.html#a5977c115985948a5967ab8ce841b61b2">   89</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUIRadarChart.html#a5977c115985948a5967ab8ce841b61b2">setMax</a>(<span class="keywordtype">float</span> max);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">     * Sets maximum value of datasets. Defaults to 1.</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">     * @param max A maximum value.</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">void</span> setMax(<span class="keywordtype">float</span> max);</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keyword">struct </span>gDataset {</div>
@@ -152,15 +201,6 @@ $(document).ready(function(){initNavTree('gGUIRadarChart_8h_source.html',''); in
 <div class="ttc" id="aclassgColor_html"><div class="ttname"><a href="classgColor.html">gColor</a></div><div class="ttdef"><b>Definition:</b> gColor.h:12</div></div>
 <div class="ttc" id="aclassgGUIControl_html"><div class="ttname"><a href="classgGUIControl.html">gGUIControl</a></div><div class="ttdef"><b>Definition:</b> gGUIControl.h:29</div></div>
 <div class="ttc" id="aclassgGUIRadarChart_html"><div class="ttname"><a href="classgGUIRadarChart.html">gGUIRadarChart</a></div><div class="ttdef"><b>Definition:</b> gGUIRadarChart.h:16</div></div>
-<div class="ttc" id="aclassgGUIRadarChart_html_a02e244208d857169f38c19712a49b42c"><div class="ttname"><a href="classgGUIRadarChart.html#a02e244208d857169f38c19712a49b42c">gGUIRadarChart::setMin</a></div><div class="ttdeci">void setMin(float min)</div></div>
-<div class="ttc" id="aclassgGUIRadarChart_html_a033095499219638178507aa132d2a234"><div class="ttname"><a href="classgGUIRadarChart.html#a033095499219638178507aa132d2a234">gGUIRadarChart::setGridSize</a></div><div class="ttdeci">void setGridSize(std::size_t newSize)</div></div>
-<div class="ttc" id="aclassgGUIRadarChart_html_a0ebf745a31769ef03a442d7d91021ae7"><div class="ttname"><a href="classgGUIRadarChart.html#a0ebf745a31769ef03a442d7d91021ae7">gGUIRadarChart::setGrid</a></div><div class="ttdeci">void setGrid(bool enable)</div></div>
-<div class="ttc" id="aclassgGUIRadarChart_html_a328c71ffcabfc96db5c4e9f2bbe8a415"><div class="ttname"><a href="classgGUIRadarChart.html#a328c71ffcabfc96db5c4e9f2bbe8a415">gGUIRadarChart::setColor</a></div><div class="ttdeci">void setColor(std::size_t datasetIndex, const gColor &amp;color)</div></div>
-<div class="ttc" id="aclassgGUIRadarChart_html_a540eb9278212a29ca68870174ce9591e"><div class="ttname"><a href="classgGUIRadarChart.html#a540eb9278212a29ca68870174ce9591e">gGUIRadarChart::setValue</a></div><div class="ttdeci">void setValue(std::size_t datasetIndex, std::size_t axisIndex, float value)</div></div>
-<div class="ttc" id="aclassgGUIRadarChart_html_a5977c115985948a5967ab8ce841b61b2"><div class="ttname"><a href="classgGUIRadarChart.html#a5977c115985948a5967ab8ce841b61b2">gGUIRadarChart::setMax</a></div><div class="ttdeci">void setMax(float max)</div></div>
-<div class="ttc" id="aclassgGUIRadarChart_html_a74641a78a362882abb27c66c7c4dc3ef"><div class="ttname"><a href="classgGUIRadarChart.html#a74641a78a362882abb27c66c7c4dc3ef">gGUIRadarChart::setNumDataset</a></div><div class="ttdeci">void setNumDataset(std::size_t newSize)</div></div>
-<div class="ttc" id="aclassgGUIRadarChart_html_a76f56e721bedfb0f1b14bf93aed2c1e7"><div class="ttname"><a href="classgGUIRadarChart.html#a76f56e721bedfb0f1b14bf93aed2c1e7">gGUIRadarChart::setLabel</a></div><div class="ttdeci">void setLabel(std::size_t axisIndex, const std::string &amp;label)</div></div>
-<div class="ttc" id="aclassgGUIRadarChart_html_afc21669658d672f3b575160718e13581"><div class="ttname"><a href="classgGUIRadarChart.html#afc21669658d672f3b575160718e13581">gGUIRadarChart::setNumAxes</a></div><div class="ttdeci">void setNumAxes(std::size_t newSize)</div></div>
 <div class="ttc" id="astructgVertex_html"><div class="ttname"><a href="structgVertex.html">gVertex</a></div><div class="ttdef"><b>Definition:</b> gVbo.h:14</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

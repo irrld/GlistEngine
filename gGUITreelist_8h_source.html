@@ -185,13 +185,25 @@ $(document).ready(function(){initNavTree('gGUITreelist_8h_source.html',''); init
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            }</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        }</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="structgGUITreelist_1_1Element.html#ae817e2c74c50f61b689faf486deec626">  104</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="structgGUITreelist_1_1Element.html#ae817e2c74c50f61b689faf486deec626">clearAllSubTitlesList</a>() {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">         * Used for clear the list which used for draw the titles before updating</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">         * list.</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordtype">void</span> clearAllSubTitlesList() {</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            parentlist-&gt;allsubtitles.clear();</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            parentlist-&gt;allorderno.clear();</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            parentlist-&gt;icons.clear();</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        }</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="structgGUITreelist_1_1Element.html#ac68c9ac98baeb4fca05a692b901f223d">  118</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="structgGUITreelist_1_1Element.html#ac68c9ac98baeb4fca05a692b901f223d">addSelfToList</a>() {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">         * Makes a list for drawing recursively. Updates the list when it&#39;s called.</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">         * Operates when</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">         * an element added to the list,</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">         * an element removed from the list,</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">         * making an update to the element&#39;s title,</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">         * the user clicked to parent&#39;s title and opened the sub titles.</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordtype">void</span> addSelfToList() {</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            std::string linetext = <span class="stringliteral">&quot;&quot;</span>;</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            <span class="keywordflow">if</span>(isicon == <span class="keyword">false</span>) {</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; orderno; i++) linetext = <span class="stringliteral">&quot;    &quot;</span> + linetext;</div>
@@ -210,7 +222,7 @@ $(document).ready(function(){initNavTree('gGUITreelist_8h_source.html',''); init
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            linetext += title;</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            parentlist-&gt;allsubtitles.push_back(linetext);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            <span class="keywordflow">if</span>(isexpanded) <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; sub.size(); i++) sub[i]-&gt;<a class="code" href="structgGUITreelist_1_1Element.html#ac68c9ac98baeb4fca05a692b901f223d">addSelfToList</a>();</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            <span class="keywordflow">if</span>(isexpanded) <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; sub.size(); i++) sub[i]-&gt;addSelfToList();</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            <span class="keywordflow">if</span>(title == <span class="stringliteral">&quot;Top&quot;</span>) {</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                parentlist-&gt;allsubtitles.erase(parentlist-&gt;allsubtitles.begin() + 0);</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                <span class="keywordflow">if</span>(parentlist-&gt;allorderno.size() &gt; 0) parentlist-&gt;allorderno.erase(parentlist-&gt;allorderno.begin() + 0);</div>
@@ -218,26 +230,49 @@ $(document).ready(function(){initNavTree('gGUITreelist_8h_source.html',''); init
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            }</div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        }</div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
-<div class="line"><a name="l00154"></a><span class="lineno"><a class="line" href="structgGUITreelist_1_1Element.html#a008354e783b414cb58e12db6368a082f">  154</a></span>&#160;        <a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* <a class="code" href="structgGUITreelist_1_1Element.html#a008354e783b414cb58e12db6368a082f">findElement</a>(std::string title) {</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment">         * Finds an element according to the titles. Compares the given title with</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment">         * the struct object&#39;s titles. When the titles are matched it returns the</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">         * struct object which has the same title with the given. If there is no</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment">         * match then returns null.</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment">         *</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment">         * @param title is the string value which we want to compare with the</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">         * struct object&#39;s title.</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* findElement(std::string title) {</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* tmp;</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            <span class="keywordflow">if</span>(title == this-&gt;title) <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; sub.size(); i++) {</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                tmp = sub[i]-&gt;<a class="code" href="structgGUITreelist_1_1Element.html#a008354e783b414cb58e12db6368a082f">findElement</a>(title);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                tmp = sub[i]-&gt;findElement(title);</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                <span class="keywordflow">if</span>(tmp) <span class="keywordflow">return</span> tmp;</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            }</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        }</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
-<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="structgGUITreelist_1_1Element.html#a8ea2dd9c14946f3bd76c43c3d3d64a81">  171</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="structgGUITreelist_1_1Element.html#a8ea2dd9c14946f3bd76c43c3d3d64a81">removeSubElement</a>(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element) {</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment">         * Delete all the sub struct objects in the parent element&#39;s sub vectors.</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment">         * When it erase the sub vectors, it updates the number of total elements</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment">         * in the struct.</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment">         *</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="comment">         * @param element is the struct object which deleted from the list.</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="keywordtype">void</span> removeSubElement(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element) {</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            <span class="keywordflow">if</span>(element-&gt;sub.size() != 0) {</div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                parentlist-&gt;nodenum -= element-&gt;sub.size();</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; element-&gt;sub.size(); i++) <a class="code" href="structgGUITreelist_1_1Element.html#a8ea2dd9c14946f3bd76c43c3d3d64a81">removeSubElement</a>(element-&gt;sub[i]);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; element-&gt;sub.size(); i++) removeSubElement(element-&gt;sub[i]);</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            }</div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            element-&gt;sub.clear();</div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        }</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
-<div class="line"><a name="l00186"></a><span class="lineno"><a class="line" href="structgGUITreelist_1_1Element.html#a3a97ef06f4fc00c43f1d364fdc52ca59">  186</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="structgGUITreelist_1_1Element.html#a3a97ef06f4fc00c43f1d364fdc52ca59">removeElement</a>(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element) {</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            <a class="code" href="structgGUITreelist_1_1Element.html#a8ea2dd9c14946f3bd76c43c3d3d64a81">removeSubElement</a>(element);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment">         * Delete the given struct object from the list. Before it erase the</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">         * element, it calls the removeSubElement function and erase all the sub</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment">         * elements then delete the given element.</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment">         *</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment">         * @param element is the struct object which deleted from the list.</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        <span class="keywordtype">void</span> removeElement(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element) {</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            removeSubElement(element);</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            parentlist-&gt;nodenum -= 1;</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            <span class="keywordtype">int</span> index = 0;</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">auto</span> i: element-&gt;parent-&gt;sub) {</div>
@@ -249,139 +284,246 @@ $(document).ready(function(){initNavTree('gGUITreelist_8h_source.html',''); init
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            element-&gt;parent-&gt;sub.erase(element-&gt;parent-&gt;sub.begin() + index);</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        }</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
-<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="structgGUITreelist_1_1Element.html#a13dcd9e41fcdcc81e9cdb5536facacd0">  202</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="structgGUITreelist_1_1Element.html#a13dcd9e41fcdcc81e9cdb5536facacd0">setIconType</a>(<span class="keywordtype">bool</span> isicon) {</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment">         * Sets the isicon attributes of all elements.</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        <span class="keywordtype">void</span> setIconType(<span class="keywordtype">bool</span> isicon) {</div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            this-&gt;isicon = isicon;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; sub.size(); i++) sub[i]-&gt;<a class="code" href="structgGUITreelist_1_1Element.html#a13dcd9e41fcdcc81e9cdb5536facacd0">setIconType</a>(isicon);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; sub.size(); i++) sub[i]-&gt;setIconType(isicon);</div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        }</div>
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
-<div class="line"><a name="l00214"></a><span class="lineno"><a class="line" href="structgGUITreelist_1_1Element.html#a3b9d12aa81e5b8511ee0df38fd6d8e32">  214</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="structgGUITreelist_1_1Element.html#a3b9d12aa81e5b8511ee0df38fd6d8e32">setIcon</a>() {</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;            <span class="keywordflow">if</span>(sub.size() &gt; 0) this-&gt;icon = res.getIconImage(gGUIResources::ICON_FOLDER);</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            <span class="keywordflow">else</span> this-&gt;icon = res.getIconImage(gGUIResources::ICON_FILE);</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; sub.size(); i++) sub[i]-&gt;<a class="code" href="structgGUITreelist_1_1Element.html#a3b9d12aa81e5b8511ee0df38fd6d8e32">setIcon</a>();</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        }</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    };</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="comment">         * Sets the icon attributes of all elements. This function uses when</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="comment">         * isicon value of the elements is true.</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="comment">         * Sets the icons according to their isparent attributes. If the element</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="comment">         * has got a sub vector, it&#39;s icon will be the &#39;Folder icon&#39;. If it has</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="comment">         * not got a sub vector, it&#39;s icon will be the &#39;File icon&#39;.</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="comment">         *</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        <span class="keywordtype">void</span> setIcon() {</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            <span class="keywordflow">if</span>(sub.size() &gt; 0) this-&gt;icon = res.getIconImage(gGUIResources::ICON_FOLDER);</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            <span class="keywordflow">else</span> this-&gt;icon = res.getIconImage(gGUIResources::ICON_FILE);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; sub.size(); i++) sub[i]-&gt;setIcon();</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        }</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    };</div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <a class="code" href="classgGUITreelist.html">gGUITreelist</a>();</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classgGUITreelist.html">gGUITreelist</a>();</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <a class="code" href="classgGUITreelist.html">gGUITreelist</a>();</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classgGUITreelist.html">gGUITreelist</a>();</div>
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160; </div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keywordtype">void</span> set(<a class="code" href="classgBaseApp.html">gBaseApp</a>* root, <a class="code" href="classgBaseGUIObject.html">gBaseGUIObject</a>* topParentGUIObject, <a class="code" href="classgBaseGUIObject.html">gBaseGUIObject</a>* parentGUIObject, <span class="keywordtype">int</span> parentSlotLineNo, <span class="keywordtype">int</span> parentSlotColumnNo, <span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> h);</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
-<div class="line"><a name="l00234"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#ac36e39ba0cd9663c159e7cde0310a1d3">  234</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUITreelist.html#ac36e39ba0cd9663c159e7cde0310a1d3">removeElement</a>(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element);</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160; </div>
-<div class="line"><a name="l00242"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#ab8334ce9dc492d3cd39b21ab62cd4f81">  242</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUITreelist.html#ab8334ce9dc492d3cd39b21ab62cd4f81">addElement</a>(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element);</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; </div>
-<div class="line"><a name="l00254"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#a32ad7982d630d3640d2340e246a3f52b">  254</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUITreelist.html#a32ad7982d630d3640d2340e246a3f52b">addElement</a>(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element, <a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* parent);</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160; </div>
-<div class="line"><a name="l00262"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#aa487afa6bb08a5a66ed346826542d3a0">  262</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUITreelist.html#aa487afa6bb08a5a66ed346826542d3a0">insertData</a>(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element, std::string newtitle);</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160; </div>
-<div class="line"><a name="l00267"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#a96e4dc6bb0707fd7817d393bc7da4f62">  267</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUITreelist.html#a96e4dc6bb0707fd7817d393bc7da4f62">refreshList</a>();</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; </div>
-<div class="line"><a name="l00269"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#a6539e51e327517ee6a54831ff91f628e">  269</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUITreelist.html#a6539e51e327517ee6a54831ff91f628e">drawContent</a>();</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    <span class="keywordtype">void</span> mousePressed(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> button);</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    <span class="keywordtype">void</span> mouseReleased(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> button);</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160; </div>
-<div class="line"><a name="l00280"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#a3aeb3da75087052555a74eacd57d9e2a">  280</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUITreelist.html#a3aeb3da75087052555a74eacd57d9e2a">setChosenColor</a>(<span class="keywordtype">float</span> r, <span class="keywordtype">float</span> g, <span class="keywordtype">float</span> b);</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160; </div>
-<div class="line"><a name="l00289"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#a01030404d21b24cb9b4a15586424f75a">  289</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUITreelist.html#a01030404d21b24cb9b4a15586424f75a">setVisibleLineNumber</a>(<span class="keywordtype">int</span> linenumber);</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160; </div>
-<div class="line"><a name="l00299"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#a8a8d6949009c9d0d6e3410dafc166c0b">  299</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUITreelist.html#a8a8d6949009c9d0d6e3410dafc166c0b">setIconType</a>(<span class="keywordtype">bool</span> isicon);</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160; </div>
-<div class="line"><a name="l00310"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#a5590c8456cd31a53ad0c7b7ef3fae144">  310</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUITreelist.html#a5590c8456cd31a53ad0c7b7ef3fae144">setIcon</a>(<a class="code" href="classgImage.html">gImage</a>* icon, <a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element);</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160; </div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160; </div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keywordtype">void</span> set(<a class="code" href="classgBaseApp.html">gBaseApp</a>* root, <a class="code" href="classgBaseGUIObject.html">gBaseGUIObject</a>* topParentGUIObject, <a class="code" href="classgBaseGUIObject.html">gBaseGUIObject</a>* parentGUIObject, <span class="keywordtype">int</span> parentSlotLineNo, <span class="keywordtype">int</span> parentSlotColumnNo, <span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> h);</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160; </div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="comment">     * Delete the given struct object from the tree. Uses the struct&#39;s remove</span></div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="comment">     * functions.</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="comment">     * @param element is the struct object which deleted from the list.</span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordtype">void</span> removeElement(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element);</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160; </div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment">     * Used for add a struct object to the tree&#39;s sub vector.</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="comment">     * Developer should initialize the title first.</span></div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="comment">     * @param element is the struct object which includes element&#39;s attributes.</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="keywordtype">void</span> addElement(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160; </div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="comment">     * Used for add a sub element into the parent element&#39;s sub vector.</span></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="comment">     * Developer should initialize the title first. Element&#39;s orderno and the</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="comment">     * nodenum will be updates in the function.</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="comment">     * @param element is the struct object which includes element&#39;s attributes.</span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="comment">     * @param parent is the struct object which element will be added to its</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="comment">     * sub vector.</span></div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    <span class="keywordtype">void</span> addElement(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element, <a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* parent);</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160; </div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="comment">     * Renamed title of the given element with the given text.</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="comment">     * @param element is the struct object that renamed on the list.</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="comment">     * @param newtitle is the string value which updated to the element&#39;s title.</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keywordtype">void</span> insertData(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element, std::string newtitle);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160; </div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="comment">     * Uses for update the draw list and some values about the draw box.</span></div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <span class="keywordtype">void</span> refreshList();</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160; </div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    <span class="keywordtype">void</span> drawContent();</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160; </div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    <span class="keywordtype">void</span> mousePressed(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> button);</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    <span class="keywordtype">void</span> mouseReleased(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> button);</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160; </div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="comment">     * Sets the color of the row which developer click and select, with the</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="comment">     * given color. Colors consist of RGB values float between 0.0f-1.0f.</span></div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="comment">     * @param color The given color consist of (r, g, b) float values.</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    <span class="keywordtype">void</span> setChosenColor(<span class="keywordtype">float</span> r, <span class="keywordtype">float</span> g, <span class="keywordtype">float</span> b);</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160; </div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="comment">     * Sets the number of the lines that visible on the tree list. This function</span></div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="comment">     * should be use before Treelist added to the panel with setControl function.</span></div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="comment">     * @param linenumber is an integer value which define the number of minimum</span></div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="comment">     * lines. Developer should give a number bigger than 0.</span></div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    <span class="keywordtype">void</span> setVisibleLineNumber(<span class="keywordtype">int</span> linenumber);</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160; </div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="comment">     * Sets the icon type at the top of the titles. If developer wants to use new</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="comment">     * icons, should sets the isicon attribute. If the attribute is not setted,</span></div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="comment">     * default icons will be &#39;&gt;&#39; and &#39;-&#39;.</span></div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="comment">     * @param isicon is the boolean value that sets the icon types. For using new</span></div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;<span class="comment">     * icons, it should be &#39;true&#39;.</span></div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <span class="keywordtype">void</span> setIconType(<span class="keywordtype">bool</span> isicon);</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160; </div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;<span class="comment">     * Sets the given icon to the given object of struct. Developer can give any</span></div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;<span class="comment">     * image from outside. The image must be loaded before using as a parameter</span></div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="comment">     * for the function. Image&#39;s width and height will be arrange automatically.</span></div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<span class="comment">     * @param icon is the image that developer wants to use.</span></div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;<span class="comment">     *  @param element is the struct object which the icon will be changed.</span></div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    <span class="keywordtype">void</span> setIcon(<a class="code" href="classgImage.html">gImage</a>* icon, <a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element);</div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160; </div>
-<div class="line"><a name="l00321"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#a7dba32549a30fb2cfa76a95b231be0cf">  321</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUITreelist.html#a7dba32549a30fb2cfa76a95b231be0cf">setIcon</a>(<span class="keywordtype">int</span> iconid, <a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element);</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160; </div>
-<div class="line"><a name="l00329"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#a07312490903b56fc8d88fc3cf557a18e">  329</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUITreelist.html#a07312490903b56fc8d88fc3cf557a18e">setIconsColor</a>(<span class="keywordtype">float</span> r, <span class="keywordtype">float</span> g, <span class="keywordtype">float</span> b);</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160; </div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160; </div>
-<div class="line"><a name="l00337"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#af2bb8467cc4055942ab351858c061bd7">  337</a></span>&#160;    std::string <a class="code" href="classgGUITreelist.html#af2bb8467cc4055942ab351858c061bd7">getTitle</a>(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element);</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160; </div>
-<div class="line"><a name="l00345"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#a39916020d3036d38eb7212c39f48778d">  345</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classgGUITreelist.html#a39916020d3036d38eb7212c39f48778d">getNodenum</a>();</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160; </div>
-<div class="line"><a name="l00353"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#ac1836e13444e28633f735168813a4915">  353</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classgGUITreelist.html#ac1836e13444e28633f735168813a4915">getOrderno</a>(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element);</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160; </div>
-<div class="line"><a name="l00361"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#abd7b3dccb60401f71c1770179cdc15e0">  361</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classgGUITreelist.html#abd7b3dccb60401f71c1770179cdc15e0">isExpanded</a>(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element);</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160; </div>
-<div class="line"><a name="l00369"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#ab36465d8ce48f8a68ca6b6e5b76ff37f">  369</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classgGUITreelist.html#ab36465d8ce48f8a68ca6b6e5b76ff37f">isParent</a>(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element);</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160; </div>
-<div class="line"><a name="l00374"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#ac4269f0675dfb2d834c4bd4e421bcc61">  374</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classgGUITreelist.html#ac4269f0675dfb2d834c4bd4e421bcc61">getIconType</a>();</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160; </div>
-<div class="line"><a name="l00382"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#a8c705ade75d13f9d6c7fc814c0337a05">  382</a></span>&#160;    <a class="code" href="classgTexture.html">gTexture</a>* <a class="code" href="classgGUITreelist.html#a8c705ade75d13f9d6c7fc814c0337a05">getIcon</a>(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element);</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160; </div>
-<div class="line"><a name="l00387"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#ae3cf4b90759e731f01e728f6f9a622b4">  387</a></span>&#160;    <a class="code" href="classgColor.html">gColor</a> <a class="code" href="classgGUITreelist.html#ae3cf4b90759e731f01e728f6f9a622b4">getChosenColor</a>();</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160; </div>
-<div class="line"><a name="l00392"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#a92f43e166d43c1cf471cfd9256cfe151">  392</a></span>&#160;    <a class="code" href="classgColor.html">gColor</a> <a class="code" href="classgGUITreelist.html#a92f43e166d43c1cf471cfd9256cfe151">getIconsColor</a>();</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160; </div>
-<div class="line"><a name="l00397"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#a686ad86f9b49708499c5ea57e8fd9ff1">  397</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classgGUITreelist.html#a686ad86f9b49708499c5ea57e8fd9ff1">getVisibleLineNumber</a>();</div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160; </div>
-<div class="line"><a name="l00402"></a><span class="lineno"><a class="line" href="classgGUITreelist.html#a50c1993b30f9bcd3553593868fbab404">  402</a></span>&#160;    <a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* <a class="code" href="classgGUITreelist.html#a50c1993b30f9bcd3553593868fbab404">getRootElement</a>();</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160; </div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    <span class="keywordtype">int</span> getSelectedLineNumber();</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160; </div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="comment">     * Sets the given icon to the given object of the struct. Uses the icons in</span></div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="comment">     * the gGUIResources class. This icons are storing in the base64.</span></div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="comment">     * @param iconid is the icon number of the images in the gGUIResources class.</span></div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="comment">     * This numbers are defined with enumeration method.</span></div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<span class="comment">     * @param element is the struct object which the icon will be changed.</span></div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    <span class="keywordtype">void</span> setIcon(<span class="keywordtype">int</span> iconid, <a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element);</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160; </div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="comment">     * Sets the color of the icons with the given color. Colors consist of RGB</span></div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="comment">     * values float between 0.0f-1.0f.</span></div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="comment">     * @param color The given color consist of (r, g, b) float values.</span></div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    <span class="keywordtype">void</span> setIconsColor(<span class="keywordtype">float</span> r, <span class="keywordtype">float</span> g, <span class="keywordtype">float</span> b);</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160; </div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160; </div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;<span class="comment">     * Returns given struct object&#39;s title.</span></div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;<span class="comment">     * @param element is the struct object which returned title&#39;s node.</span></div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    std::string getTitle(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element);</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160; </div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;<span class="comment">     * Returns given struct object&#39;s node number. Node number is a static integer</span></div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;<span class="comment">     * value. It contains the total number of the elements.</span></div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<span class="comment">     *  @param element is the struct object which has the node number value.</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    <span class="keywordtype">int</span> getNodenum();</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160; </div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;<span class="comment">     * Returns given struct object&#39;s orderno. Orderno is used for calculating the</span></div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;<span class="comment">     * sub elements locations on the x axis on the list.</span></div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;<span class="comment">     * @param element is the struct object which returned the orderno&#39;s node.</span></div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <span class="keywordtype">int</span> getOrderno(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element);</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160; </div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;<span class="comment">     * Returns the given struct object&#39;s isexpanded value. If the sub titles of</span></div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="comment">     * the element is on the list, it returns true. If is not, it returns false.</span></div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="comment">     * @param element is the struct object which if it is isexpanded or not.</span></div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <span class="keywordtype">bool</span> isExpanded(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element);</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160; </div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;<span class="comment">     * Returns the given struct object&#39;s isparent value. If given element is a</span></div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;<span class="comment">     * parent, it returns true. If is not, it returns false.</span></div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;<span class="comment">     * @param element is the struct object which if it is isparent or not.</span></div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <span class="keywordtype">bool</span> isParent(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element);</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160; </div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;<span class="comment">     * Returns the isicon value of the struct object.</span></div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    <span class="keywordtype">bool</span> getIconType();</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160; </div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;<span class="comment">     * Returns the pointer of the image that uses for icons to the given struct</span></div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;<span class="comment">     * object.</span></div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;<span class="comment">     *  @param element is the struct object which returned icon image.</span></div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    <a class="code" href="classgTexture.html">gTexture</a>* getIcon(<a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* element);</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160; </div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;<span class="comment">     * Returns the color that when an element is chosen.</span></div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    <a class="code" href="classgColor.html">gColor</a> getChosenColor();</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160; </div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<span class="comment">     * Returns the icons color.</span></div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <a class="code" href="classgColor.html">gColor</a> getIconsColor();</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160; </div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;<span class="comment">     * Returns the number of the lines which is visible in the box.</span></div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    <span class="keywordtype">int</span> getVisibleLineNumber();</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160; </div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;<span class="comment">     * Returns root element of the struct object.</span></div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    <a class="code" href="structgGUITreelist_1_1Element.html">Element</a>* getRootElement();</div>
 <div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160; </div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    <span class="keywordtype">int</span> nodenum;</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    std::vector&lt;std::string&gt; allsubtitles;</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    std::vector&lt;int&gt; allorderno;</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    std::deque&lt;gTexture*&gt; icons;</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160; </div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    <span class="keywordtype">int</span> listboxh;</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    <span class="keywordtype">int</span> lineh, linenum;</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    <span class="keywordtype">int</span> minlinenum, minboxh;</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    <span class="keywordtype">int</span> maxlinenum;</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    <span class="keywordtype">int</span> fldy, flno;</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    <span class="keywordtype">float</span> datady;</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    <span class="keywordtype">int</span> firstlineno;</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    <span class="keywordtype">int</span> selectedno;</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    <span class="keywordtype">float</span> arrowsize, spacesize;</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    <span class="keywordtype">bool</span> mousepressedonlist;</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    <a class="code" href="structgGUITreelist_1_1Element.html">Element</a> topelement;</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    <a class="code" href="classgColor.html">gColor</a> chosencolor, iconcolor;</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    <span class="keywordtype">int</span> iconx, iconw, iconh;</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;};</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160; </div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* UI_GGUITREELIST_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    <span class="keywordtype">int</span> getSelectedLineNumber();</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160; </div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    <span class="keywordtype">int</span> nodenum;</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    std::vector&lt;std::string&gt; allsubtitles;</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    std::vector&lt;int&gt; allorderno;</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    std::deque&lt;gTexture*&gt; icons;</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160; </div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    <span class="keywordtype">int</span> listboxh;</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    <span class="keywordtype">int</span> lineh, linenum;</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    <span class="keywordtype">int</span> minlinenum, minboxh;</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    <span class="keywordtype">int</span> maxlinenum;</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    <span class="keywordtype">int</span> fldy, flno;</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    <span class="keywordtype">float</span> datady;</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    <span class="keywordtype">int</span> firstlineno;</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    <span class="keywordtype">int</span> selectedno;</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    <span class="keywordtype">float</span> arrowsize, spacesize;</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    <span class="keywordtype">bool</span> mousepressedonlist;</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    <a class="code" href="structgGUITreelist_1_1Element.html">Element</a> topelement;</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    <a class="code" href="classgColor.html">gColor</a> chosencolor, iconcolor;</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    <span class="keywordtype">int</span> iconx, iconw, iconh;</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;};</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160; </div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* UI_GGUITREELIST_H_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aclassgBaseApp_html"><div class="ttname"><a href="classgBaseApp.html">gBaseApp</a></div><div class="ttdef"><b>Definition:</b> gBaseApp.h:15</div></div>
 <div class="ttc" id="aclassgBaseGUIObject_html"><div class="ttname"><a href="classgBaseGUIObject.html">gBaseGUIObject</a></div><div class="ttdef"><b>Definition:</b> gBaseGUIObject.h:18</div></div>
 <div class="ttc" id="aclassgColor_html"><div class="ttname"><a href="classgColor.html">gColor</a></div><div class="ttdef"><b>Definition:</b> gColor.h:12</div></div>
-<div class="ttc" id="aclassgGUIScrollable_html"><div class="ttname"><a href="classgGUIScrollable.html">gGUIScrollable</a></div><div class="ttdef"><b>Definition:</b> gGUIScrollable.h:67</div></div>
+<div class="ttc" id="aclassgGUIScrollable_html"><div class="ttname"><a href="classgGUIScrollable.html">gGUIScrollable</a></div><div class="ttdef"><b>Definition:</b> gGUIScrollable.h:68</div></div>
 <div class="ttc" id="aclassgGUITreelist_html"><div class="ttname"><a href="classgGUITreelist.html">gGUITreelist</a></div><div class="ttdef"><b>Definition:</b> gGUITreelist.h:64</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_a01030404d21b24cb9b4a15586424f75a"><div class="ttname"><a href="classgGUITreelist.html#a01030404d21b24cb9b4a15586424f75a">gGUITreelist::setVisibleLineNumber</a></div><div class="ttdeci">void setVisibleLineNumber(int linenumber)</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_a07312490903b56fc8d88fc3cf557a18e"><div class="ttname"><a href="classgGUITreelist.html#a07312490903b56fc8d88fc3cf557a18e">gGUITreelist::setIconsColor</a></div><div class="ttdeci">void setIconsColor(float r, float g, float b)</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_a32ad7982d630d3640d2340e246a3f52b"><div class="ttname"><a href="classgGUITreelist.html#a32ad7982d630d3640d2340e246a3f52b">gGUITreelist::addElement</a></div><div class="ttdeci">void addElement(Element *element, Element *parent)</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_a39916020d3036d38eb7212c39f48778d"><div class="ttname"><a href="classgGUITreelist.html#a39916020d3036d38eb7212c39f48778d">gGUITreelist::getNodenum</a></div><div class="ttdeci">int getNodenum()</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_a3aeb3da75087052555a74eacd57d9e2a"><div class="ttname"><a href="classgGUITreelist.html#a3aeb3da75087052555a74eacd57d9e2a">gGUITreelist::setChosenColor</a></div><div class="ttdeci">void setChosenColor(float r, float g, float b)</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_a50c1993b30f9bcd3553593868fbab404"><div class="ttname"><a href="classgGUITreelist.html#a50c1993b30f9bcd3553593868fbab404">gGUITreelist::getRootElement</a></div><div class="ttdeci">Element * getRootElement()</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_a5590c8456cd31a53ad0c7b7ef3fae144"><div class="ttname"><a href="classgGUITreelist.html#a5590c8456cd31a53ad0c7b7ef3fae144">gGUITreelist::setIcon</a></div><div class="ttdeci">void setIcon(gImage *icon, Element *element)</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_a6539e51e327517ee6a54831ff91f628e"><div class="ttname"><a href="classgGUITreelist.html#a6539e51e327517ee6a54831ff91f628e">gGUITreelist::drawContent</a></div><div class="ttdeci">void drawContent()</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_a686ad86f9b49708499c5ea57e8fd9ff1"><div class="ttname"><a href="classgGUITreelist.html#a686ad86f9b49708499c5ea57e8fd9ff1">gGUITreelist::getVisibleLineNumber</a></div><div class="ttdeci">int getVisibleLineNumber()</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_a7dba32549a30fb2cfa76a95b231be0cf"><div class="ttname"><a href="classgGUITreelist.html#a7dba32549a30fb2cfa76a95b231be0cf">gGUITreelist::setIcon</a></div><div class="ttdeci">void setIcon(int iconid, Element *element)</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_a8a8d6949009c9d0d6e3410dafc166c0b"><div class="ttname"><a href="classgGUITreelist.html#a8a8d6949009c9d0d6e3410dafc166c0b">gGUITreelist::setIconType</a></div><div class="ttdeci">void setIconType(bool isicon)</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_a8c705ade75d13f9d6c7fc814c0337a05"><div class="ttname"><a href="classgGUITreelist.html#a8c705ade75d13f9d6c7fc814c0337a05">gGUITreelist::getIcon</a></div><div class="ttdeci">gTexture * getIcon(Element *element)</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_a92f43e166d43c1cf471cfd9256cfe151"><div class="ttname"><a href="classgGUITreelist.html#a92f43e166d43c1cf471cfd9256cfe151">gGUITreelist::getIconsColor</a></div><div class="ttdeci">gColor getIconsColor()</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_a96e4dc6bb0707fd7817d393bc7da4f62"><div class="ttname"><a href="classgGUITreelist.html#a96e4dc6bb0707fd7817d393bc7da4f62">gGUITreelist::refreshList</a></div><div class="ttdeci">void refreshList()</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_aa487afa6bb08a5a66ed346826542d3a0"><div class="ttname"><a href="classgGUITreelist.html#aa487afa6bb08a5a66ed346826542d3a0">gGUITreelist::insertData</a></div><div class="ttdeci">void insertData(Element *element, std::string newtitle)</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_ab36465d8ce48f8a68ca6b6e5b76ff37f"><div class="ttname"><a href="classgGUITreelist.html#ab36465d8ce48f8a68ca6b6e5b76ff37f">gGUITreelist::isParent</a></div><div class="ttdeci">bool isParent(Element *element)</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_ab8334ce9dc492d3cd39b21ab62cd4f81"><div class="ttname"><a href="classgGUITreelist.html#ab8334ce9dc492d3cd39b21ab62cd4f81">gGUITreelist::addElement</a></div><div class="ttdeci">void addElement(Element *element)</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_abd7b3dccb60401f71c1770179cdc15e0"><div class="ttname"><a href="classgGUITreelist.html#abd7b3dccb60401f71c1770179cdc15e0">gGUITreelist::isExpanded</a></div><div class="ttdeci">bool isExpanded(Element *element)</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_ac1836e13444e28633f735168813a4915"><div class="ttname"><a href="classgGUITreelist.html#ac1836e13444e28633f735168813a4915">gGUITreelist::getOrderno</a></div><div class="ttdeci">int getOrderno(Element *element)</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_ac36e39ba0cd9663c159e7cde0310a1d3"><div class="ttname"><a href="classgGUITreelist.html#ac36e39ba0cd9663c159e7cde0310a1d3">gGUITreelist::removeElement</a></div><div class="ttdeci">void removeElement(Element *element)</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_ac4269f0675dfb2d834c4bd4e421bcc61"><div class="ttname"><a href="classgGUITreelist.html#ac4269f0675dfb2d834c4bd4e421bcc61">gGUITreelist::getIconType</a></div><div class="ttdeci">bool getIconType()</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_ae3cf4b90759e731f01e728f6f9a622b4"><div class="ttname"><a href="classgGUITreelist.html#ae3cf4b90759e731f01e728f6f9a622b4">gGUITreelist::getChosenColor</a></div><div class="ttdeci">gColor getChosenColor()</div></div>
-<div class="ttc" id="aclassgGUITreelist_html_af2bb8467cc4055942ab351858c061bd7"><div class="ttname"><a href="classgGUITreelist.html#af2bb8467cc4055942ab351858c061bd7">gGUITreelist::getTitle</a></div><div class="ttdeci">std::string getTitle(Element *element)</div></div>
 <div class="ttc" id="aclassgImage_html"><div class="ttname"><a href="classgImage.html">gImage</a></div><div class="ttdef"><b>Definition:</b> gImage.h:34</div></div>
 <div class="ttc" id="aclassgLogi_html"><div class="ttname"><a href="classgLogi.html">gLogi</a></div><div class="ttdef"><b>Definition:</b> gUtils.h:188</div></div>
 <div class="ttc" id="aclassgTexture_html"><div class="ttname"><a href="classgTexture.html">gTexture</a></div><div class="ttdef"><b>Definition:</b> gTexture.h:17</div></div>
 <div class="ttc" id="astructgGUITreelist_1_1Element_html"><div class="ttname"><a href="structgGUITreelist_1_1Element.html">gGUITreelist::Element</a></div><div class="ttdef"><b>Definition:</b> gGUITreelist.h:66</div></div>
-<div class="ttc" id="astructgGUITreelist_1_1Element_html_a008354e783b414cb58e12db6368a082f"><div class="ttname"><a href="structgGUITreelist_1_1Element.html#a008354e783b414cb58e12db6368a082f">gGUITreelist::Element::findElement</a></div><div class="ttdeci">Element * findElement(std::string title)</div><div class="ttdef"><b>Definition:</b> gGUITreelist.h:154</div></div>
-<div class="ttc" id="astructgGUITreelist_1_1Element_html_a13dcd9e41fcdcc81e9cdb5536facacd0"><div class="ttname"><a href="structgGUITreelist_1_1Element.html#a13dcd9e41fcdcc81e9cdb5536facacd0">gGUITreelist::Element::setIconType</a></div><div class="ttdeci">void setIconType(bool isicon)</div><div class="ttdef"><b>Definition:</b> gGUITreelist.h:202</div></div>
-<div class="ttc" id="astructgGUITreelist_1_1Element_html_a3a97ef06f4fc00c43f1d364fdc52ca59"><div class="ttname"><a href="structgGUITreelist_1_1Element.html#a3a97ef06f4fc00c43f1d364fdc52ca59">gGUITreelist::Element::removeElement</a></div><div class="ttdeci">void removeElement(Element *element)</div><div class="ttdef"><b>Definition:</b> gGUITreelist.h:186</div></div>
-<div class="ttc" id="astructgGUITreelist_1_1Element_html_a3b9d12aa81e5b8511ee0df38fd6d8e32"><div class="ttname"><a href="structgGUITreelist_1_1Element.html#a3b9d12aa81e5b8511ee0df38fd6d8e32">gGUITreelist::Element::setIcon</a></div><div class="ttdeci">void setIcon()</div><div class="ttdef"><b>Definition:</b> gGUITreelist.h:214</div></div>
-<div class="ttc" id="astructgGUITreelist_1_1Element_html_a8ea2dd9c14946f3bd76c43c3d3d64a81"><div class="ttname"><a href="structgGUITreelist_1_1Element.html#a8ea2dd9c14946f3bd76c43c3d3d64a81">gGUITreelist::Element::removeSubElement</a></div><div class="ttdeci">void removeSubElement(Element *element)</div><div class="ttdef"><b>Definition:</b> gGUITreelist.h:171</div></div>
-<div class="ttc" id="astructgGUITreelist_1_1Element_html_ac68c9ac98baeb4fca05a692b901f223d"><div class="ttname"><a href="structgGUITreelist_1_1Element.html#ac68c9ac98baeb4fca05a692b901f223d">gGUITreelist::Element::addSelfToList</a></div><div class="ttdeci">void addSelfToList()</div><div class="ttdef"><b>Definition:</b> gGUITreelist.h:118</div></div>
-<div class="ttc" id="astructgGUITreelist_1_1Element_html_ae817e2c74c50f61b689faf486deec626"><div class="ttname"><a href="structgGUITreelist_1_1Element.html#ae817e2c74c50f61b689faf486deec626">gGUITreelist::Element::clearAllSubTitlesList</a></div><div class="ttdeci">void clearAllSubTitlesList()</div><div class="ttdef"><b>Definition:</b> gGUITreelist.h:104</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

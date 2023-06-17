@@ -130,36 +130,35 @@ $(document).ready(function(){initNavTree('gGUIColorbox_8h_source.html',''); init
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;gGUIControl.h&quot;</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classgGUIColorbox.html">   51</a></span>&#160;<span class="keyword">class </span><a class="code" href="classgGUIColorbox.html">gGUIColorbox</a>: <span class="keyword">public</span> <a class="code" href="classgGUIControl.html">gGUIControl</a> {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="classgGUIColorbox.html">gGUIColorbox</a>();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classgGUIColorbox.html">gGUIColorbox</a>();</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> draw();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classgGUIColorbox.html#a170a5c642c0348936f133f2d8cdbbde0">   63</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUIColorbox.html#a170a5c642c0348936f133f2d8cdbbde0">setColorboxsize</a>(<span class="keywordtype">int</span> colorboxwidth, <span class="keywordtype">int</span> colorboxheight);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classgGUIColorbox.html#acd06b9786d61ca84330debac476d0d34">   72</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUIColorbox.html#acd06b9786d61ca84330debac476d0d34">setColorboxColor</a>(<span class="keywordtype">float</span> r, <span class="keywordtype">float</span> g, <span class="keywordtype">float</span> b);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="classgGUIColorbox.html#a1a162962a89447b2414a23279eeb5d35">   79</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUIColorbox.html#a1a162962a89447b2414a23279eeb5d35">setColorboxColor</a>(<a class="code" href="classgColor.html">gColor</a> newColor);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classgGUIColorbox.html#a44fcd1e1b34f1c1531885753f181a7fc">   84</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classgGUIColorbox.html#a44fcd1e1b34f1c1531885753f181a7fc">getWidth</a>();</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="classgGUIColorbox.html#a818eaee4441e16a9ddc420802fb75676">   89</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classgGUIColorbox.html#a818eaee4441e16a9ddc420802fb75676">getHeight</a>();</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="classgGUIColorbox.html#a45e3263e35a1c10d0f567031754dee9d">   94</a></span>&#160;    <a class="code" href="classgColor.html">gColor</a> <a class="code" href="classgGUIColorbox.html#a45e3263e35a1c10d0f567031754dee9d">getcolor</a>();</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">int</span> colorboxw, colorboxh;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">bool</span> setsize;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="classgColor.html">gColor</a> color;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classgGUIColorbox.html">   50</a></span>&#160;<span class="keyword">class </span><a class="code" href="classgGUIColorbox.html">gGUIColorbox</a>: <span class="keyword">public</span> <a class="code" href="classgGUIControl.html">gGUIControl</a> {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="classgGUIColorbox.html">gGUIColorbox</a>();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classgGUIColorbox.html">gGUIColorbox</a>();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> draw();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classgGUIColorbox.html#a170a5c642c0348936f133f2d8cdbbde0">   62</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUIColorbox.html#a170a5c642c0348936f133f2d8cdbbde0">setColorboxsize</a>(<span class="keywordtype">int</span> colorboxwidth, <span class="keywordtype">int</span> colorboxheight);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classgGUIColorbox.html#acd06b9786d61ca84330debac476d0d34">   71</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUIColorbox.html#acd06b9786d61ca84330debac476d0d34">setColorboxColor</a>(<span class="keywordtype">float</span> r, <span class="keywordtype">float</span> g, <span class="keywordtype">float</span> b);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classgGUIColorbox.html#a1a162962a89447b2414a23279eeb5d35">   78</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgGUIColorbox.html#a1a162962a89447b2414a23279eeb5d35">setColorboxColor</a>(<a class="code" href="classgColor.html">gColor</a> newColor);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classgGUIColorbox.html#a44fcd1e1b34f1c1531885753f181a7fc">   83</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classgGUIColorbox.html#a44fcd1e1b34f1c1531885753f181a7fc">getWidth</a>();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classgGUIColorbox.html#a818eaee4441e16a9ddc420802fb75676">   88</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classgGUIColorbox.html#a818eaee4441e16a9ddc420802fb75676">getHeight</a>();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="classgGUIColorbox.html#a45e3263e35a1c10d0f567031754dee9d">   93</a></span>&#160;    <a class="code" href="classgColor.html">gColor</a> <a class="code" href="classgGUIColorbox.html#a45e3263e35a1c10d0f567031754dee9d">getcolor</a>();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">int</span> colorboxw, colorboxh;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">bool</span> setsize;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="classgColor.html">gColor</a> color;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;};</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* UI_GGUICOLORBOXH */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;};</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* UI_GGUICOLORBOXH */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aclassgColor_html"><div class="ttname"><a href="classgColor.html">gColor</a></div><div class="ttdef"><b>Definition:</b> gColor.h:12</div></div>
-<div class="ttc" id="aclassgGUIColorbox_html"><div class="ttname"><a href="classgGUIColorbox.html">gGUIColorbox</a></div><div class="ttdef"><b>Definition:</b> gGUIColorbox.h:51</div></div>
+<div class="ttc" id="aclassgGUIColorbox_html"><div class="ttname"><a href="classgGUIColorbox.html">gGUIColorbox</a></div><div class="ttdef"><b>Definition:</b> gGUIColorbox.h:50</div></div>
 <div class="ttc" id="aclassgGUIColorbox_html_a170a5c642c0348936f133f2d8cdbbde0"><div class="ttname"><a href="classgGUIColorbox.html#a170a5c642c0348936f133f2d8cdbbde0">gGUIColorbox::setColorboxsize</a></div><div class="ttdeci">void setColorboxsize(int colorboxwidth, int colorboxheight)</div></div>
 <div class="ttc" id="aclassgGUIColorbox_html_a1a162962a89447b2414a23279eeb5d35"><div class="ttname"><a href="classgGUIColorbox.html#a1a162962a89447b2414a23279eeb5d35">gGUIColorbox::setColorboxColor</a></div><div class="ttdeci">void setColorboxColor(gColor newColor)</div></div>
 <div class="ttc" id="aclassgGUIColorbox_html_a44fcd1e1b34f1c1531885753f181a7fc"><div class="ttname"><a href="classgGUIColorbox.html#a44fcd1e1b34f1c1531885753f181a7fc">gGUIColorbox::getWidth</a></div><div class="ttdeci">int getWidth()</div></div>

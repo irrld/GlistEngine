@@ -156,13 +156,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>mouseReleased</b> (in
 <tr class="separator:ae0f334cd5a87beaee1a5f9dbf0052441"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52824430304857b229fc3369fd04b7e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgGUIContextMenuItem.html#a52824430304857b229fc3369fd04b7e2">setContextMenuLeftMargin</a> (int leftMargin)</td></tr>
 <tr class="separator:a52824430304857b229fc3369fd04b7e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79e0f03b1421a520a3d90c33cfcfb19d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgGUIContextMenuItem.html#a79e0f03b1421a520a3d90c33cfcfb19d">getContextMenuSize</a> ()</td></tr>
+<tr class="memitem:a79e0f03b1421a520a3d90c33cfcfb19d"><td class="memItemLeft" align="right" valign="top"><a id="a79e0f03b1421a520a3d90c33cfcfb19d"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getContextMenuSize</b> ()</td></tr>
 <tr class="separator:a79e0f03b1421a520a3d90c33cfcfb19d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a087f35db73a08b58f8341f17a1d01474"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgGUIContextMenuItem.html#a087f35db73a08b58f8341f17a1d01474">getContextMenuShown</a> ()</td></tr>
 <tr class="separator:a087f35db73a08b58f8341f17a1d01474"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b1647ecd3d01ca4c015552c3ea7a01b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgGUIContextMenuItem.html#a4b1647ecd3d01ca4c015552c3ea7a01b">isPressed</a> ()</td></tr>
+<tr class="memitem:a4b1647ecd3d01ca4c015552c3ea7a01b"><td class="memItemLeft" align="right" valign="top"><a id="a4b1647ecd3d01ca4c015552c3ea7a01b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isPressed</b> ()</td></tr>
 <tr class="separator:a4b1647ecd3d01ca4c015552c3ea7a01b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa89e3658833a5078c4698ac017b1d43"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgGUIContextMenuItem.html#aaa89e3658833a5078c4698ac017b1d43">getItemTitle</a> (int itemNo)</td></tr>
+<tr class="memitem:aaa89e3658833a5078c4698ac017b1d43"><td class="memItemLeft" align="right" valign="top"><a id="aaa89e3658833a5078c4698ac017b1d43"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getItemTitle</b> (int itemNo)</td></tr>
 <tr class="separator:aaa89e3658833a5078c4698ac017b1d43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc2bf90110c65422cf926f29b5e867e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgGUIContextMenuItem.html#acc2bf90110c65422cf926f29b5e867e8">addItem</a> (std::string text, <a class="el" href="classgImage.html">gImage</a> *menuIcon, bool seperatorAdded)</td></tr>
 <tr class="separator:acc2bf90110c65422cf926f29b5e867e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -621,7 +624,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><b>releaseresoluti
 <li>To use your own image create a <a class="el" href="classgImage.html">gImage</a> object (Ex: <a class="el" href="classgImage.html">gImage</a> icon;) and load it with loadImage method. Then, you can send this object to add item. (Ex: menu.addItem("item name", &amp;icon, false);)</li>
 <li>To use icons provided by GlistEngine create a <a class="el" href="classgGUIResources.html">gGUIResources</a> object. (Ex: <a class="el" href="classgGUIResources.html">gGUIResources</a> resource;) Initialize it by initialize method. (Ex: resource.initialize();) then you can send it to addItem by getIconImage method. (Ex: menu.addItem("item name", icon.getIconImage(gGUIResources::ICON_FILE), false);)</li>
 <li>There are many different icons in GlistEngine you can see them all in <a class="el" href="gGUIResources_8h_source.html">gGUIResources.h</a></li>
-<li>In order to add functionality to menu options you can use isPressed method in GameCanvas' mousePressed method. (Ex: if(menu.getItem(0)-&gt;<a class="el" href="classgGUIContextMenuItem.html#a4b1647ecd3d01ca4c015552c3ea7a01b">isPressed()</a>) { // your code })</li>
+<li>In order to add functionality to menu options you can use isPressed method in GameCanvas' mousePressed method. (Ex: if(menu.getItem(0)-&gt;isPressed()) { // your code })</li>
 <li>Lastly, run your program. When you right click on the screen you will see the context menu, then you can close it with a left click. </li>
 </ul>
 </div><h2 class="groupheader">Member Function Documentation</h2>
@@ -659,9 +662,9 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><b>releaseresoluti
 <p>Adds an item to the <a class="el" href="classgGUIContextMenuItem.html">gGUIContextMenuItem</a> vector</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">text</td><td>is the title of menu item </td></tr>
-    <tr><td class="paramname">menuIcon</td><td>is the icon of menu item, if nullptr is sent an item without any icons will be added to the vector. </td></tr>
-    <tr><td class="paramname">seperatorAdded</td><td>determines if there will be a separator under a menu item or not. </td></tr>
+    <tr><td class="paramname">std::string</td><td>text is the title of menu item</td></tr>
+    <tr><td class="paramname">gImage*</td><td>menuIcon is the icon of menu item, if nullptr is sent an item without any icons will be added to the vector.</td></tr>
+    <tr><td class="paramname">bool</td><td>seperatorAdded determines if there will be a seperator under a menu item or not. </td></tr>
   </table>
   </dd>
 </dl>
@@ -706,25 +709,6 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><b>releaseresoluti
 
 </div>
 </div>
-<a id="a79e0f03b1421a520a3d90c33cfcfb19d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a79e0f03b1421a520a3d90c33cfcfb19d">&#9670;&nbsp;</a></span>getContextMenuSize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int gGUIContextMenuItem::getContextMenuSize </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Returns the total number of context menu items.</p>
-<dl class="section return"><dt>Returns</dt><dd>the current size of items vector. </dd></dl>
-
-</div>
-</div>
 <a id="ae51bdeab1433819d9f85332971ac10cb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae51bdeab1433819d9f85332971ac10cb">&#9670;&nbsp;</a></span>getItem()</h2>
 
@@ -743,7 +727,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><b>releaseresoluti
 <p>Returns selected menu item.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">itemNo</td><td>is the number of the <a class="el" href="classgGUIMenuItem.html">gGUIMenuItem</a> object to return </td></tr>
+    <tr><td class="paramname">itemNo</td><td>is the number of the <a class="el" href="classgGUIMenuItem.html">gGUIMenuItem</a> object to return</td></tr>
   </table>
   </dd>
 </dl>
@@ -765,33 +749,8 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><b>releaseresoluti
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Returns item id.</p>
 <dl class="section return"><dt>Returns</dt><dd>the value of a menu items id. </dd></dl>
-
-</div>
-</div>
-<a id="aaa89e3658833a5078c4698ac017b1d43"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaa89e3658833a5078c4698ac017b1d43">&#9670;&nbsp;</a></span>getItemTitle()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string gGUIContextMenuItem::getItemTitle </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>itemNo</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Returns the title of a context menu item.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">itemNo</td><td>is the number of context menu item whose title will be returned</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>a menu items title as a string. </dd></dl>
 
 </div>
 </div>
@@ -809,26 +768,8 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><b>releaseresoluti
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Returns parent item's id.</p>
 <dl class="section return"><dt>Returns</dt><dd>the value of parent item's id. </dd></dl>
-
-</div>
-</div>
-<a id="a4b1647ecd3d01ca4c015552c3ea7a01b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b1647ecd3d01ca4c015552c3ea7a01b">&#9670;&nbsp;</a></span>isPressed()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool gGUIContextMenuItem::isPressed </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Returns the information for whether an item is selected or not.</p>
-<dl class="section return"><dt>Returns</dt><dd>whether a menu item was clicked or not. </dd></dl>
 
 </div>
 </div>
