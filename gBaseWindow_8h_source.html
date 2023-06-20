@@ -137,64 +137,58 @@ $(document).ready(function(){initNavTree('gBaseWindow_8h_source.html',''); initR
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
 <div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="classgBaseWindow.html#a9d71d3bba9233a0aef11cb7f322bf175">   91</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classgBaseWindow.html#a9d71d3bba9233a0aef11cb7f322bf175">getHeight</a>();</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classgBaseWindow.html#a494dcb0fda4a24b7852b21c0e23cfef0">   96</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classgBaseWindow.html#a494dcb0fda4a24b7852b21c0e23cfef0">getScaleX</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="classgBaseWindow.html#afd673ef5b6dec0024feb246c6015c51f">  101</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classgBaseWindow.html#afd673ef5b6dec0024feb246c6015c51f">getScaleY</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="classgBaseWindow.html#ab14f157111f387dba0825531cead92ca">  108</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgBaseWindow.html#ab14f157111f387dba0825531cead92ca">setTitle</a>(<span class="keyword">const</span> std::string&amp; windowTitle);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgBaseWindow.html#ab14f157111f387dba0825531cead92ca">setTitle</a>(std::string&amp;&amp; windowTitle);</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="classgBaseWindow.html#ad3f36fd4dc7fa16d4e7cedca127c50ac">  116</a></span>&#160;    <span class="keyword">const</span> std::string&amp; <a class="code" href="classgBaseWindow.html#ad3f36fd4dc7fa16d4e7cedca127c50ac">getTitle</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">     * Gets called each time a key is pressed on the keyboard.</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">     *</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">     * Receives which key is pressed and converts the key value to unicode</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment">     * represantation.</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">     *</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">     * Graphics Library Framework(GLFW) handles communication with keyboard and OS</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">     * input.</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">     *</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">     * @param key the pressed key value.</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordtype">void</span> onCharEvent(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> key);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
-<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="classgBaseWindow.html#a9579f055922c569a017de9292c265a8d">  148</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgBaseWindow.html#a9579f055922c569a017de9292c265a8d">onKeyEvent</a>(<span class="keywordtype">int</span> key, <span class="keywordtype">int</span> action);</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
-<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="classgBaseWindow.html#a933a2b6833aa75127dabb11c89d189fe">  168</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgBaseWindow.html#a933a2b6833aa75127dabb11c89d189fe">onMouseMoveEvent</a>(<span class="keywordtype">double</span> xpos, <span class="keywordtype">double</span> ypos);</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
-<div class="line"><a name="l00186"></a><span class="lineno"><a class="line" href="classgBaseWindow.html#af44954b45d925f739d729012635de066">  186</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgBaseWindow.html#af44954b45d925f739d729012635de066">onMouseButtonEvent</a>(<span class="keywordtype">int</span> button, <span class="keywordtype">int</span> action, <span class="keywordtype">double</span> xpos, <span class="keywordtype">double</span> ypos);</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
-<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="classgBaseWindow.html#a41a8edeeab051664a146cd44ce37776a">  202</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgBaseWindow.html#a41a8edeeab051664a146cd44ce37776a">onMouseEnterEvent</a>(<span class="keywordtype">int</span> entered);</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
-<div class="line"><a name="l00221"></a><span class="lineno"><a class="line" href="classgBaseWindow.html#afa75cd9d2a393032ee11695a6bf38ceb">  221</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgBaseWindow.html#afa75cd9d2a393032ee11695a6bf38ceb">onMouseScrollEvent</a>(<span class="keywordtype">double</span> xoffset, <span class="keywordtype">double</span> yoffset);</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordtype">void</span> onWindowFocus(<span class="keywordtype">bool</span> isFocused);</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <span class="keywordtype">void</span> onJoystickConnected(<span class="keywordtype">int</span> jid, <span class="keywordtype">bool</span> isGamepad, <span class="keywordtype">bool</span> isConnected);</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160; </div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setWindowResizable(<span class="keywordtype">bool</span> isResizable);</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setWindowSizeLimits(<span class="keywordtype">int</span> minWidth, <span class="keywordtype">int</span> minHeight, <span class="keywordtype">int</span> maxWidth, <span class="keywordtype">int</span> maxHeight);</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160; </div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="keywordtype">bool</span> vsync;</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <a class="code" href="classgAppManager.html">gAppManager</a> *appmanager;</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordtype">int</span> width, height;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="keywordtype">int</span> scalex, scaley;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordtype">int</span> windowmode;</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    std::string title;</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="keywordtype">bool</span> isfocused;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160; </div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> sighandler(<span class="keywordtype">int</span> signum);</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <span class="keyword">static</span> std::string signalname[32];</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;};</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160; </div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ENGINE_BASE_GBASEWINDOW_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="classgBaseWindow.html#ab14f157111f387dba0825531cead92ca">   98</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgBaseWindow.html#ab14f157111f387dba0825531cead92ca">setTitle</a>(<span class="keyword">const</span> std::string&amp; windowTitle);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgBaseWindow.html#ab14f157111f387dba0825531cead92ca">setTitle</a>(std::string&amp;&amp; windowTitle);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="classgBaseWindow.html#ad3f36fd4dc7fa16d4e7cedca127c50ac">  106</a></span>&#160;    <span class="keyword">const</span> std::string&amp; <a class="code" href="classgBaseWindow.html#ad3f36fd4dc7fa16d4e7cedca127c50ac">getTitle</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">     * Gets called each time a key is pressed on the keyboard.</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">     * Receives which key is pressed and converts the key value to unicode</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">     * represantation.</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">     * Graphics Library Framework(GLFW) handles communication with keyboard and OS</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">     * input.</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">     *</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">     * @param key the pressed key value.</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordtype">void</span> onCharEvent(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> key);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="classgBaseWindow.html#a9579f055922c569a017de9292c265a8d">  138</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgBaseWindow.html#a9579f055922c569a017de9292c265a8d">onKeyEvent</a>(<span class="keywordtype">int</span> key, <span class="keywordtype">int</span> action);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="classgBaseWindow.html#a933a2b6833aa75127dabb11c89d189fe">  158</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgBaseWindow.html#a933a2b6833aa75127dabb11c89d189fe">onMouseMoveEvent</a>(<span class="keywordtype">double</span> xpos, <span class="keywordtype">double</span> ypos);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno"><a class="line" href="classgBaseWindow.html#af44954b45d925f739d729012635de066">  176</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgBaseWindow.html#af44954b45d925f739d729012635de066">onMouseButtonEvent</a>(<span class="keywordtype">int</span> button, <span class="keywordtype">int</span> action, <span class="keywordtype">double</span> xpos, <span class="keywordtype">double</span> ypos);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00192"></a><span class="lineno"><a class="line" href="classgBaseWindow.html#a41a8edeeab051664a146cd44ce37776a">  192</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgBaseWindow.html#a41a8edeeab051664a146cd44ce37776a">onMouseEnterEvent</a>(<span class="keywordtype">int</span> entered);</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
+<div class="line"><a name="l00211"></a><span class="lineno"><a class="line" href="classgBaseWindow.html#afa75cd9d2a393032ee11695a6bf38ceb">  211</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgBaseWindow.html#afa75cd9d2a393032ee11695a6bf38ceb">onMouseScrollEvent</a>(<span class="keywordtype">double</span> xoffset, <span class="keywordtype">double</span> yoffset);</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="keywordtype">void</span> onWindowFocus(<span class="keywordtype">bool</span> isFocused);</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keywordtype">void</span> onJoystickConnected(<span class="keywordtype">int</span> jid, <span class="keywordtype">bool</span> isGamepad, <span class="keywordtype">bool</span> isConnected);</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setWindowResizable(<span class="keywordtype">bool</span> isResizable);</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setWindowSizeLimits(<span class="keywordtype">int</span> minWidth, <span class="keywordtype">int</span> minHeight, <span class="keywordtype">int</span> maxWidth, <span class="keywordtype">int</span> maxHeight);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordtype">bool</span> vsync;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <a class="code" href="classgAppManager.html">gAppManager</a> *appmanager;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordtype">int</span> width, height;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <span class="keywordtype">int</span> windowmode;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    std::string title;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keywordtype">bool</span> isfocused;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> sighandler(<span class="keywordtype">int</span> signum);</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="keyword">static</span> std::string signalname[32];</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;};</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160; </div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ENGINE_BASE_GBASEWINDOW_H_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aclassgAppManager_html"><div class="ttname"><a href="classgAppManager.html">gAppManager</a></div><div class="ttdef"><b>Definition:</b> gAppManager.h:170</div></div>
 <div class="ttc" id="aclassgBaseWindow_html"><div class="ttname"><a href="classgBaseWindow.html">gBaseWindow</a></div><div class="ttdef"><b>Definition:</b> gBaseWindow.h:25</div></div>
 <div class="ttc" id="aclassgBaseWindow_html_a1a18778e3537b13d1962bb9f39cd8340"><div class="ttname"><a href="classgBaseWindow.html#a1a18778e3537b13d1962bb9f39cd8340">gBaseWindow::getWidth</a></div><div class="ttdeci">int getWidth()</div></div>
 <div class="ttc" id="aclassgBaseWindow_html_a41a8edeeab051664a146cd44ce37776a"><div class="ttname"><a href="classgBaseWindow.html#a41a8edeeab051664a146cd44ce37776a">gBaseWindow::onMouseEnterEvent</a></div><div class="ttdeci">void onMouseEnterEvent(int entered)</div></div>
-<div class="ttc" id="aclassgBaseWindow_html_a494dcb0fda4a24b7852b21c0e23cfef0"><div class="ttname"><a href="classgBaseWindow.html#a494dcb0fda4a24b7852b21c0e23cfef0">gBaseWindow::getScaleX</a></div><div class="ttdeci">float getScaleX() const</div></div>
 <div class="ttc" id="aclassgBaseWindow_html_a4cf9a0bce0544fac4c51c6aedcc05d4b"><div class="ttname"><a href="classgBaseWindow.html#a4cf9a0bce0544fac4c51c6aedcc05d4b">gBaseWindow::setSize</a></div><div class="ttdeci">void setSize(int width, int height)</div></div>
 <div class="ttc" id="aclassgBaseWindow_html_a4f01bf13a831462ad7c13cc8e542b45b"><div class="ttname"><a href="classgBaseWindow.html#a4f01bf13a831462ad7c13cc8e542b45b">gBaseWindow::close</a></div><div class="ttdeci">virtual void close()</div></div>
 <div class="ttc" id="aclassgBaseWindow_html_a7ce6fc79d7fdadd40181156614b83b7e"><div class="ttname"><a href="classgBaseWindow.html#a7ce6fc79d7fdadd40181156614b83b7e">gBaseWindow::update</a></div><div class="ttdeci">virtual void update()</div></div>
@@ -207,7 +201,6 @@ $(document).ready(function(){initNavTree('gBaseWindow_8h_source.html',''); initR
 <div class="ttc" id="aclassgBaseWindow_html_ad9b39abff15d1ceb60428971f8c78748"><div class="ttname"><a href="classgBaseWindow.html#ad9b39abff15d1ceb60428971f8c78748">gBaseWindow::initialize</a></div><div class="ttdeci">virtual void initialize(int width, int height, int windowMode, bool isResizable)</div></div>
 <div class="ttc" id="aclassgBaseWindow_html_af44954b45d925f739d729012635de066"><div class="ttname"><a href="classgBaseWindow.html#af44954b45d925f739d729012635de066">gBaseWindow::onMouseButtonEvent</a></div><div class="ttdeci">void onMouseButtonEvent(int button, int action, double xpos, double ypos)</div></div>
 <div class="ttc" id="aclassgBaseWindow_html_afa75cd9d2a393032ee11695a6bf38ceb"><div class="ttname"><a href="classgBaseWindow.html#afa75cd9d2a393032ee11695a6bf38ceb">gBaseWindow::onMouseScrollEvent</a></div><div class="ttdeci">void onMouseScrollEvent(double xoffset, double yoffset)</div></div>
-<div class="ttc" id="aclassgBaseWindow_html_afd673ef5b6dec0024feb246c6015c51f"><div class="ttname"><a href="classgBaseWindow.html#afd673ef5b6dec0024feb246c6015c51f">gBaseWindow::getScaleY</a></div><div class="ttdeci">float getScaleY() const</div></div>
 <div class="ttc" id="aclassgObject_html"><div class="ttname"><a href="classgObject.html">gObject</a></div><div class="ttdef"><b>Definition:</b> gObject.h:32</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

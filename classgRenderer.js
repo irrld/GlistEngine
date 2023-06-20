@@ -58,8 +58,6 @@ var classgRenderer =
     [ "getScreenWidth", "classgRenderer.html#a651e2720c4c6eb75f861c2cf5306f1f1", null ],
     [ "getShadowmapShader", "classgRenderer.html#ad2e29c4a9c36e57fbae9cba16da71452", null ],
     [ "getSkyboxShader", "classgRenderer.html#a6f7e9048c772a677ed9d93db1038c5fe", null ],
-    [ "getSystemScaleX", "classgRenderer.html#abb5367e410493300feefb0de7213ba94", null ],
-    [ "getSystemScaleY", "classgRenderer.html#a8dad8ee7186248daedfa932e5f108f39", null ],
     [ "getTextureShader", "classgRenderer.html#af6a196172157a06727aef6f7e50f4076", null ],
     [ "getUnitHeight", "classgRenderer.html#ab64745d519dd1d073ee1dc150e16318a", null ],
     [ "getUnitResolution", "classgRenderer.html#abe847b018788e0f9cd3f5c411ab093c7", null ],
