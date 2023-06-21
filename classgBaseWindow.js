@@ -33,6 +33,8 @@ var classgBaseWindow =
     [ "appmanager", "classgBaseWindow.html#afa9919ed158f8faceec438a82e938f3a", null ],
     [ "height", "classgBaseWindow.html#add8763f7531abd5b8f71ca44a1a51f02", null ],
     [ "isfocused", "classgBaseWindow.html#ae2edb73b074c387a23f1f11d4013e5d8", null ],
+    [ "scalex", "classgBaseWindow.html#a55ab15b44c0ed94a7a84f0c986a04353", null ],
+    [ "scaley", "classgBaseWindow.html#a50d8f283155bdae569f06440c7b872e7", null ],
     [ "title", "classgBaseWindow.html#a0c558e1515e06face110080cacf75a1d", null ],
     [ "vsync", "classgBaseWindow.html#adb2bd91bfc892926354cf8f53aeb9d1e", null ],
     [ "width", "classgBaseWindow.html#a206ee4f6648b38b4aa9fb67c4c74fc2d", null ],
