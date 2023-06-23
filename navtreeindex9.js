@@ -1,5 +1,6 @@
 var NAVTREEINDEX9 =
 {
+"classgTriangle.html#a0fd7c2118a8cf8828d0d3008b04e57da":[0,0,118,0],
 "classgTriangle.html#a676b480fd607103636e6975b4f466b24":[0,0,118,2],
 "classgTriangle.html#a7ef904f34dc38d6f937e8bb0f89b9ffc":[0,0,118,1],
 "classgUTF8Iterator.html":[0,0,119],
