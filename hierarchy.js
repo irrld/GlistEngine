@@ -5,6 +5,28 @@ var hierarchy =
     [ "gGUITreelist::Element", "structgGUITreelist_1_1Element.html", null ],
     [ "gAnimationTrigger", "classgAnimationTrigger.html", null ],
     [ "gColor", "classgColor.html", null ],
+    [ "gEvent", "classgEvent.html", [
+      [ "gCharTypedEvent", "classgCharTypedEvent.html", null ],
+      [ "gJoystickConnectEvent", "classgJoystickConnectEvent.html", null ],
+      [ "gJoystickDisconnectEvent", "classgJoystickDisconnectEvent.html", null ],
+      [ "gKeyEvent", "classgKeyEvent.html", [
+        [ "gKeyPressedEvent", "classgKeyPressedEvent.html", null ],
+        [ "gKeyReleasedEvent", "classgKeyReleasedEvent.html", null ]
+      ] ],
+      [ "gMouseButtonEvent", "classgMouseButtonEvent.html", [
+        [ "gMouseButtonPressedEvent", "classgMouseButtonPressedEvent.html", null ],
+        [ "gMouseButtonReleasedEvent", "classgMouseButtonReleasedEvent.html", null ]
+      ] ],
+      [ "gMouseMovedEvent", "classgMouseMovedEvent.html", null ],
+      [ "gMouseScrolledEvent", "classgMouseScrolledEvent.html", null ],
+      [ "gReallocateRenderDataEvent", "classgReallocateRenderDataEvent.html", null ],
+      [ "gWindowFocusEvent", "classgWindowFocusEvent.html", null ],
+      [ "gWindowLoseFocusEvent", "classgWindowLoseFocusEvent.html", null ],
+      [ "gWindowMouseEnterEvent", "classgWindowMouseEnterEvent.html", null ],
+      [ "gWindowMouseExitEvent", "classgWindowMouseExitEvent.html", null ],
+      [ "gWindowResizeEvent", "classgWindowResizeEvent.html", null ]
+    ] ],
+    [ "gEventDispatcher", "classgEventDispatcher.html", null ],
     [ "gGUIManager", "classgGUIManager.html", null ],
     [ "gLocalization", "classgLocalization.html", null ],
     [ "gLog", "classgLog.html", [
@@ -25,6 +47,7 @@ var hierarchy =
         [ "gFmodSound", "classgFmodSound.html", null ]
       ] ],
       [ "gBaseWindow", "classgBaseWindow.html", [
+        [ "gAndroidWindow", "classgAndroidWindow.html", null ],
         [ "gGLFWWindow", "classgGLFWWindow.html", null ]
       ] ],
       [ "gCanvasManager", "classgCanvasManager.html", null ],
@@ -50,6 +73,7 @@ var hierarchy =
             [ "gGUIContextMenuItem", "classgGUIContextMenuItem.html", [
               [ "gGUIContextMenu", "classgGUIContextMenu.html", null ]
             ] ],
+            [ "gGUIDate", "classgGUIDate.html", null ],
             [ "gGUIDivider", "classgGUIDivider.html", null ],
             [ "gGUIGraph", "classgGUIGraph.html", [
               [ "gGUICandleStickChart", "classgGUICandleStickChart.html", null ],
@@ -94,14 +118,26 @@ var hierarchy =
         ] ],
         [ "gBasePlugin", "classgBasePlugin.html", null ],
         [ "gBasePostProcess", "classgBasePostProcess.html", [
+          [ "gChromaticAberration", "classgChromaticAberration.html", null ],
+          [ "gColorAdjustments", "classgColorAdjustments.html", null ],
+          [ "gColorChannelMixer", "classgColorChannelMixer.html", null ],
+          [ "gColorCurves", "classgColorCurves.html", null ],
+          [ "gDynamicGrain", "classgDynamicGrain.html", null ],
+          [ "gGrain", "classgGrain.html", null ],
           [ "gGrayscale", "classgGrayscale.html", null ],
+          [ "gHighContrast", "classgHighContrast.html", null ],
           [ "gInversion", "classgInversion.html", null ],
           [ "gKernelEffect", "classgKernelEffect.html", [
             [ "gBlur", "classgBlur.html", null ],
             [ "gEdgeDetection", "classgEdgeDetection.html", null ],
             [ "gSharpen", "classgSharpen.html", null ]
           ] ],
-          [ "gSepiatone", "classgSepiatone.html", null ]
+          [ "gSepiatone", "classgSepiatone.html", null ],
+          [ "gShadowsMidtonesHighlights", "classgShadowsMidtonesHighlights.html", null ],
+          [ "gSoftFocus", "classgSoftFocus.html", null ],
+          [ "gTiltShift", "classgTiltShift.html", null ],
+          [ "gVignette", "classgVignette.html", null ],
+          [ "gWhiteBalance", "classgWhiteBalance.html", null ]
         ] ],
         [ "gBoundingBox", "classgBoundingBox.html", null ],
         [ "gFbo", "classgFbo.html", null ],
@@ -119,6 +155,7 @@ var hierarchy =
             [ "gCross", "classgCross.html", null ],
             [ "gCylinder", "classgCylinder.html", null ],
             [ "gLine", "classgLine.html", null ],
+            [ "gMorphingMesh", "classgMorphingMesh.html", null ],
             [ "gPlane", "classgPlane.html", null ],
             [ "gRectangle", "classgRectangle.html", null ],
             [ "gRoundedRectangle", "classgRoundedRectangle.html", null ],
