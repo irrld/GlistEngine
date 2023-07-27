@@ -47,7 +47,6 @@ var hierarchy =
         [ "gFmodSound", "classgFmodSound.html", null ]
       ] ],
       [ "gBaseWindow", "classgBaseWindow.html", [
-        [ "gAndroidWindow", "classgAndroidWindow.html", null ],
         [ "gGLFWWindow", "classgGLFWWindow.html", null ]
       ] ],
       [ "gCanvasManager", "classgCanvasManager.html", null ],
@@ -162,7 +161,8 @@ var hierarchy =
             [ "gRoundedRectangle", "classgRoundedRectangle.html", null ],
             [ "gSkinnedMesh", "classgSkinnedMesh.html", null ],
             [ "gSphere", "classgSphere.html", null ],
-            [ "gTriangle", "classgTriangle.html", null ]
+            [ "gTriangle", "classgTriangle.html", null ],
+            [ "gTube", "classgTube.html", null ]
           ] ],
           [ "gModel", "classgModel.html", null ],
           [ "gSkybox", "classgSkybox.html", null ]

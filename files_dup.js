@@ -1,8 +1,6 @@
 var files_dup =
 [
     [ "gAES.h", "gAES_8h_source.html", null ],
-    [ "gAndroidUtil.h", "gAndroidUtil_8h_source.html", null ],
-    [ "gAndroidWindow.h", "gAndroidWindow_8h_source.html", null ],
     [ "gAppManager.h", "gAppManager_8h_source.html", null ],
     [ "gAppObject.h", "gAppObject_8h_source.html", null ],
     [ "gArc.h", "gArc_8h_source.html", null ],
@@ -130,6 +128,7 @@ var files_dup =
     [ "gThread.h", "gThread_8h_source.html", null ],
     [ "gTiltShift.h", "gTiltShift_8h_source.html", null ],
     [ "gTriangle.h", "gTriangle_8h_source.html", null ],
+    [ "gTube.h", "gTube_8h_source.html", null ],
     [ "gUtils.h", "gUtils_8h_source.html", null ],
     [ "gVbo.h", "gVbo_8h_source.html", null ],
     [ "gVignette.h", "gVignette_8h_source.html", null ],
