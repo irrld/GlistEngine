@@ -99,6 +99,8 @@ var hierarchy =
               [ "gGUIGrid", "classgGUIGrid.html", null ],
               [ "gGUIListbox", "classgGUIListbox.html", null ],
               [ "gGUINavigation", "classgGUINavigation.html", null ],
+              [ "gGUISurface", "classgGUISurface.html", null ],
+              [ "gGUITable", "classgGUITable.html", null ],
               [ "gGUITreelist", "classgGUITreelist.html", null ]
             ] ],
             [ "gGUISizer", "classgGUISizer.html", null ],
@@ -113,7 +115,8 @@ var hierarchy =
           ] ]
         ] ],
         [ "gBaseParticles", "classgBaseParticles.html", [
-          [ "gFireParticles", "classgFireParticles.html", null ]
+          [ "gFireParticles", "classgFireParticles.html", null ],
+          [ "gFireworksParticles", "classgFireworksParticles.html", null ]
         ] ],
         [ "gBasePlugin", "classgBasePlugin.html", null ],
         [ "gBasePostProcess", "classgBasePostProcess.html", [
@@ -155,11 +158,12 @@ var hierarchy =
             [ "gCross", "classgCross.html", null ],
             [ "gCylinder", "classgCylinder.html", null ],
             [ "gLine", "classgLine.html", null ],
-            [ "gMorphingMesh", "classgMorphingMesh.html", null ],
+            [ "gMorphingMesh", "classgMorphingMesh.html", [
+              [ "gSkinnedMesh", "classgSkinnedMesh.html", null ]
+            ] ],
             [ "gPlane", "classgPlane.html", null ],
             [ "gRectangle", "classgRectangle.html", null ],
             [ "gRoundedRectangle", "classgRoundedRectangle.html", null ],
-            [ "gSkinnedMesh", "classgSkinnedMesh.html", null ],
             [ "gSphere", "classgSphere.html", null ],
             [ "gTriangle", "classgTriangle.html", null ],
             [ "gTube", "classgTube.html", null ]
