@@ -20,6 +20,8 @@
 #include "gCylinder.h"
 #include "gCone.h"
 #include "gTube.h"
+#include "gUbo.h"
+#include "gShader.h"
 
 //screenShot Related includes
 #include "stb/stb_image_write.h"
@@ -611,6 +613,9 @@ void gDrawTubeObliqueTrapezodial(float x, float y, float z, int topouterradius,
 }
 
 gRenderer::gRenderer() {
+}
+
+void gRenderer::init() {
 	width = gDefaultWidth();
 	height = gDefaultHeight();
 	unitwidth = gDefaultUnitWidth();
@@ -630,8 +635,17 @@ gRenderer::gRenderer() {
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glPixelStorei(GL_PACK_ALIGNMENT, 1);
 
+	// first light is reserved for backwards compatibility
+	defaultlight = new gLight();
+	defaultlight->setType(gLight::LIGHTTYPE_AMBIENT);
+	defaultlight->setAmbientColor(255, 255, 255, 255);
+	defaultlight->setPosition(0.0f, 0.0f, 0.0f);
+
+	lightsubo = new gUbo<gSceneLights>(0);
+
 	colorshader = new gShader();
 	colorshader->loadProgram(getShaderSrcColorVertex(), getShaderSrcColorFragment());
+	colorshader->attachUbo("Lights", lightsubo);
 
 	textureshader = new gShader();
 	textureshader->loadProgram(getShaderSrcTextureVertex(), getShaderSrcTextureFragment());
@@ -676,15 +690,6 @@ gRenderer::gRenderer() {
 
 	rendercolor = new gColor();
 	rendercolor->set(255, 255, 255, 255);
-
-	globalambientcolor = new gColor();
-	globalambientcolor->set(255, 255, 255, 255);
-
-	lightingcolor = new gColor();
-	lightingcolor->set(255, 255, 255, 255);
-	islightingenabled = false;
-	lightingposition = glm::vec3(0.0f);
-	li = 0;
 
 	isfogenabled = false;
 	fogno = -1;
@@ -735,8 +740,7 @@ gRenderer::~gRenderer() {
 	delete brdfshader;
 	delete fboshader;
 	delete rendercolor;
-	delete globalambientcolor;
-	delete lightingcolor;
+	delete defaultlight;
 }
 
 gShader* gRenderer::getColorShader() {
@@ -1045,53 +1049,31 @@ float gRenderer::getFogLinearEnd() const {
 }
 
 void gRenderer::enableLighting() {
-	lightingcolor->set(0.0f, 0.0f, 0.0f, 1.0f);
-	islightingenabled = true;
+	scenelights[0]->enable();
 }
 
 void gRenderer::disableLighting() {
-	globalambientcolor = new gColor();
-	globalambientcolor->set(255, 255, 255, 255);
-	lightingcolor->set(globalambientcolor->r, globalambientcolor->g, globalambientcolor->b, globalambientcolor->a);
-	lightingposition = glm::vec3(0.0f);
-	removeAllSceneLights();
-	islightingenabled = false;
+	scenelights[0]->disable();
 }
 
 bool gRenderer::isLightingEnabled() {
-	return islightingenabled;
+	return scenelights[0]->isEnabled();
 }
 
 void gRenderer::setLightingColor(int r, int g, int b, int a) {
-	lightingcolor->set(r, g, b, a);
-}
-
-void gRenderer::setLightingColor(gColor* color) {
-	lightingcolor->set(color);
+	scenelights[0]->setAmbientColor(r, g, b, a);
 }
 
 gColor* gRenderer::getLightingColor() {
-	return lightingcolor;
+	return scenelights[0]->getAmbientColor();
 }
 
 void gRenderer::setLightingPosition(glm::vec3 lightingPosition) {
-	lightingposition = lightingPosition;
+	scenelights[0]->setPosition(lightingPosition);
 }
 
 glm::vec3 gRenderer::getLightingPosition() {
-	return lightingposition;
-}
-
-void gRenderer::setGlobalAmbientColor(int r, int g, int b, int a) {
-	globalambientcolor->set(r, g, b, a);
-}
-
-void gRenderer::setGlobalAmbientColor(gColor color) {
-	globalambientcolor->set(color.r, color.g, color.b, color.a);
-}
-
-gColor* gRenderer::getGlobalAmbientColor() {
-	return globalambientcolor;
+	return scenelights[0]->getPosition();
 }
 
 void gRenderer::addSceneLight(gLight* light) {
@@ -1099,24 +1081,75 @@ void gRenderer::addSceneLight(gLight* light) {
 }
 
 gLight* gRenderer::getSceneLight(int lightNo) {
-	return scenelights[lightNo];
+	return scenelights[lightNo + 1]; // one light is reserved for backwards compatibility
 }
 
 int gRenderer::getSceneLightNum() {
-	return scenelights.size();
+	return scenelights.size() - 1; // one light is reserved for backwards compatibility
 }
 
 void gRenderer::removeSceneLight(gLight* light) {
-	for (li = 0; li < scenelights.size(); li++) {
-		if (light == scenelights[li]) {
-			scenelights.erase(scenelights.begin() + li);
-			break;
-		}
+	if (scenelights.size() < 1) {
+		return; // no lights to remove
 	}
+	// we don't allow the first light to be removed as it's used for backwards compatibility, hence the begin + 1
+	scenelights.erase(std::remove_if(scenelights.begin() + 1, scenelights.end(), [light](gLight* l) {
+		return l == light;
+	}), scenelights.end());
 }
 
 void gRenderer::removeAllSceneLights() {
-	scenelights.clear();
+	// erase all lights from the second element onwards
+	// first one is reserved for backwards compatibility
+	scenelights.erase(scenelights.begin() + 1, scenelights.end());
+}
+
+void gRenderer::updateLights() {
+	gSceneLights* data = lightsubo->getData();
+	int previouslightnum = data->lightnum;
+	data->lightnum = std::min((int) scenelights.size(), GLIST_MAX_LIGHTS);
+	bool ischanged = false;
+	bool isenabledchanged = false;
+	for (int i = 0; i < data->lightnum; ++i) {
+		const auto& item = scenelights[i];
+		if (item->isChanged()) {
+			data->lights[i].type = item->getType();
+			data->lights[i].position = item->getPosition();
+			data->lights[i].direction = item->getDirection();
+			data->lights[i].ambient = item->getAmbientColor()->asVec4();
+			data->lights[i].diffuse = item->getDiffuseColor()->asVec4();
+			data->lights[i].specular = item->getSpecularColor()->asVec4();
+			data->lights[i].constant = item->getAttenuationConstant();
+			data->lights[i].linear = item->getAttenuationLinear();
+			data->lights[i].quadratic = item->getAttenuationQuadratic();
+			data->lights[i].spotcutoffangle = item->getSpotCutOffAngle();
+			data->lights[i].spotoutercutoffangle = item->getSpotOuterCutOffAngle();
+			item->setChanged(false);
+			ischanged = true;
+		}
+		int bit = (1 << i);
+		bool previous = data->enabledlights & bit;
+		if (previous != item->isEnabled()) {
+			isenabledchanged = true;
+
+			// ~ flips the value bitwise
+			// &= applies bitwise and
+			// x << n shifts x by n amount bits to the left, for example shifting 0b0001 (1) by 4, results in binary 0b1000
+			if (item->isEnabled()) {
+				data->enabledlights |= bit; // Set the bit at the given index
+			} else {
+				data->enabledlights &= ~bit; // Clear the bit at the given index
+			}
+		}
+	}
+	if (ischanged) {
+		lightsubo->update(0, offsetof(gSceneLights, lights[data->lightnum]) + sizeof(gSceneLightData));
+	} else if (previouslightnum != data->lightnum) {
+		lightsubo->update(0, sizeof(gSceneLights::lightnum));
+	}
+	if (isenabledchanged) {
+		lightsubo->update(offsetof(gSceneLights, enabledlights), 1);
+	}
 }
 
 void gRenderer::enableDepthTest() {
@@ -1181,6 +1214,10 @@ void gRenderer::disableAlphaTest() {
 bool gRenderer::isAlphaTestEnabled() {
 	return isalphatestenabled;
 }
+
+#define STRINGIFY(x) #x
+#define TOSTRING(x) STRINGIFY(x)
+// this macro is undefined at the end of the file
 
 const std::string gRenderer::getShaderSrcColorVertex() {
 	const char* shadersource =
@@ -1273,8 +1310,6 @@ const std::string gRenderer::getShaderSrcColorFragment() {
 "		int type; //0-ambient, 1-directional, 2-point, 3-spot\n"
 "	    vec3 position;\n"
 "	    vec3 direction;\n"
-"	    float cutOff;\n"
-"	    float outerCutOff;\n"
 "\n"
 "	    vec4 ambient;\n"
 "	    vec4 diffuse;\n"
@@ -1283,6 +1318,9 @@ const std::string gRenderer::getShaderSrcColorFragment() {
 "	    float constant;\n"
 "	    float linear;\n"
 "	    float quadratic;\n"
+"		\n"
+"	    float cutOff;\n"
+"	    float outerCutOff;\n"
 "	};\n"
 "\n"
 "struct Fog {\n"
@@ -1297,8 +1335,11 @@ const std::string gRenderer::getShaderSrcColorFragment() {
 "};\n"
 "\n"
 "	uniform Material material;\n"
-"	#define MAX_LIGHTS 8\n"
-"	uniform Light lights[MAX_LIGHTS];\n"
+"	layout(std140) uniform Lights { "
+"		int lightnum;"
+"		Light lights[" TOSTRING(GLIST_MAX_LIGHTS) "];"
+"		int enabledlights;"
+"	};\n"
 "\n"
 "	uniform vec4 renderColor;\n"
 "	uniform vec3 viewPos;\n"
@@ -1534,20 +1575,27 @@ const std::string gRenderer::getShaderSrcColorFragment() {
 "		float shadowing;"
 "	    if (mUseShadowMap > 0) {\n"
 "			shadowing = 1.0 - calculateShadow(FragPosLightSpace);\n"
-"	    }"
-"		for (int i = 0; i < MAX_LIGHTS; i++) {\n"
+"	    }\n"
+"		bool haslight = false;"
+"		for (int i = 0; i < lightnum; i++) {\n"
+"			if ((enabledlights & (1 << i)) == 0) {\n"
+"				continue;\n"
+"			}\n"
 "			if (lights[i].type == 0) {\n"
 "				result += calcAmbLight(lights[i], materialAmbient);\n"
-"			}\n"
-"			else if (lights[i].type == 1) {\n"
+"			} else if (lights[i].type == 1) {\n"
 "				result += calcDirLight(lights[i], norm, viewDir, shadowing, materialAmbient, materialDiffuse, materialSpecular);\n"
-"			}\n"
-"			else if (lights[i].type == 2) {\n"
+"			} else if (lights[i].type == 2) {\n"
 "				result += calcPointLight(lights[i], norm, viewDir, shadowing, materialAmbient, materialDiffuse, materialSpecular);\n"
-"			}\n"
-"			else if (lights[i].type == 3) {\n"
+"			} else if (lights[i].type == 3) {\n"
 "				result += calcSpotLight(lights[i], norm, viewDir, shadowing, materialAmbient, materialDiffuse, materialSpecular);\n"
+"			} else {\n"
+"				return;\n"
 "			}\n"
+"			haslight = true;\n"
+"		}\n"
+"		if (!haslight) {\n"
+"			result = vec4(1.0) * materialAmbient;\n"
 "		}\n"
 "\n"
 "		FragColor = result * renderColor;\n"
@@ -1854,7 +1902,6 @@ const std::string gRenderer::getShaderSrcPbrVertex() {
 
 	return std::string(shadersource);
 }
-
 const std::string gRenderer::getShaderSrcPbrFragment() {
 	const char* shadersource =
 #if defined(GLIST_MOBILE)
@@ -1880,10 +1927,27 @@ const std::string gRenderer::getShaderSrcPbrFragment() {
 "uniform samplerCube prefilterMap;\n"
 "uniform sampler2D brdfLUT;\n"
 "\n"
-"// lights\n"
-"uniform int lightNum;\n"
-"uniform vec3 lightPositions[8];\n"
-"uniform vec3 lightColors[8];\n"
+"struct Light {\n"
+"	int type; //0-ambient, 1-directional, 2-point, 3-spot\n"
+"    vec3 position;\n"
+"    vec3 direction;\n"
+"	\n"
+"    vec4 ambient;\n"
+"    vec4 diffuse;\n"
+"    vec4 specular;\n"
+"	\n"
+"    float constant;\n"
+"    float linear;\n"
+"    float quadratic;\n"
+"	\n"
+"    float cutOff;\n"
+"    float outerCutOff;\n"
+"};\n"
+"layout(std140) uniform Lights { "
+"	int lightnum;"
+"	Light lights[" TOSTRING(GLIST_MAX_LIGHTS) "];"
+"	int enabledlights;"
+"};\n"
 "\n"
 "uniform vec3 camPos;\n"
 "\n"
@@ -1975,13 +2039,13 @@ const std::string gRenderer::getShaderSrcPbrFragment() {
 "\n"
 "    // reflectance equation\n"
 "    vec3 Lo = vec3(0.0);\n"
-"    for(int i = 0; i < lightNum; ++i) {\n"
+"    for(int i = 0; i < lightnum; ++i) {\n"
 "        // calculate per-light radiance\n"
-"        vec3 L = normalize(lightPositions[i] - WorldPos);\n"
+"        vec3 L = normalize(lights[i].position - WorldPos);\n"
 "        vec3 H = normalize(V + L);\n"
-"        float distance = length(lightPositions[i] - WorldPos);\n"
+"        float distance = length(lights[i].position - WorldPos);\n"
 "        float attenuation = 1.0 / (distance * distance);\n"
-"        vec3 radiance = lightColors[i] * attenuation;\n"
+"        vec3 radiance = lights[i].diffuse.xyz * attenuation;\n"
 "\n"
 "        // Cook-Torrance BRDF\n"
 "        float NDF = DistributionGGX(N, H, roughness);\n"
@@ -2562,3 +2626,6 @@ void gRenderer::setSSAOBias(float value) {
 float gRenderer::getSSAOBias() {
 	return ssaobias;
 }
+
+#undef STRINGIFY
+#undef TOSTRING

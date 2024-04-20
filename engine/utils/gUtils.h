@@ -75,6 +75,11 @@
 #   endif
 #endif
 
+#ifdef GLIST_NO_DEPRECATED
+#define GLIST_DEPRECATED(reason)
+#else
+#define GLIST_DEPRECATED(reason) [[deprecated(reason)]]
+#endif
 
 #ifndef PI
 	#define PI       3.14159265358979323846

@@ -60,16 +60,28 @@ protected:
 	void clearColor(int r, int g, int b, int a = 255);
 	void clearColor(gColor color);
 
+	GLIST_DEPRECATED("Use gLight for light management")
 	void enableLighting();
+	GLIST_DEPRECATED("Use gLight for light management")
 	void disableLighting();
+	GLIST_DEPRECATED("Use gLight for light management")
 	bool isLightingEnabled();
+	GLIST_DEPRECATED("Use gLight for light management")
 	void setLightingColor(int r, int g, int b, int a = 255);
+	GLIST_DEPRECATED("Use gLight for light management")
 	void setLightingColor(gColor* color);
+	GLIST_DEPRECATED("Use gLight for light management")
 	gColor* getLightingColor();
+	GLIST_DEPRECATED("Use gLight for light management")
 	void setLightingPosition(glm::vec3 lightingPosition);
+	GLIST_DEPRECATED("Use gLight for light management")
 	glm::vec3 getLightingPosition();
+
+	GLIST_DEPRECATED("Does nothing, use gLight for light management")
 	void setGlobalAmbientColor(int r, int g, int b, int a = 255);
+	GLIST_DEPRECATED("Does nothing, use gLight for light management")
 	void setGlobalAmbientColor(gColor color);
+	GLIST_DEPRECATED("Does nothing, use gLight for light management")
 	gColor* getGlobalAmbientColor();
 
 	void addSceneLight(gLight* light);
