@@ -91,6 +91,7 @@ var files_dup =
     [ "gGUITimebox.h", "gGUITimebox_8h_source.html", null ],
     [ "gGUIToolbar.h", "gGUIToolbar_8h_source.html", null ],
     [ "gGUIToolbarButton.h", "gGUIToolbarButton_8h_source.html", null ],
+    [ "gGUITooltipText.h", "gGUITooltipText_8h_source.html", null ],
     [ "gGUITreelist.h", "gGUITreelist_8h_source.html", null ],
     [ "gHighContrast.h", "gHighContrast_8h_source.html", null ],
     [ "gHttpFile.h", "gHttpFile_8h_source.html", null ],
@@ -137,5 +138,6 @@ var files_dup =
     [ "gVignette.h", "gVignette_8h_source.html", null ],
     [ "gWhiteBalance.h", "gWhiteBalance_8h_source.html", null ],
     [ "gWindowEvents.h", "gWindowEvents_8h_source.html", null ],
+    [ "gWindows.h", "gWindows_8h_source.html", null ],
     [ "tinyfiledialogs.h", "tinyfiledialogs_8h_source.html", null ]
 ];

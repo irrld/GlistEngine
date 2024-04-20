@@ -132,6 +132,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (<a class="el
 <tr class="memitem:aa26783c9511aa2d8eb92bae7585d78b3"><td class="memItemLeft" align="right" valign="top"><a id="aa26783c9511aa2d8eb92bae7585d78b3"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>addData</b> (std::string lineData)</td></tr>
 <tr class="separator:aa26783c9511aa2d8eb92bae7585d78b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96831658bb12b1bf9bb57920e5091281"><td class="memItemLeft" align="right" valign="top"><a id="a96831658bb12b1bf9bb57920e5091281"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setData</b> (int lineNo, std::string lineData)</td></tr>
+<tr class="separator:a96831658bb12b1bf9bb57920e5091281"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ecd6fb791cc8bf8acfa387231215736"><td class="memItemLeft" align="right" valign="top"><a id="a2ecd6fb791cc8bf8acfa387231215736"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>insertData</b> (int lineNo, std::string lineData)</td></tr>
 <tr class="separator:a2ecd6fb791cc8bf8acfa387231215736"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,6 +162,9 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getSelectedDat
 <tr class="memitem:ad1f7ef7f81ade4da7d93b957fb74780e"><td class="memItemLeft" align="right" valign="top"><a id="ad1f7ef7f81ade4da7d93b957fb74780e"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> (int lineNo)</td></tr>
 <tr class="separator:ad1f7ef7f81ade4da7d93b957fb74780e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab81119840fdbb1f00b6c912a3f57f2c0"><td class="memItemLeft" align="right" valign="top"><a id="ab81119840fdbb1f00b6c912a3f57f2c0"></a>
+std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> ()</td></tr>
+<tr class="separator:ab81119840fdbb1f00b6c912a3f57f2c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab05960037a8adc84eaea1c813dde04e9"><td class="memItemLeft" align="right" valign="top"><a id="ab05960037a8adc84eaea1c813dde04e9"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>getDataNum</b> ()</td></tr>
 <tr class="separator:ab05960037a8adc84eaea1c813dde04e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -204,6 +210,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>getIconType</b> ()</t
 <tr class="memitem:a458887cdb473ab8c204f1415e33b4498"><td class="memItemLeft" align="right" valign="top"><a id="a458887cdb473ab8c204f1415e33b4498"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>getVisibleLineNumber</b> ()</td></tr>
 <tr class="separator:a458887cdb473ab8c204f1415e33b4498"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a139cb19587628e7e0a9f9523d40503bf"><td class="memItemLeft" align="right" valign="top"><a id="a139cb19587628e7e0a9f9523d40503bf"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getTotalHeight</b> ()</td></tr>
+<tr class="separator:a139cb19587628e7e0a9f9523d40503bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classgGUIScrollable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classgGUIScrollable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classgGUIScrollable.html">gGUIScrollable</a></td></tr>
 <tr class="memitem:a6a5698aaf73204b817e93440d50fc72d inherit pub_methods_classgGUIScrollable"><td class="memItemLeft" align="right" valign="top"><a id="a6a5698aaf73204b817e93440d50fc72d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>enableScrollbars</b> (bool isVerticalEnabled, bool isHorizontalEnabled)</td></tr>
@@ -649,6 +658,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>scrolldiff</b></td></t
 <tr class="memitem:ae0ff1f7cd880b3157bd39210a5c85faa inherit pro_attribs_classgGUIScrollable"><td class="memItemLeft" align="right" valign="top"><a id="ae0ff1f7cd880b3157bd39210a5c85faa"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>titlediff</b></td></tr>
 <tr class="separator:ae0ff1f7cd880b3157bd39210a5c85faa inherit pro_attribs_classgGUIScrollable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bb1cc033f1f013f9914ca3685528892 inherit pro_attribs_classgGUIScrollable"><td class="memItemLeft" align="right" valign="top"><a id="a1bb1cc033f1f013f9914ca3685528892"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>linehalf</b></td></tr>
+<tr class="separator:a1bb1cc033f1f013f9914ca3685528892 inherit pro_attribs_classgGUIScrollable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classgBaseGUIObject"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classgBaseGUIObject')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classgBaseGUIObject.html">gBaseGUIObject</a></td></tr>
 <tr class="memitem:a6f768f37eb2433acaf02c0b2d543205b inherit pro_attribs_classgBaseGUIObject"><td class="memItemLeft" align="right" valign="top"><a id="a6f768f37eb2433acaf02c0b2d543205b"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>title</b></td></tr>

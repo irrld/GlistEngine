@@ -130,10 +130,10 @@ Collaboration diagram for gGUIToolbar:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a1043028e3954a8222cda5c7783d1fcbd"><td class="memItemLeft" align="right" valign="top"><a id="a1043028e3954a8222cda5c7783d1fcbd"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>TOOLBAR_HORIZONTAL</b>
+<tr class="memitem:ad607ade85751aa1b120ed12ed13cf2a6"><td class="memItemLeft" align="right" valign="top"><a id="ad607ade85751aa1b120ed12ed13cf2a6"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>TOOLBAR_HORIZONTAL</b>
 , <b>TOOLBAR_VERTICAL</b>
  }</td></tr>
-<tr class="separator:a1043028e3954a8222cda5c7783d1fcbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ad607ade85751aa1b120ed12ed13cf2a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_types_classgBaseGUIObject"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classgBaseGUIObject')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classgBaseGUIObject.html">gBaseGUIObject</a></td></tr>
 <tr class="memitem:a481c27c2e5386988f2c965b9ff4761c0 inherit pub_types_classgBaseGUIObject"><td class="memItemLeft" align="right" valign="top"><a id="a481c27c2e5386988f2c965b9ff4761c0"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>TEXTALIGNMENT_LEFT</b>
 , <b>TEXTALIGNMENT_MIDDLE</b>
@@ -173,12 +173,21 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>addSwitchButton</b> (
 <tr class="memitem:a5933b36763d92e4aaa7d204a1e85548d"><td class="memItemLeft" align="right" valign="top"><a id="a5933b36763d92e4aaa7d204a1e85548d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>addText</b> (<a class="el" href="classgGUIText.html">gGUIText</a> *text)</td></tr>
 <tr class="separator:a5933b36763d92e4aaa7d204a1e85548d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d47acc97379f20beace7e44a009da22"><td class="memItemLeft" align="right" valign="top"><a id="a3d47acc97379f20beace7e44a009da22"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addImage</b> (<a class="el" href="classgGUIBitmap.html">gGUIBitmap</a> *image)</td></tr>
+<tr class="separator:a3d47acc97379f20beace7e44a009da22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9f231f316b915a37b5f3fafd2eb3055"><td class="memItemLeft" align="right" valign="top"><a id="aa9f231f316b915a37b5f3fafd2eb3055"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>addDivider</b> (<a class="el" href="classgGUIDivider.html">gGUIDivider</a> *divider, float margin)</td></tr>
 <tr class="separator:aa9f231f316b915a37b5f3fafd2eb3055"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07c84ce75691495b469b8e96168df3e8"><td class="memItemLeft" align="right" valign="top"><a id="a07c84ce75691495b469b8e96168df3e8"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>addSpace</b> ()</td></tr>
 <tr class="separator:a07c84ce75691495b469b8e96168df3e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7f23bdca34df4d581f8fae3498fef7c"><td class="memItemLeft" align="right" valign="top"><a id="ab7f23bdca34df4d581f8fae3498fef7c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setToolbarForegroundColor</b> (<a class="el" href="classgColor.html">gColor</a> color)</td></tr>
+<tr class="separator:ab7f23bdca34df4d581f8fae3498fef7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a911badca5af4763966f89e8805ef1c59"><td class="memItemLeft" align="right" valign="top"><a id="a911badca5af4763966f89e8805ef1c59"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setToolbarBottomLineColor</b> (<a class="el" href="classgColor.html">gColor</a> color)</td></tr>
+<tr class="separator:a911badca5af4763966f89e8805ef1c59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a271462072ab724d8c685e7bc185bb7da"><td class="memItemLeft" align="right" valign="top"><a id="a271462072ab724d8c685e7bc185bb7da"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> ()</td></tr>
 <tr class="separator:a271462072ab724d8c685e7bc185bb7da"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -649,6 +658,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>scrolldiff</b></td></t
 <tr class="memitem:ae0ff1f7cd880b3157bd39210a5c85faa inherit pro_attribs_classgGUIScrollable"><td class="memItemLeft" align="right" valign="top"><a id="ae0ff1f7cd880b3157bd39210a5c85faa"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>titlediff</b></td></tr>
 <tr class="separator:ae0ff1f7cd880b3157bd39210a5c85faa inherit pro_attribs_classgGUIScrollable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bb1cc033f1f013f9914ca3685528892 inherit pro_attribs_classgGUIScrollable"><td class="memItemLeft" align="right" valign="top"><a id="a1bb1cc033f1f013f9914ca3685528892"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>linehalf</b></td></tr>
+<tr class="separator:a1bb1cc033f1f013f9914ca3685528892 inherit pro_attribs_classgGUIScrollable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classgBaseGUIObject"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classgBaseGUIObject')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classgBaseGUIObject.html">gBaseGUIObject</a></td></tr>
 <tr class="memitem:a6f768f37eb2433acaf02c0b2d543205b inherit pro_attribs_classgBaseGUIObject"><td class="memItemLeft" align="right" valign="top"><a id="a6f768f37eb2433acaf02c0b2d543205b"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>title</b></td></tr>
