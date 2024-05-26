@@ -45,17 +45,17 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classgBaseParticles.html#a032ca3f4e351e20ffb363d7020584014",
-"classgColorChannelMixer.html",
-"classgGUIButton.html#abec0f91b86b793b6b899c1c03fde8c5a",
-"classgGUIForm.html#a9c364fb1c9a761c8a758b2f3fa204d09",
-"classgGUIManager.html#a333685db5c99906fa6037faa2715d0ea",
-"classgGUIScrollable.html#a54de94c9a52fc388e39a512850838e28",
-"classgGUITooltipText.html#ae6ca1bc970f98460b2af85a6ab00520d",
-"classgMaterial.html#a8cecbb670089bce50aa854ae8f891ba0",
-"classgParticle.html#a221a756724875182b04b888fc8088048",
-"classgShadowMap.html#a6e7472e8b8f12d95a3a640e4607ea31c",
-"classgWhiteBalance.html",
-"structgHttpFile_1_1ProgressData.html#a7d3ae2b5d14fb694f338f136d344524c"
+"classgColorAdjustments.html#a8dc8917fedbf2626ee4a9a3520292a29",
+"classgGUIButton.html#a9eb8f0a972e32d73e152614bc76c0314",
+"classgGUIForm.html#a786fd6073e756866732f7b630946ab0e",
+"classgGUIListbox.html#a70baa4b4730230a05bec9d8beb8c9478",
+"classgGUIRadioButton.html#ac681278e9b3a3d02a47cc217b065226b",
+"classgGUITimebox.html#acf62597708650d20210e079623852950",
+"classgMaterial.html#a0a441b72cc2f3c75c8fe19d5d7fbd0ec",
+"classgNode.html#a6ade01c6af2b73ec82498f6c17dfa2bc",
+"classgRenderer.html#aff8c158d2b8171d117457d1591001dcc",
+"classgTriangle.html#a7ef904f34dc38d6f937e8bb0f89b9ffc",
+"gUtils_8h_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
