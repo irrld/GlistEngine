@@ -14,6 +14,47 @@ const int gGLFWWindow::CURSORMODE_DISABLED = GLFW_CURSOR_DISABLED;
 
 GLFWwindow* gGLFWWindow::currentwindow = nullptr;
 
+// Debug message callback function
+void GLAPIENTRY debugMessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity,
+									 GLsizei length, const GLchar* message, const void* userParam) {
+	std::cerr << "GL Debug Message [" << id << "]: " << message << std::endl;
+
+	// Print additional information if needed
+	switch (source) {
+	case GL_DEBUG_SOURCE_API:             std::cerr << "Source: API"; break;
+	case GL_DEBUG_SOURCE_WINDOW_SYSTEM:   std::cerr << "Source: Window System"; break;
+	case GL_DEBUG_SOURCE_SHADER_COMPILER: std::cerr << "Source: Shader Compiler"; break;
+	case GL_DEBUG_SOURCE_THIRD_PARTY:     std::cerr << "Source: Third Party"; break;
+	case GL_DEBUG_SOURCE_APPLICATION:     std::cerr << "Source: Application"; break;
+	case GL_DEBUG_SOURCE_OTHER:           std::cerr << "Source: Other"; break;
+	}
+	std::cerr << std::endl;
+
+	switch (type) {
+	case GL_DEBUG_TYPE_ERROR:               std::cerr << "Type: Error"; break;
+	case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR: std::cerr << "Type: Deprecated Behavior"; break;
+	case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:  std::cerr << "Type: Undefined Behavior"; break;
+	case GL_DEBUG_TYPE_PORTABILITY:         std::cerr << "Type: Portability"; break;
+	case GL_DEBUG_TYPE_PERFORMANCE:         std::cerr << "Type: Performance"; break;
+	case GL_DEBUG_TYPE_MARKER:              std::cerr << "Type: Marker"; break;
+	case GL_DEBUG_TYPE_PUSH_GROUP:          std::cerr << "Type: Push Group"; break;
+	case GL_DEBUG_TYPE_POP_GROUP:           std::cerr << "Type: Pop Group"; break;
+	case GL_DEBUG_TYPE_OTHER:               std::cerr << "Type: Other"; break;
+	}
+	std::cerr << std::endl;
+
+	switch (severity) {
+	case GL_DEBUG_SEVERITY_HIGH:         std::cerr << "Severity: High"; break;
+	case GL_DEBUG_SEVERITY_MEDIUM:       std::cerr << "Severity: Medium"; break;
+	case GL_DEBUG_SEVERITY_LOW:          std::cerr << "Severity: Low"; break;
+	case GL_DEBUG_SEVERITY_NOTIFICATION: std::cerr << "Severity: Notification"; break;
+	}
+	std::cerr << std::endl;
+}
+// Error callback function for GLFW
+void glfwErrorCallback(int error, const char* description) {
+	std::cerr << "GLFW Error (" << error << "): " << description << std::endl;
+}
 
 gGLFWWindow::gGLFWWindow() {
 	window = nullptr;
@@ -28,14 +69,23 @@ gGLFWWindow::~gGLFWWindow() {
 
 void gGLFWWindow::initialize(int width, int height, int windowMode, bool isResizable) {
 	gBaseWindow::initialize(width, height, windowMode, isResizable);
+
+	glfwSetErrorCallback(glfwErrorCallback);
+
 	// Create glfw
 	glfwInit();
 
-
 	// Configure glfw
+#ifdef DEBUG
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
+#else
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+#endif
 
 #if TARGET_OS_OSX
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); //case_mac
@@ -86,11 +136,13 @@ void gGLFWWindow::initialize(int width, int height, int windowMode, bool isResiz
 	this->scalex = (float) width / (float) windowWidth;
 	this->scaley = (float) height / (float) windowHeight;
 
+#ifndef GLFW_PLATFORM_COCOA
 	GLFWimage images[1];
 	std::string iconpath = gGetImagesDir() + "gameicon/icon.png";
 	images[0].pixels = stbi_load(iconpath.c_str(), &images[0].width, &images[0].height, 0, 4); //rgba channels
 	glfwSetWindowIcon(window, 1, images);
 	stbi_image_free(images[0].pixels);
+#endif
 
 	cursor[0] = glfwCreateStandardCursor(0x00036001);
 	cursor[1] = glfwCreateStandardCursor(0x00036002);
@@ -104,6 +156,13 @@ void gGLFWWindow::initialize(int width, int height, int windowMode, bool isResiz
     glfwSwapInterval(vsync ? 1 : 0);
 	glewExperimental = GL_TRUE;
 	glewInit();
+
+#ifdef DEBUG
+	// Enable OpenGL debug output
+	glEnable(GL_DEBUG_OUTPUT);
+	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+	glDebugMessageCallback(debugMessageCallback, nullptr);
+#endif
 
 //	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 //	    std::cout << "Failed to initialize GLAD" << std::endl;

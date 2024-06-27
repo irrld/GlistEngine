@@ -53,7 +53,7 @@ void gLine::setThickness(float value) {
 }
 
 void gLine::setLinePoints(float x1, float y1, float z1, float x2, float y2, float z2) {
-	if(verticessb.size() > 0) {
+	if(!verticessb.empty()) {
 		verticessb.clear();
 		indicessb.clear();
 	}
@@ -65,38 +65,17 @@ void gLine::setLinePoints(float x1, float y1, float z1, float x2, float y2, floa
 		glm::vec3 tangent = glm::cross(d, glm::vec3(0.0f, 0.0f, 1.0f));
 		tangent = glm::normalize(tangent);
 
-		vertex1.position.x = x1 + tangent.x * thickness;
-		vertex1.position.y = y1 + tangent.y * thickness;
-		vertex1.position.z = z1 + tangent.z * thickness;
-		verticessb.push_back(vertex1);
-
-		vertex2.position.x = x2 + tangent.x * thickness;
-		vertex2.position.y = y2 + tangent.y * thickness;
-		vertex2.position.z = z2 + tangent.z * thickness;
-		verticessb.push_back(vertex2);
-
-		vertex1.position.x = x1 - tangent.x * thickness;
-		vertex1.position.y = y1 - tangent.y * thickness;
-		vertex1.position.z = z1 - tangent.z * thickness;
-		verticessb.push_back(vertex1);
-
-		vertex2.position.x = x2 - tangent.x * thickness;
-		vertex2.position.y = y2 - tangent.y * thickness;
-		vertex2.position.z = z2 - tangent.z * thickness;
-		verticessb.push_back(vertex2);
+		verticessb.push_back({{x1 + tangent.x * thickness, y1 + tangent.y * thickness, z1 + tangent.z * thickness}});
+		verticessb.push_back({{x2 + tangent.x * thickness, y2 + tangent.y * thickness, z2 + tangent.z * thickness}});
+		verticessb.push_back({{x1 - tangent.x * thickness, y1 - tangent.y * thickness, z1 - tangent.z * thickness}});
+		verticessb.push_back({{x2 - tangent.x * thickness, y2 - tangent.y * thickness, z2 - tangent.z * thickness}});
 
 		indicessb = {0, 1, 3, 0, 2, 3};
 		setDrawMode(gMesh::DRAWMODE_TRIANGLES);
 	} else {
-		vertex1.position.x = x1;
-		vertex1.position.y = y1;
-		vertex1.position.z = z1;
-		verticessb.push_back(vertex1);
+		verticessb.push_back({{x1, y1, z1}});
+		verticessb.push_back({{x2, y2, z2}});
 
-		vertex2.position.x = x2;
-		vertex2.position.y = y2;
-		vertex2.position.z = z2;
-		verticessb.push_back(vertex2);
 		setDrawMode(gMesh::DRAWMODE_LINES);
 	}
 
