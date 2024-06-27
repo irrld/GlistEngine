@@ -17,6 +17,9 @@ GLFWwindow* gGLFWWindow::currentwindow = nullptr;
 // Debug message callback function
 void GLAPIENTRY debugMessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity,
 									 GLsizei length, const GLchar* message, const void* userParam) {
+	if (severity == GL_DEBUG_SEVERITY_NOTIFICATION) {
+		return;
+	}
 	std::cerr << "GL Debug Message [" << id << "]: " << message << std::endl;
 
 	// Print additional information if needed
