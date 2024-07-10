@@ -80,6 +80,12 @@
 	#define PI       3.14159265358979323846
 #endif
 
+
+// This macro can be used instead of std::bind function call.
+// G_BIND_FUNCTION can be used to bind class methods. While G_BIND_GLOBAL_FUNCTION can be used to bind global functions without a class.
+#define G_BIND_FUNCTION(fn) [this](auto&&... args) -> decltype(auto) { return this->fn(std::forward<decltype(args)>(args)...); }
+#define G_BIND_GLOBAL_FUNCTION(fn) [](auto&&... args) -> decltype(auto) { return fn(std::forward<decltype(args)>(args)...); }
+
 int gDefaultWidth();
 int gDefaultHeight();
 int gDefaultUnitWidth();
