@@ -118,6 +118,7 @@ void gGUIButton::mousePressed(int x, int y, int button) {
 			}
 		}
 		root->getCurrentCanvas()->onGuiEvent(id, G_GUIEVENT_BUTTONPRESSED);
+		callback(true);
 	}
 }
 
@@ -131,6 +132,7 @@ void gGUIButton::mouseReleased(int x, int y, int button) {
 		}
 		root->getCurrentCanvas()->onGuiEvent(id, G_GUIEVENT_BUTTONRELEASED);
 		actionmanager.onGUIEvent(id, G_GUIEVENT_BUTTONRELEASED);
+		callback(false);
 	} else {
 		if(!istoggle) ispressed = false;
 	}
