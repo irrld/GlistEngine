@@ -33,8 +33,6 @@
 #	include <OpenGLES/ES3/glext.h>
 #	include <OpenGLES/gltypes.h>
 #endif
-#define GLM_ENABLE_EXPERIMENTAL
-#define GLM_FORCE_DEFAULT_ALIGNED_GENTYPES
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
 #include <glm/gtx/quaternion.hpp>

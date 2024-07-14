@@ -8,7 +8,6 @@
 #ifndef ENGINE_TYPES_GMATRIX4_H_
 #define ENGINE_TYPES_GMATRIX4_H_
 
-#define GLM_FORCE_DEFAULT_ALIGNED_GENTYPES
 #include <glm/glm.hpp>
 
 class gMatrix4 {
