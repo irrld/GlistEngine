@@ -47,7 +47,7 @@ public:
 	void sleep(std::chrono::duration<double, std::milli> milliseconds);
     void yield();
 
-    virtual void threadFunction();
+    virtual void threadFunction() { }
 
 protected:
     std::condition_variable conditionvariable;

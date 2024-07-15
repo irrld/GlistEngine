@@ -38,7 +38,7 @@ std::thread& gThread::getThread() {
 }
 
 void gThread::start() {
-	if(isrunning){
+	if(isrunning) {
 		gLogw("gThread") << "Thread is already running!";
 		return;
 	}
@@ -99,6 +99,3 @@ void gThread::run() {
 	isdone = true;
 }
 
-void gThread::threadFunction() {
-
-}

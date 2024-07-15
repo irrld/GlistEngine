@@ -195,7 +195,16 @@ public:
 	std::string getImageUrl();
 	static std::string generateDownloadedImagePath(std::string imageType = "png");
 	unsigned int loadMaskImage(const std::string& maskImagePath);
+protected:
+	friend class gAssetLoader;
 
+	void loadAsync(const std::string& path) {
+		loadImageData(path);
+	}
+
+	void loadSync() {
+		useData();
+	}
 private:
 	bool loadedfromurl;
 	std::string imageurl;

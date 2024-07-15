@@ -10,9 +10,9 @@
 #ifndef ENGINE_GRAPHICS_GTEXTURE_H_
 #define ENGINE_GRAPHICS_GTEXTURE_H_
 
-#include <string>
-#include "gRenderObject.h"
 #include "gRect.h"
+#include "gRenderObject.h"
+#include <string>
 
 class gTexture : public gRenderObject {
 public:

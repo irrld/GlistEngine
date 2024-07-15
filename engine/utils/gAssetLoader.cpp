@@ -9,88 +9,61 @@
 
 
 gAssetLoader::gAssetLoader() {
-    signal = SIGNAL_NONE;
-    counter = 0;
-    loadedassetnum = 0;
-    transferfinished = false;
-    isupdateneeded = false;
+	needs_update = false;
+	running = true;
 	start();
 }
 
 gAssetLoader::~gAssetLoader() {
+	running = false;
+	stop();
 }
-
-void gAssetLoader::load(gImage& image, std::string fullPath, short signal) {
-	assetToLoad atl(image, fullPath, signal);
-	send(atl);
-}
-
-void gAssetLoader::loadImage(gImage& image, std::string imagePath, short signal) {
-	load(image, gGetImagesDir() + imagePath, signal);
-}
-
 
 void gAssetLoader::threadFunction() {
-	assetToLoad assettoload;
-	while(receive(assettoload)) {
-		switch(assettoload.type) {
-		case TYPE_IMAGE:
-			assettoload.image->loadData(assettoload.filename);
-			sendToUpdate(assettoload);
-			isupdateneeded = true;
-			isrunning = false;
-			isdone = true;
-			break;
-		default:
-			break;
+	while (running) {
+		std::unique_lock<std::mutex> lock(mutex);
+		if(queue.empty()) {
+			continue;
 		}
-        loadedassetnum++;
+		for (std::unique_ptr<QueuedAsset>& asset : queue) {
+			if (asset->state == LOADSTATE_ASYNC_WAIT) {
+				asset->state = LOADSTATE_ASYNC_LOADING;
+				asset->async_caller();
+				asset->state = LOADSTATE_SYNC_WAIT;
+				needs_update = true;
+			}
+		}
+		sleep(std::chrono::milliseconds(5));
 	}
 }
 
 void gAssetLoader::update() {
-	if(!isupdateneeded) return;
-
-	assetToLoad assettoupdate;
-	if (receiveToUpdate(assettoupdate)) {
-        switch(assettoupdate.type) {
-        case TYPE_IMAGE:
-        	assettoupdate.image->useData();
-        	signal = assettoupdate.assetsignal;
-        	break;
-        default:
-        	break;
-        }
-    	counter++;
-		if(counter == loadedassetnum) isupdateneeded = false;
+	std::unique_lock<std::mutex> lock(mutex);
+	if(queue.empty()) {
+		return;
+	}
+	bool has_completed = false;
+	for (std::unique_ptr<QueuedAsset>& asset : queue) {
+		if (asset->state == LOADSTATE_SYNC_WAIT) {
+			asset->state = LOADSTATE_SYNC_LOADING;
+			asset->sync_caller();
+			asset->state = LOADSTATE_DONE;
+			has_completed = true;
+			loaded_count++;
+		}
+	}
+	if (has_completed) {
+		queue.remove_if([](std::unique_ptr<QueuedAsset>& asset) {
+			return asset->state == LOADSTATE_DONE;
+		});
 	}
 }
 
 
-int gAssetLoader::getLoadedAssetNum() {
-    return loadedassetnum;
-}
-
-short gAssetLoader::getSignal() {
-	return signal;
-}
-
-void gAssetLoader::resetSignal() {
-	signal = SIGNAL_NONE;
-}
-
-int gAssetLoader::getCounter() {
-	return counter;
-}
-
 void gAssetLoader::reset() {
-	loadedassetnum = 0;
-	counter = 0;
-	signal = SIGNAL_NONE;
+	queue.clear();
+	needs_update = false;
 }
 
-bool gAssetLoader::isUpdateNeeded() {
-	return isupdateneeded;
-}
 
 
