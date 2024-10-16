@@ -123,9 +123,15 @@ var files_dup =
     [ "gGrayscale.h", "gGrayscale_8h.html", [
       [ "gGrayscale", "classgGrayscale.html", "classgGrayscale" ]
     ] ],
+    [ "gGrid.h", "gGrid_8h.html", [
+      [ "gGrid", "classgGrid.html", "classgGrid" ]
+    ] ],
     [ "gGUIActionManager.h", "gGUIActionManager_8h.html", [
       [ "gGUIActionManager", "classgGUIActionManager.html", "classgGUIActionManager" ],
       [ "Action", "structgGUIActionManager_1_1Action.html", "structgGUIActionManager_1_1Action" ]
+    ] ],
+    [ "gGUIAppThread.h", "gGUIAppThread_8h.html", [
+      [ "gGUIAppThread", "classgGUIAppThread.html", "classgGUIAppThread" ]
     ] ],
     [ "gGUIBitmap.h", "gGUIBitmap_8h.html", [
       [ "gGUIBitmap", "classgGUIBitmap.html", "classgGUIBitmap" ]

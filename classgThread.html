@@ -97,9 +97,10 @@ Inheritance diagram for gThread:</div>
 <div class="dyncontent">
 <div class="center"><img src="classgThread__inherit__graph.png" border="0" usemap="#agThread_inherit__map" alt="Inheritance graph"/></div>
 <map name="agThread_inherit__map" id="agThread_inherit__map">
-<area shape="rect" title=" " alt="" coords="23,80,98,107"/>
+<area shape="rect" title=" " alt="" coords="94,80,169,107"/>
 <area shape="rect" href="classgAssetLoader.html" title=" " alt="" coords="5,155,116,181"/>
-<area shape="rect" href="classgObject.html" title=" " alt="" coords="25,5,97,32"/>
+<area shape="rect" href="classgGUIAppThread.html" title=" " alt="" coords="140,155,264,181"/>
+<area shape="rect" href="classgObject.html" title=" " alt="" coords="95,5,167,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -142,6 +143,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a603957ad8416b68923ac45658cd19584"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2839f49e6d381ab31f60c5ef8a29805"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgThread.html#ac2839f49e6d381ab31f60c5ef8a29805">sleep</a> (std::chrono::duration&lt; double, std::milli &gt; milliseconds)</td></tr>
 <tr class="separator:ac2839f49e6d381ab31f60c5ef8a29805"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea18b29b95e51d44eca999f90bbfbf8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgThread.html#aea18b29b95e51d44eca999f90bbfbf8b">sleep</a> (double milliseconds)</td></tr>
+<tr class="separator:aea18b29b95e51d44eca999f90bbfbf8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99c4135d7eaad42d00f3647418269aae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgThread.html#a99c4135d7eaad42d00f3647418269aae">yield</a> ()</td></tr>
 <tr class="separator:a99c4135d7eaad42d00f3647418269aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2647345a83001107cfe7b5313f9ba8a5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgThread.html#a2647345a83001107cfe7b5313f9ba8a5">threadFunction</a> ()</td></tr>
@@ -373,8 +376,26 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="aea18b29b95e51d44eca999f90bbfbf8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea18b29b95e51d44eca999f90bbfbf8b">&#9670;&nbsp;</a></span>sleep() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gThread::sleep </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>milliseconds</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ac2839f49e6d381ab31f60c5ef8a29805"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2839f49e6d381ab31f60c5ef8a29805">&#9670;&nbsp;</a></span>sleep()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2839f49e6d381ab31f60c5ef8a29805">&#9670;&nbsp;</a></span>sleep() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -448,7 +469,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="classgAssetLoader.html#a72c2d69d04fd59068fa55b8cdc18b6e9">gAssetLoader</a>.</p>
+<p>Reimplemented in <a class="el" href="classgAssetLoader.html#a72c2d69d04fd59068fa55b8cdc18b6e9">gAssetLoader</a>, and <a class="el" href="classgGUIAppThread.html#a5435f65e518cc06d6f48f68d978d9748">gGUIAppThread</a>.</p>
 
 </div>
 </div>
