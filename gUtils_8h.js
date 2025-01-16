@@ -56,7 +56,7 @@ var gUtils_8h =
     [ "gShowSaveFileDialog", "gUtils_8h.html#a9ffe74c3705877080965ae1d4ca9b7ea", null ],
     [ "gShowSelectFolderDialog", "gUtils_8h.html#a3a9265170003b111798107ecc55d179e", null ],
     [ "gSign", "gUtils_8h.html#aad58983c758929c9009b6d2b2fe0ddc5", null ],
-    [ "gSplitString", "gUtils_8h.html#adaf2dd0d079c033d766ae9cf31359293", null ],
+    [ "gSplitString", "gUtils_8h.html#a76c0b43c1a31af2e99554163b788d321", null ],
     [ "gStringReplace", "gUtils_8h.html#af4679076f1cada4ce4b5022171ca1050", null ],
     [ "gToDouble", "gUtils_8h.html#a72932749b9297e10a0c450fbd9b25ad5", null ],
     [ "gToFloat", "gUtils_8h.html#ac324a5269afd31384c9dfaf0344855dd", null ],

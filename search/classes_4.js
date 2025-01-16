@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['progressdata_2734',['ProgressData',['../structgHttpFile_1_1ProgressData.html',1,'gHttpFile']]]
+  ['progressdata_0',['ProgressData',['../structgHttpFile_1_1ProgressData.html',1,'gHttpFile']]]
 ];
