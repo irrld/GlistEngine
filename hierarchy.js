@@ -60,6 +60,7 @@ var hierarchy =
       [ "gHttpFile", "classgHttpFile.html", null ],
       [ "gRenderObject", "classgRenderObject.html", [
         [ "gUbo< gRenderer::gSceneLights >", "classgUbo.html", null ],
+        [ "gUbo< gRenderer::gSceneData >", "classgUbo.html", null ],
         [ "gBaseCanvas", "classgBaseCanvas.html", null ],
         [ "gBaseGUIObject", "classgBaseGUIObject.html", [
           [ "gGUIControl", "classgGUIControl.html", [
@@ -199,6 +200,8 @@ var hierarchy =
       [ "gWindows", "classgWindows.html", null ]
     ] ],
     [ "gRect", "classgRect.html", null ],
+    [ "gRenderer::gSceneData", "structgRenderer_1_1gSceneData.html", null ],
+    [ "gRenderer::gSceneFogData", "structgRenderer_1_1gSceneFogData.html", null ],
     [ "gRenderer::gSceneLightData", "structgRenderer_1_1gSceneLightData.html", null ],
     [ "gRenderer::gSceneLights", "structgRenderer_1_1gSceneLights.html", null ],
     [ "gUTF8Iterator", "classgUTF8Iterator.html", null ],

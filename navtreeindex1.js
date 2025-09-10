@@ -168,7 +168,7 @@ var NAVTREEINDEX1 =
 "classgBoundingBox.html#ae6b348b0e172417a1582d70e3032786b":[1,0,17,0],
 "classgBox.html":[1,0,18],
 "classgBox.html#a27ad562875fb665b2450f9a896c93a82":[1,0,18,0],
-"classgBox.html#ac7f18852f9c9d752737a8aa6f2520ed5":[1,0,18,1],
+"classgBox.html#a5931b09cd652cd37e893d8d5211fcdd6":[1,0,18,1],
 "classgCamera.html":[1,0,19],
 "classgCamera.html#a0142afe895e823d3c178530158b20ebd":[1,0,19,33],
 "classgCamera.html#a040c109192cba1eb439d249afaad1450":[1,0,19,31],

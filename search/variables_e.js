@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['parent_0',['parent',['../classgNode.html#a1b05034284ccbf2446c1dd82dfaef004',1,'gNode::parent'],['../structgGUITreelist_1_1Element.html#ae4ecaf6f24e27664f5fd697640518535',1,'gGUITreelist::Element::parent'],['../classgBaseGUIObject.html#a743fdaff0398c2c4dc7157290c634093',1,'gBaseGUIObject::parent']]],
+  ['parent_0',['parent',['../classgNode.html#a1b05034284ccbf2446c1dd82dfaef004',1,'gNode::parent'],['../classgBaseGUIObject.html#a743fdaff0398c2c4dc7157290c634093',1,'gBaseGUIObject::parent'],['../structgGUITreelist_1_1Element.html#ae4ecaf6f24e27664f5fd697640518535',1,'gGUITreelist::Element::parent']]],
   ['parentlist_1',['parentlist',['../structgGUITreelist_1_1Element.html#a188dbf9e8523fe2bebd1b961490271c1',1,'gGUITreelist::Element']]],
   ['parentslotcolumnno_2',['parentslotcolumnno',['../classgBaseGUIObject.html#adc28d16c1d9223579a0031547fc45fa5',1,'gBaseGUIObject']]],
   ['parentslotlineno_3',['parentslotlineno',['../classgBaseGUIObject.html#af42661c2077f5bb6d6ab1064e363db00',1,'gBaseGUIObject']]],
@@ -8,11 +8,11 @@ var searchData=
   ['particleno_5',['particleno',['../classgParticle.html#a1bf670f90c5a8f2abb6255fe16b46908',1,'gParticle::particleno'],['../classgBaseParticles.html#aec83609c6ea79d157275a1947408e989',1,'gBaseParticles::particleno']]],
   ['particlenum_6',['particlenum',['../classgBaseParticles.html#adfd15b4eca2a1c5b6544988b6020d280',1,'gBaseParticles']]],
   ['path_7',['path',['../classgTexture.html#a66a48b7fa256f82ca21a1c9ad8c78112',1,'gTexture']]],
-  ['pbrshader_8',['pbrshader',['../classgRenderer.html#a39871a3ede598b48f768af353884048b',1,'gRenderer']]],
+  ['pbrshader_8',['pbrshader',['../classgRenderer.html#a9699f658324ca0f852e8487cc1282195',1,'gRenderer']]],
   ['pengine_9',['pengine',['../classgParticle.html#a6ba73ee2b9a05233307b0f11fd69d82e',1,'gParticle']]],
   ['pink_10',['PINK',['../classgColor.html#a24d137deb6965beca4422cfec6169ba0',1,'gColor']]],
-  ['position_11',['position',['../structgVertex.html#a1307c4e7fc374612cd8e583ce90e8115',1,'gVertex::position'],['../structgRenderer_1_1gSceneLightData.html#a8ce6a13d339bf01998a1ed76e54ce658',1,'gRenderer::gSceneLightData::position'],['../classgNode.html#ac667146bf0d8c83ea4be5dad35a0a490',1,'gNode::position']]],
-  ['prefiltershader_12',['prefiltershader',['../classgRenderer.html#a85e464ddd3fab891998f91fda6409fe8',1,'gRenderer']]],
+  ['position_11',['position',['../structgRenderer_1_1gSceneLightData.html#a8ce6a13d339bf01998a1ed76e54ce658',1,'gRenderer::gSceneLightData::position'],['../classgNode.html#ac667146bf0d8c83ea4be5dad35a0a490',1,'gNode::position'],['../structgVertex.html#a1307c4e7fc374612cd8e583ce90e8115',1,'gVertex::position']]],
+  ['prefiltershader_12',['prefiltershader',['../classgRenderer.html#a56a826ea17e414842280fcf3ed24503a',1,'gRenderer']]],
   ['pressedbcolor_13',['pressedbcolor',['../classgGUIButton.html#a3e209d0968410df7fd01446e4e39d2df',1,'gGUIButton']]],
   ['pressedbuttoncolor_14',['pressedbuttoncolor',['../classgBaseGUIObject.html#ac7e62dcb7d81a50d9ec4952283c0b1b0',1,'gBaseGUIObject']]],
   ['pressedbuttonfontcolor_15',['pressedbuttonfontcolor',['../classgBaseGUIObject.html#a7b11975a0940290df4097f97c1fcf9fa',1,'gBaseGUIObject']]],
@@ -24,7 +24,9 @@ var searchData=
   ['prevscalevec_21',['prevscalevec',['../classgNode.html#a83b9727a9ec13a3615bba4156ff19092',1,'gNode']]],
   ['prog_22',['prog',['../classgHttpFile.html#ac469b5fd7ec4178d9fcfab78a41e697c',1,'gHttpFile']]],
   ['progresslength_23',['progresslength',['../structgHttpFile_1_1ProgressData.html#a437d4db25e3c8db350206cb7de706e3f',1,'gHttpFile::ProgressData']]],
-  ['projectionmatrix_24',['projectionmatrix',['../classgRenderer.html#acfb7a2d7dbd4f0de2e3fbb1abb7f94dd',1,'gRenderer']]],
-  ['projectionmatrix2d_25',['projectionmatrix2d',['../classgRenderer.html#a87f5be927c3932416ba60f09882628d7',1,'gRenderer']]],
-  ['projectionmatrixold_26',['projectionmatrixold',['../classgRenderer.html#a9e3ae4ee3c3f5cf135cdc79ce9fe64e8',1,'gRenderer']]]
+  ['projection_24',['projection',['../structgRenderer_1_1gSceneData.html#a7472a035736937e9269dad4d235fb9d2',1,'gRenderer::gSceneData']]],
+  ['projection2d_25',['projection2d',['../structgRenderer_1_1gSceneData.html#abbd27b10f4ae1b1cbb9561ba7796853c',1,'gRenderer::gSceneData']]],
+  ['projectionmatrix_26',['projectionmatrix',['../classgRenderer.html#acfb7a2d7dbd4f0de2e3fbb1abb7f94dd',1,'gRenderer']]],
+  ['projectionmatrix2d_27',['projectionmatrix2d',['../classgRenderer.html#a87f5be927c3932416ba60f09882628d7',1,'gRenderer']]],
+  ['projectionmatrixold_28',['projectionmatrixold',['../classgRenderer.html#a9e3ae4ee3c3f5cf135cdc79ce9fe64e8',1,'gRenderer']]]
 ];
