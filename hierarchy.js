@@ -60,6 +60,7 @@ var hierarchy =
       [ "gHttpFile", "classgHttpFile.html", null ],
       [ "gRenderObject", "classgRenderObject.html", [
         [ "gUbo< gRenderer::gSceneLights >", "classgUbo.html", null ],
+        [ "gUbo< gRenderer::gSceneData >", "classgUbo.html", null ],
         [ "gBaseCanvas", "classgBaseCanvas.html", null ],
         [ "gBaseGUIObject", "classgBaseGUIObject.html", [
           [ "gGUIControl", "classgGUIControl.html", [

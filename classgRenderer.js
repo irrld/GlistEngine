@@ -6,8 +6,7 @@ var classgRenderer =
     [ "gSceneLights", "structgRenderer_1_1gSceneLights.html", "structgRenderer_1_1gSceneLights" ],
     [ "SceneDataFlags", "classgRenderer.html#adba1900f960be6d02c5d143026ec8454", [
       [ "ENABLE_SSAO", "classgRenderer.html#adba1900f960be6d02c5d143026ec8454a89f383e880b00465b46fab2f4ec5bef0", null ],
-      [ "ENABLE_FOG", "classgRenderer.html#adba1900f960be6d02c5d143026ec8454a631d8073096dd6fe38e97d17d2672c1c", null ],
-      [ "ENABLE_SHADOWMAP", "classgRenderer.html#adba1900f960be6d02c5d143026ec8454acb150535c919b5d18c7ceb80709f3dba", null ]
+      [ "ENABLE_FOG", "classgRenderer.html#adba1900f960be6d02c5d143026ec8454a631d8073096dd6fe38e97d17d2672c1c", null ]
     ] ],
     [ "gRenderer", "classgRenderer.html#a6551c9bca5231a4575f3afa7aa379eca", null ],
     [ "~gRenderer", "classgRenderer.html#a4a53a6a0c103c6d0b5f87dffaca6687e", null ],
@@ -247,6 +246,7 @@ var classgRenderer =
     [ "unbindVAO", "classgRenderer.html#ac06b366f419f103cef7066e18d02e8ba", null ],
     [ "updateLights", "classgRenderer.html#af52cd93978e1bbe6f89f1d3a6d74f3c6", null ],
     [ "updatePackUnpackAlignment", "classgRenderer.html#ac76e277b9f44da9325994ae8972b30c0", null ],
+    [ "updateScene", "classgRenderer.html#a3324e5981d632c55cfb192aeac453a5a", null ],
     [ "useShader", "classgRenderer.html#adbf9bacb21ed3896783981469a82e34c", null ],
     [ "gRenderObject", "classgRenderer.html#a9acbb4fb4810b70c2b1467d45a86215e", null ],
     [ "arcmesh", "classgRenderer.html#ad71f7e9c015076342aef669d2fa409e0", null ],
@@ -297,6 +297,7 @@ var classgRenderer =
     [ "rendercolor", "classgRenderer.html#ad06641dad9bc5f25c696b942c0f039eb", null ],
     [ "roundedrectanglemesh", "classgRenderer.html#a6237d68f0db92c4fdc6b445cef730b88", null ],
     [ "scenelights", "classgRenderer.html#aad0a82299e8c4f80db8da78571971599", null ],
+    [ "sceneubo", "classgRenderer.html#a85ee2f7350adee1a9992bbc66f2abd5d", null ],
     [ "shadowmapshader", "classgRenderer.html#aad861984ea96ca64a86395c2d61eac86", null ],
     [ "skyboxshader", "classgRenderer.html#a4255e1be9d34d3c48f1d31dd89e45a4e", null ],
     [ "ssaobias", "classgRenderer.html#a2d0357f16524edb9127bb10e4944275b", null ],
