@@ -34,8 +34,7 @@ void gSkinnedMesh::draw() {
 			interpolate();
 		}
 		gMesh::draw();
-	}
-	else if (!isvertexanimationstoredonvram) {
+	} else if (!isvertexanimationstoredonvram) {
 		if (isvertexanimated && frameno != framenoold) {
 			// TODO Below lines of vertex animation stored on CPU needs to be optimized
 			for(int i = 0; i < vbo->getVerticesNum(); i++) {

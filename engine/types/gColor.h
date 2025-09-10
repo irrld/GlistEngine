@@ -12,7 +12,9 @@
 #include <glm/vec3.hpp>
 #include <glm/vec4.hpp>
 
-class gColor {
+// Since we send the color to the GPU via Uniform Buffer Objects, this has to be aligned and packed
+// It should not have a vtable data (no virtual functions)
+class alignas(16) gColor {
 public:
 	static const gColor
 	RED, GREEN, BLUE, CYAN, MAGENTA, YELLOW,
@@ -21,7 +23,7 @@ public:
 	gColor();
 	gColor(float r, float g, float b, float a = 1.0f);
 	gColor(gColor* color);
-	virtual ~gColor();
+	~gColor();
 
 	void set(float r, float g, float b, float a = 1.0f);
 	void set(int r, int g, int b, int a = 255);
@@ -36,18 +38,28 @@ public:
 	}
 
 	float r, g, b, a;
-};
+} __attribute__((packed));
 
+inline bool operator!=(const gColor& v1, const gColor& v2) {
+	return v1.r != v2.r || v1.g != v2.g || v1.b != v2.b || v1.a != v2.a;
+}
+
+inline bool operator==(const gColor& v1, const gColor& v2) {
+	return v1.r == v2.r && v1.g == v2.g && v1.b == v2.b && v1.a == v2.a;
+}
+
+// This is a utility class, HSL color space is much more useful when doing color animations
+// You can simply rotate the hue and have a good-looking rainbow.
 class gColorHSL {
 public:
-    float h, s, l; // Hue [0–360], Saturation [0–1], Lightness [0–1]
-
     gColorHSL() : h(0), s(0), l(0) {}
     gColorHSL(float h, float s, float l) : h(h), s(s), l(l) {}
 
     static gColorHSL from(const gColor& rgb);
 
     gColor toRGB() const;
+
+	float h, s, l; // Hue [0–360], Saturation [0–1], Lightness [0–1]
 };
 
 

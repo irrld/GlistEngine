@@ -140,16 +140,16 @@ void gVbo::draw(int drawMode) {
 		return;
 	}
 
-	gShader* colorshader = renderer->getColorShader();
-	colorshader->use();
+	gShader& colorshader = *renderer->getColorShader();
+	colorshader.use();
 
-    // Set scene properties
-    colorshader->setVec4("renderColor", renderer->getColor()->r, renderer->getColor()->g, renderer->getColor()->b, renderer->getColor()->a);
+	renderer->backupMatrices();
+	renderer->setViewMatrix(glm::mat4(1));
+	renderer->updateScene();
 
     // Set matrices
-    colorshader->setMat4("projection", glm::mat4(1.0f));
-	colorshader->setMat4("view", glm::mat4(1.0f));
-	colorshader->setMat4("model", glm::mat4(1.0f));
+    colorshader.setMat4("projection", glm::mat4(1.0f));
+	colorshader.setMat4("model", glm::mat4(1.0f));
 
     bind();
 	if (isindexdataallocated) {
@@ -158,6 +158,8 @@ void gVbo::draw(int drawMode) {
 		renderer->drawArrays(drawMode, totalvertexnum);
 	}
     unbind();
+
+	renderer->restoreMatrices();
 }
 
 void gVbo::enable() {
