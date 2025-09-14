@@ -190,6 +190,7 @@ var NAVTREEINDEX1 =
 "classgCamera.html#a5264e8d43ad04e6a0394f23a126a2ab8":[1,0,19,36],
 "classgCamera.html#a55f504c6e9ff39ddfd17ef7da1087ba9":[1,0,19,15],
 "classgCamera.html#a58c0e1b7d5707091fa27ce1c6f0c9d32":[1,0,19,2],
+"classgCamera.html#a5aa082749f82572eb0d493844d980e52":[1,0,19,43],
 "classgCamera.html#a770071684ffb647d3b8d3d365d1f6cee":[1,0,19,26],
 "classgCamera.html#a84949f9866cc891fb90e0364f6de427b":[1,0,19,34],
 "classgCamera.html#a8cf85874a4d98168e7c8d5071cf2e2e6":[1,0,19,20],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "classgColor.html#ac6bf016844ba31d70417e9e611005ff1":[1,0,24,8],
 "classgColor.html#ad61b39128c629e6bd8959048e3b21b5e":[1,0,24,3],
 "classgColor.html#ae67c8087dd63578cac179efab1f260d5":[1,0,24,10],
-"classgColor.html#af5f4eb9ab4ef0f713bb30a3565a35b15":[1,0,24,0],
-"classgColor.html#af6e1edfa6e9197f0e9191b77f546893f":[1,0,24,5]
+"classgColor.html#af5f4eb9ab4ef0f713bb30a3565a35b15":[1,0,24,0]
 };

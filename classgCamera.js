@@ -42,5 +42,6 @@ var classgCamera =
     [ "setScale", "classgCamera.html#a3da24c038cd37ade38418ca2fc0bcf52", null ],
     [ "tilt", "classgCamera.html#aa3b05c895ca947a91556e7103c2a9e18", null ],
     [ "tiltDeg", "classgCamera.html#ab7588ded2ae7103cb3ee5efc1d9d5679", null ],
-    [ "truck", "classgCamera.html#a4aa68e4581c4b252ef71d0c025feded6", null ]
+    [ "truck", "classgCamera.html#a4aa68e4581c4b252ef71d0c025feded6", null ],
+    [ "gScene", "classgCamera.html#a5aa082749f82572eb0d493844d980e52", null ]
 ];

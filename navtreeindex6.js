@@ -1,5 +1,6 @@
 var NAVTREEINDEX6 =
 {
+"classgGUINotebook.html#a52c5182cdcafa009765552c300196996":[1,0,77,10],
 "classgGUINotebook.html#a536252bdd66a3b1784ccb2f4c2a71f76":[1,0,77,11],
 "classgGUINotebook.html#a54401e0759917bf38aba86d802b406cd":[1,0,77,1],
 "classgGUINotebook.html#a5ce4637f129724dd6ec2c3590d20a18b":[1,0,77,14],
@@ -248,6 +249,5 @@ var NAVTREEINDEX6 =
 "classgGUISizer.html#af87bf099f420a8316e4c1d263274d523":[1,0,87,17],
 "classgGUISlider.html":[1,0,88],
 "classgGUISlider.html#a01a2e35d7605f05a387136aa5b2e62e2":[1,0,88,19],
-"classgGUISlider.html#a0827b92935e668275ba4ede35ae02b6b":[1,0,88,31],
-"classgGUISlider.html#a0ef3b7e3492a90cc4eaba9fccf19135a":[1,0,88,11]
+"classgGUISlider.html#a0827b92935e668275ba4ede35ae02b6b":[1,0,88,31]
 };
