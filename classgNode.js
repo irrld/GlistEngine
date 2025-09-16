@@ -47,7 +47,6 @@ var classgNode =
     [ "tilt", "classgNode.html#ab392c35cbe88dee5dd393b1934d09c3a", null ],
     [ "tiltDeg", "classgNode.html#a0a113d706074be735f9ab497735a1fae", null ],
     [ "truck", "classgNode.html#a8ebcb2f13df4cbaab7ebac06634cb39a", null ],
-    [ "gScene", "classgNode.html#a5aa082749f82572eb0d493844d980e52", null ],
     [ "isenabled", "classgNode.html#a6ade01c6af2b73ec82498f6c17dfa2bc", null ],
     [ "localtransformationmatrix", "classgNode.html#a82f2d87665cdf6c0871408edd880905c", null ],
     [ "orientation", "classgNode.html#a0d3a820f6eab89ba1533c6085e178681", null ],

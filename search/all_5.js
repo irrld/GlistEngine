@@ -47,7 +47,7 @@ var searchData=
   ['disablevsync_44',['disablevsync',['../classgBaseApp.html#a95e9226297c0fd17e60b587d57326dba',1,'gBaseApp::disableVsync()'],['../classgAppManager.html#afed9d41c6aa9268605f208aa06207aef',1,'gAppManager::disableVsync()'],['../classgBaseWindow.html#a8a271b838dbb0c8f9c099f9374ffd4aa',1,'gBaseWindow::disableVsync()']]],
   ['dispatch_45',['dispatch',['../classgEventDispatcher.html#a278d72976cdc2c7b1f6cebc9a6e5a708',1,'gEventDispatcher']]],
   ['displayprogresstext_46',['displayProgressText',['../classgGUIProgressBar.html#a612bd3acb363d3b6abee00cc6b8f1128',1,'gGUIProgressBar']]],
-  ['distance_47',['distance',['../classgBoundingBox.html#a591d61fc425c8210d83333dbe421b716',1,'gBoundingBox::distance(gRay &amp;ray) const'],['../classgBoundingBox.html#adef71df71607e15421bf51fb545c40e4',1,'gBoundingBox::distance(gRay *ray) const'],['../classgRay.html#a177d766bd4faaf35685a1d96cd206f64',1,'gRay::distance()']]],
+  ['distance_47',['distance',['../structgCamera_1_1Plane.html#a4f4ca2b2d4ab1d512f231198ba7f9f40',1,'gCamera::Plane::distance'],['../classgRay.html#a177d766bd4faaf35685a1d96cd206f64',1,'gRay::distance()'],['../classgBoundingBox.html#adef71df71607e15421bf51fb545c40e4',1,'gBoundingBox::distance(gRay *ray) const'],['../classgBoundingBox.html#a591d61fc425c8210d83333dbe421b716',1,'gBoundingBox::distance(gRay &amp;ray) const']]],
   ['distanceobb_48',['distanceOBB',['../classgBoundingBox.html#aad92019c8ec72ad2f73cc898e9ba438b',1,'gBoundingBox']]],
   ['distancetriangles_49',['distanceTriangles',['../classgMesh.html#a291053f55855da58d0f0bc65237d9250',1,'gMesh']]],
   ['doesfileexist_50',['doesFileExist',['../classgFile.html#a3344dcd98c89334b6ac4304bdb665189',1,'gFile']]],

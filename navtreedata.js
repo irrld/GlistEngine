@@ -40,6 +40,7 @@ var NAVTREE =
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", "functions_vars" ],
+        [ "Typedefs", "functions_type.html", null ],
         [ "Enumerations", "functions_enum.html", null ],
         [ "Enumerator", "functions_eval.html", null ],
         [ "Related Symbols", "functions_rela.html", null ]
@@ -64,21 +65,21 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classgBaseGUIObject.html#afd44f1d6003f9e05c297761bec484620",
-"classgColor.html#af6e1edfa6e9197f0e9191b77f546893f",
-"classgGLRenderEngine.html#a5eb439506e697085da6aa62269f8dc99",
-"classgGUIContextMenuItem.html#a4f9ea4f0de3743f4008ec9e35d243021",
-"classgGUIGrid.html#a230d4c8b994f33f7db6be0360467dd62",
-"classgGUINotebook.html#a52c5182cdcafa009765552c300196996",
-"classgGUISlider.html#a0ef3b7e3492a90cc4eaba9fccf19135a",
-"classgGrid.html#a0917b0c4021fb95e1fbf40d4dac0278e",
-"classgMaterial.html#a65f99dfcf0c36031984107609c345cd3",
-"classgNode.html#a707205542c338ebc62c773ff40b96b72",
-"classgRenderer.html#a7b5bf23bea30970e81e0d32388dcbd2c",
-"classgSkinnedMesh.html",
-"classgVbo.html#a1bb233b9c688829990d3a0df99ea620f",
-"gEvent_8h.html#a93e13b3bb73a426d9cc0ec83fcd121a8",
-"gKeyCode_8h.html#aa3d2a8bf68625a144c31700a67ae03da",
-"gUtils_8h.html#a9d05ef43c3bede60bf28cd44e8b5a5b5"
+"classgCircle.html#a19dd21ebadb0016122d7f04fb244edd0",
+"classgGLRenderEngine.html#a2463db86bd5266d7ad7e1c7ebc17d6c4",
+"classgGUIContainer.html#a9021ae646c8ea582bdb018769f90e883",
+"classgGUIGraph.html#add293c9fe9dd0490e4e7a0333c2d2c75",
+"classgGUINavigation.html#a90c95e623cf1aa48e3fe9abdae00658e",
+"classgGUISizer.html#a8f99b2a44be6584f58c85d0118992806",
+"classgGUITreelist.html#ae58495ae3858b3befa033d21a21809dc",
+"classgMaterial.html#a2661355c616f375b436cdceaa6ad13cf",
+"classgNode.html#a1430f454e797d1aad2f682fd2749deb8",
+"classgRenderer.html#a6b549a6ec72283383111d522adc36a7f",
+"classgShadowMap.html#ad1b0eeb357ebd6d7dc27f91b91fc4a92",
+"classgUUID.html#a558d04655c01413aa035c2098f278a9e",
+"gColor_8h_source.html",
+"gKeyCode_8h.html#a594bf9c36902577268d2256bfeda56ad",
+"gUtils_8h.html#a086fd5c170a621ab16f4318cbe2f6bdc"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

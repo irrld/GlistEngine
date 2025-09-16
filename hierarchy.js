@@ -3,6 +3,7 @@ var hierarchy =
     [ "gGUIActionManager::Action", "structgGUIActionManager_1_1Action.html", null ],
     [ "gGUIGrid::Cell", "structgGUIGrid_1_1Cell.html", null ],
     [ "gGUITreelist::Element", "structgGUITreelist_1_1Element.html", null ],
+    [ "gCamera::Frustum", "structgCamera_1_1Frustum.html", null ],
     [ "gAnimationTrigger", "classgAnimationTrigger.html", null ],
     [ "gColor", "classgColor.html", null ],
     [ "gColorHSL", "classgColorHSL.html", null ],
@@ -206,6 +207,8 @@ var hierarchy =
     [ "gRenderer::gSceneLights", "structgRenderer_1_1gSceneLights.html", null ],
     [ "gUTF8Iterator", "classgUTF8Iterator.html", null ],
     [ "gUtils", "classgUtils.html", null ],
+    [ "gUUID", "classgUUID.html", null ],
     [ "gVertex", "structgVertex.html", null ],
+    [ "gCamera::Plane", "structgCamera_1_1Plane.html", null ],
     [ "gHttpFile::ProgressData", "structgHttpFile_1_1ProgressData.html", null ]
 ];

@@ -93,7 +93,8 @@ $(document).ready(function(){initNavTree('classgCamera.html',''); initResizable(
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#friends">Friends</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classgCamera-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">gCamera Class Reference</div></div>
 </div><!--header-->
@@ -119,33 +120,47 @@ Collaboration diagram for gCamera:</div>
 <div class="dyncontent">
 <div class="center"><img src="classgCamera__coll__graph.png" border="0" usemap="#agCamera_coll__map" alt="Collaboration graph"/></div>
 <map name="agCamera_coll__map" id="agCamera_coll__map">
-<area shape="rect" title=" " alt="" coords="231,73,313,99"/>
-<area shape="rect" href="classgRenderer.html" title=" " alt="" coords="385,273,474,299"/>
-<area shape="poly" title=" " alt="" coords="284,110,319,176,343,213,372,247,406,271,403,275,369,251,339,217,314,179,280,112"/>
-<area shape="rect" href="classgNode.html" title=" " alt="" coords="5,440,69,465"/>
-<area shape="poly" title=" " alt="" coords="50,427,262,98,267,100,54,430"/>
-<area shape="poly" title=" " alt="" coords="85,444,96,453,87,461,70,462,69,457,85,456,91,453,82,449"/>
-<area shape="rect" href="classgRenderObject.html" title=" " alt="" coords="494,363,613,389"/>
-<area shape="poly" title=" " alt="" coords="480,392,475,393,70,450,69,445,474,388,480,387"/>
-<area shape="rect" href="classgUbo.html" title=" " alt="" coords="165,440,411,465"/>
-<area shape="poly" title=" " alt="" coords="500,395,330,442,328,437,499,390"/>
-<area shape="rect" href="classgUbo.html" title=" " alt="" coords="435,440,674,465"/>
-<area shape="poly" title=" " alt="" coords="556,402,557,440,552,440,551,402"/>
-<area shape="rect" href="classgGrid.html" title=" " alt="" coords="698,440,755,465"/>
-<area shape="poly" title=" " alt="" coords="593,392,644,414,700,437,698,442,642,418,591,397"/>
-<area shape="rect" href="classgObject.html" title=" " alt="" coords="625,73,697,99"/>
-<area shape="poly" title=" " alt="" coords="656,113,608,250,561,364,556,362,603,248,651,111"/>
-<area shape="poly" title=" " alt="" coords="655,113,642,144,622,182,596,220,563,251,542,264,520,273,475,284,474,278,518,268,540,259,560,247,592,216,618,179,637,142,651,111"/>
-<area shape="poly" title=" " alt="" coords="458,304,539,361,536,365,455,309"/>
-<area shape="rect" href="classgColor.html" title=" " alt="" coords="397,73,461,99"/>
-<area shape="poly" title=" " alt="" coords="432,113,432,273,427,273,427,113"/>
-<area shape="poly" title=" " alt="" coords="450,62,463,58,476,61,485,70,488,86,483,104,470,113,454,112,438,101,441,97,456,107,469,108,479,101,483,86,480,73,473,66,463,64,451,67"/>
-<area shape="poly" title=" " alt="" coords="296,426,312,394,335,360,373,323,410,297,413,301,377,327,339,363,317,396,300,429"/>
-<area shape="poly" title=" " alt="" coords="478,438,442,420,427,408,414,392,405,368,406,342,421,298,426,300,412,342,411,367,418,389,430,404,445,416,480,433"/>
-<area shape="poly" title=" " alt="" coords="705,432,645,377,606,348,563,325,518,309,473,298,475,293,519,304,565,320,609,344,649,373,709,428"/>
+<area shape="rect" title=" " alt="" coords="77,323,158,348"/>
+<area shape="rect" href="classgRenderer.html" title=" " alt="" coords="362,523,451,548"/>
+<area shape="poly" title=" " alt="" coords="138,357,204,425,249,463,297,496,330,511,363,522,361,527,328,516,295,501,245,468,200,429,134,361"/>
+<area shape="rect" href="classgNode.html" title=" " alt="" coords="65,689,129,715"/>
+<area shape="poly" title=" " alt="" coords="96,676,114,348,119,349,101,676"/>
+<area shape="poly" title=" " alt="" coords="145,694,156,702,147,710,130,712,129,706,145,705,151,702,142,698"/>
+<area shape="rect" href="classgSkybox.html" title=" " alt="" coords="5,764,83,789"/>
+<area shape="poly" title=" " alt="" coords="83,728,55,765,51,762,78,725"/>
+<area shape="rect" href="classgRenderObject.html" title=" " alt="" coords="247,613,366,638"/>
+<area shape="poly" title=" " alt="" coords="263,645,131,692,129,687,261,640"/>
+<area shape="rect" href="classgUbo.html" title=" " alt="" coords="569,689,815,715"/>
+<area shape="poly" title=" " alt="" coords="380,638,633,687,632,692,379,643"/>
+<area shape="rect" href="classgUbo.html" title=" " alt="" coords="225,689,463,715"/>
+<area shape="poly" title=" " alt="" coords="321,649,340,688,336,690,316,652"/>
+<area shape="rect" href="classgGrid.html" title=" " alt="" coords="487,689,545,715"/>
+<area shape="poly" title=" " alt="" coords="352,640,488,688,486,693,351,645"/>
+<area shape="rect" href="classgObject.html" title=" " alt="" coords="263,323,335,348"/>
+<area shape="poly" title=" " alt="" coords="302,362,309,612,304,613,297,362"/>
+<area shape="poly" title=" " alt="" coords="314,359,403,521,398,524,309,362"/>
+<area shape="poly" title=" " alt="" coords="363,556,338,574,323,594,313,614,308,611,318,591,334,570,360,552"/>
+<area shape="rect" href="classgColor.html" title=" " alt="" coords="375,323,439,348"/>
+<area shape="poly" title=" " alt="" coords="409,362,409,523,404,523,404,362"/>
+<area shape="poly" title=" " alt="" coords="431,314,443,312,454,315,462,323,465,335,461,351,449,358,433,358,418,351,420,346,434,353,447,353,456,347,460,335,458,325,452,319,443,317,431,319"/>
+<area shape="poly" title=" " alt="" coords="664,683,556,613,489,578,432,551,434,546,492,573,559,608,667,679"/>
+<area shape="poly" title=" " alt="" coords="355,676,375,639,393,586,402,548,407,549,399,587,380,641,360,679"/>
+<area shape="poly" title=" " alt="" coords="500,678,458,612,413,550,417,546,462,609,504,676"/>
+<area shape="rect" href="structgCamera_1_1Frustum.html" title=" " alt="" coords="46,167,189,192"/>
+<area shape="poly" title=" " alt="" coords="120,206,120,322,115,322,115,206"/>
+<area shape="rect" href="structgCamera_1_1Plane.html" title=" " alt="" coords="55,5,180,31"/>
+<area shape="poly" title=" " alt="" coords="120,44,120,166,115,166,115,44"/>
+<area shape="poly" title=" " alt="" coords="33,751,25,704,25,534,28,505,35,476,57,422,83,377,106,347,110,350,88,380,62,425,40,478,33,506,31,534,31,703,38,751"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgCamera_1_1Frustum.html">Frustum</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgCamera_1_1Plane.html">Plane</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a123de92d20c013cc6cb4f8d820adcd7d" id="r_a123de92d20c013cc6cb4f8d820adcd7d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#a123de92d20c013cc6cb4f8d820adcd7d">gCamera</a> (glm::vec3 camPosition=glm::vec3(0.0f, 0.0f, 0.0f))</td></tr>
@@ -358,10 +373,73 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa1eb5154520926fd6228394b47c3a752 inherit pub_methods_classgObject" id="r_aa1eb5154520926fd6228394b47c3a752"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgObject.html#aa1eb5154520926fd6228394b47c3a752">loge</a> (std::string tag, std::string message)</td></tr>
 <tr class="separator:aa1eb5154520926fd6228394b47c3a752 inherit pub_methods_classgObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
-Friends</h2></td></tr>
-<tr class="memitem:a5aa082749f82572eb0d493844d980e52" id="r_a5aa082749f82572eb0d493844d980e52"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#a5aa082749f82572eb0d493844d980e52">gScene</a></td></tr>
-<tr class="separator:a5aa082749f82572eb0d493844d980e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a114f0a6aadc0cc5548f07ee424eebb60" id="r_a114f0a6aadc0cc5548f07ee424eebb60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#a114f0a6aadc0cc5548f07ee424eebb60">processLookMatrix</a> ()</td></tr>
+<tr class="separator:a114f0a6aadc0cc5548f07ee424eebb60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef1b71943170a35725df8951c09f3652" id="r_aef1b71943170a35725df8951c09f3652"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#aef1b71943170a35725df8951c09f3652">rotateGizmos</a> (const glm::quat &amp;o)</td></tr>
+<tr class="separator:aef1b71943170a35725df8951c09f3652"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a797aeebb6bc7e827b66fd36e52b7f286" id="r_a797aeebb6bc7e827b66fd36e52b7f286"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#a797aeebb6bc7e827b66fd36e52b7f286">rotateGizmos</a> (float radians, float ax, float ay, float az)</td></tr>
+<tr class="separator:a797aeebb6bc7e827b66fd36e52b7f286"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abddea4e008cbaa674492ea90fa848e61" id="r_abddea4e008cbaa674492ea90fa848e61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#abddea4e008cbaa674492ea90fa848e61">rotateDegGizmos</a> (float angle, float ax, float ay, float az)</td></tr>
+<tr class="separator:abddea4e008cbaa674492ea90fa848e61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a611169d6f81bc3c26dceeed452d832f9" id="r_a611169d6f81bc3c26dceeed452d832f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#a611169d6f81bc3c26dceeed452d832f9">setOrientationGizmos</a> (const glm::quat &amp;o)</td></tr>
+<tr class="separator:a611169d6f81bc3c26dceeed452d832f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9d52783c7db1282754812fddb1c9263" id="r_ad9d52783c7db1282754812fddb1c9263"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#ad9d52783c7db1282754812fddb1c9263">tiltGizmos</a> (float radians)</td></tr>
+<tr class="separator:ad9d52783c7db1282754812fddb1c9263"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af99c9cc4d1dddae5f0390356595ecec0" id="r_af99c9cc4d1dddae5f0390356595ecec0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#af99c9cc4d1dddae5f0390356595ecec0">panGizmos</a> (float radians)</td></tr>
+<tr class="separator:af99c9cc4d1dddae5f0390356595ecec0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9ca5c1e0c9661164dcbf416a7c57680" id="r_ab9ca5c1e0c9661164dcbf416a7c57680"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#ab9ca5c1e0c9661164dcbf416a7c57680">rollGizmos</a> (float radians)</td></tr>
+<tr class="separator:ab9ca5c1e0c9661164dcbf416a7c57680"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2a3b2a01e47415a4a32f49c18f55c3c" id="r_aa2a3b2a01e47415a4a32f49c18f55c3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#aa2a3b2a01e47415a4a32f49c18f55c3c">tiltDegGizmos</a> (float degrees)</td></tr>
+<tr class="separator:aa2a3b2a01e47415a4a32f49c18f55c3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3047bfe29ef16ca0307d811d6f677d50" id="r_a3047bfe29ef16ca0307d811d6f677d50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#a3047bfe29ef16ca0307d811d6f677d50">panDegGizmos</a> (float degrees)</td></tr>
+<tr class="separator:a3047bfe29ef16ca0307d811d6f677d50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab331a0969e3cb7f2bdb6271f580b16f2" id="r_ab331a0969e3cb7f2bdb6271f580b16f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#ab331a0969e3cb7f2bdb6271f580b16f2">rollDegGizmos</a> (float degrees)</td></tr>
+<tr class="separator:ab331a0969e3cb7f2bdb6271f580b16f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classgNode"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classgNode')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classgNode.html">gNode</a></td></tr>
+<tr class="memitem:a3059566fe5fb524cb5c25d9c6065f48c inherit pro_methods_classgNode" id="r_a3059566fe5fb524cb5c25d9c6065f48c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#a3059566fe5fb524cb5c25d9c6065f48c">processTransformationMatrix</a> ()</td></tr>
+<tr class="separator:a3059566fe5fb524cb5c25d9c6065f48c inherit pro_methods_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a2675ec7cfafc651050a31961badd701b" id="r_a2675ec7cfafc651050a31961badd701b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#a2675ec7cfafc651050a31961badd701b">fov</a></td></tr>
+<tr class="separator:a2675ec7cfafc651050a31961badd701b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2eeefd95c75a4c5567066acbeae222ac" id="r_a2eeefd95c75a4c5567066acbeae222ac"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#a2eeefd95c75a4c5567066acbeae222ac">nearclip</a></td></tr>
+<tr class="separator:a2eeefd95c75a4c5567066acbeae222ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dfe1cbb945510392c891e0f08f2c11d" id="r_a4dfe1cbb945510392c891e0f08f2c11d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#a4dfe1cbb945510392c891e0f08f2c11d">farclip</a></td></tr>
+<tr class="separator:a4dfe1cbb945510392c891e0f08f2c11d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c63b87622c0fa3b59fb89022ae53420" id="r_a7c63b87622c0fa3b59fb89022ae53420"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structgCamera_1_1Frustum.html">Frustum</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#a7c63b87622c0fa3b59fb89022ae53420">frustum</a></td></tr>
+<tr class="separator:a7c63b87622c0fa3b59fb89022ae53420"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7af80e89900ae8af0da1c3bcca97a017" id="r_a7af80e89900ae8af0da1c3bcca97a017"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#a7af80e89900ae8af0da1c3bcca97a017">lookposition</a></td></tr>
+<tr class="separator:a7af80e89900ae8af0da1c3bcca97a017"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52ea0893e7b58c7f71adab41d3be2acc" id="r_a52ea0893e7b58c7f71adab41d3be2acc"><td class="memItemLeft" align="right" valign="top">glm::quat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#a52ea0893e7b58c7f71adab41d3be2acc">lookorientation</a></td></tr>
+<tr class="separator:a52ea0893e7b58c7f71adab41d3be2acc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2ce9c948ed6e486add8470bf5bd4af5" id="r_af2ce9c948ed6e486add8470bf5bd4af5"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#af2ce9c948ed6e486add8470bf5bd4af5">lookscalevec</a></td></tr>
+<tr class="separator:af2ce9c948ed6e486add8470bf5bd4af5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dc26b43c5e50b5a64b5f89d5cb232af" id="r_a0dc26b43c5e50b5a64b5f89d5cb232af"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#a0dc26b43c5e50b5a64b5f89d5cb232af">locallookmatrix</a></td></tr>
+<tr class="separator:a0dc26b43c5e50b5a64b5f89d5cb232af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a299b81ceac7fbbbe5680f8155925647a" id="r_a299b81ceac7fbbbe5680f8155925647a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classgSkybox.html">gSkybox</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgCamera.html#a299b81ceac7fbbbe5680f8155925647a">gizmos</a></td></tr>
+<tr class="separator:a299b81ceac7fbbbe5680f8155925647a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classgNode"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classgNode')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classgNode.html">gNode</a></td></tr>
+<tr class="memitem:a1b05034284ccbf2446c1dd82dfaef004 inherit pro_attribs_classgNode" id="r_a1b05034284ccbf2446c1dd82dfaef004"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classgNode.html">gNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#a1b05034284ccbf2446c1dd82dfaef004">parent</a></td></tr>
+<tr class="separator:a1b05034284ccbf2446c1dd82dfaef004 inherit pro_attribs_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82f2d87665cdf6c0871408edd880905c inherit pro_attribs_classgNode" id="r_a82f2d87665cdf6c0871408edd880905c"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#a82f2d87665cdf6c0871408edd880905c">localtransformationmatrix</a></td></tr>
+<tr class="separator:a82f2d87665cdf6c0871408edd880905c inherit pro_attribs_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ade01c6af2b73ec82498f6c17dfa2bc inherit pro_attribs_classgNode" id="r_a6ade01c6af2b73ec82498f6c17dfa2bc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#a6ade01c6af2b73ec82498f6c17dfa2bc">isenabled</a></td></tr>
+<tr class="separator:a6ade01c6af2b73ec82498f6c17dfa2bc inherit pro_attribs_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac667146bf0d8c83ea4be5dad35a0a490 inherit pro_attribs_classgNode" id="r_ac667146bf0d8c83ea4be5dad35a0a490"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#ac667146bf0d8c83ea4be5dad35a0a490">position</a></td></tr>
+<tr class="separator:ac667146bf0d8c83ea4be5dad35a0a490 inherit pro_attribs_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d3a820f6eab89ba1533c6085e178681 inherit pro_attribs_classgNode" id="r_a0d3a820f6eab89ba1533c6085e178681"><td class="memItemLeft" align="right" valign="top">glm::quat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#a0d3a820f6eab89ba1533c6085e178681">orientation</a></td></tr>
+<tr class="separator:a0d3a820f6eab89ba1533c6085e178681 inherit pro_attribs_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56adfd3650a4955e33e0a2ee7d94766f inherit pro_attribs_classgNode" id="r_a56adfd3650a4955e33e0a2ee7d94766f"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#a56adfd3650a4955e33e0a2ee7d94766f">scalevec</a></td></tr>
+<tr class="separator:a56adfd3650a4955e33e0a2ee7d94766f inherit pro_attribs_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae84e1d6726fd6561e73f05f7201c25ff inherit pro_attribs_classgNode" id="r_ae84e1d6726fd6561e73f05f7201c25ff"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#ae84e1d6726fd6561e73f05f7201c25ff">prevposition</a></td></tr>
+<tr class="separator:ae84e1d6726fd6561e73f05f7201c25ff inherit pro_attribs_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59e5322d62b36071004fc30f95c64d26 inherit pro_attribs_classgNode" id="r_a59e5322d62b36071004fc30f95c64d26"><td class="memItemLeft" align="right" valign="top">glm::quat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#a59e5322d62b36071004fc30f95c64d26">prevorientation</a></td></tr>
+<tr class="separator:a59e5322d62b36071004fc30f95c64d26 inherit pro_attribs_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83b9727a9ec13a3615bba4156ff19092 inherit pro_attribs_classgNode" id="r_a83b9727a9ec13a3615bba4156ff19092"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#a83b9727a9ec13a3615bba4156ff19092">prevscalevec</a></td></tr>
+<tr class="separator:a83b9727a9ec13a3615bba4156ff19092 inherit pro_attribs_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -422,28 +500,6 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a2cb5d026aa2757c9163808631602c9c2 inherit pub_static_attribs_classgObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e7e512031a455faf43eb905a1e1b67e inherit pub_static_attribs_classgObject" id="r_a2e7e512031a455faf43eb905a1e1b67e"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgObject.html#a2e7e512031a455faf43eb905a1e1b67e">LOGLEVEL_ERROR</a></td></tr>
 <tr class="separator:a2e7e512031a455faf43eb905a1e1b67e inherit pub_static_attribs_classgObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_methods_classgNode"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classgNode')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classgNode.html">gNode</a></td></tr>
-<tr class="memitem:a3059566fe5fb524cb5c25d9c6065f48c inherit pro_methods_classgNode" id="r_a3059566fe5fb524cb5c25d9c6065f48c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#a3059566fe5fb524cb5c25d9c6065f48c">processTransformationMatrix</a> ()</td></tr>
-<tr class="separator:a3059566fe5fb524cb5c25d9c6065f48c inherit pro_methods_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_attribs_classgNode"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classgNode')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classgNode.html">gNode</a></td></tr>
-<tr class="memitem:a1b05034284ccbf2446c1dd82dfaef004 inherit pro_attribs_classgNode" id="r_a1b05034284ccbf2446c1dd82dfaef004"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classgNode.html">gNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#a1b05034284ccbf2446c1dd82dfaef004">parent</a></td></tr>
-<tr class="separator:a1b05034284ccbf2446c1dd82dfaef004 inherit pro_attribs_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82f2d87665cdf6c0871408edd880905c inherit pro_attribs_classgNode" id="r_a82f2d87665cdf6c0871408edd880905c"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#a82f2d87665cdf6c0871408edd880905c">localtransformationmatrix</a></td></tr>
-<tr class="separator:a82f2d87665cdf6c0871408edd880905c inherit pro_attribs_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ade01c6af2b73ec82498f6c17dfa2bc inherit pro_attribs_classgNode" id="r_a6ade01c6af2b73ec82498f6c17dfa2bc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#a6ade01c6af2b73ec82498f6c17dfa2bc">isenabled</a></td></tr>
-<tr class="separator:a6ade01c6af2b73ec82498f6c17dfa2bc inherit pro_attribs_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac667146bf0d8c83ea4be5dad35a0a490 inherit pro_attribs_classgNode" id="r_ac667146bf0d8c83ea4be5dad35a0a490"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#ac667146bf0d8c83ea4be5dad35a0a490">position</a></td></tr>
-<tr class="separator:ac667146bf0d8c83ea4be5dad35a0a490 inherit pro_attribs_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d3a820f6eab89ba1533c6085e178681 inherit pro_attribs_classgNode" id="r_a0d3a820f6eab89ba1533c6085e178681"><td class="memItemLeft" align="right" valign="top">glm::quat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#a0d3a820f6eab89ba1533c6085e178681">orientation</a></td></tr>
-<tr class="separator:a0d3a820f6eab89ba1533c6085e178681 inherit pro_attribs_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56adfd3650a4955e33e0a2ee7d94766f inherit pro_attribs_classgNode" id="r_a56adfd3650a4955e33e0a2ee7d94766f"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#a56adfd3650a4955e33e0a2ee7d94766f">scalevec</a></td></tr>
-<tr class="separator:a56adfd3650a4955e33e0a2ee7d94766f inherit pro_attribs_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae84e1d6726fd6561e73f05f7201c25ff inherit pro_attribs_classgNode" id="r_ae84e1d6726fd6561e73f05f7201c25ff"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#ae84e1d6726fd6561e73f05f7201c25ff">prevposition</a></td></tr>
-<tr class="separator:ae84e1d6726fd6561e73f05f7201c25ff inherit pro_attribs_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59e5322d62b36071004fc30f95c64d26 inherit pro_attribs_classgNode" id="r_a59e5322d62b36071004fc30f95c64d26"><td class="memItemLeft" align="right" valign="top">glm::quat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#a59e5322d62b36071004fc30f95c64d26">prevorientation</a></td></tr>
-<tr class="separator:a59e5322d62b36071004fc30f95c64d26 inherit pro_attribs_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83b9727a9ec13a3615bba4156ff19092 inherit pro_attribs_classgNode" id="r_a83b9727a9ec13a3615bba4156ff19092"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgNode.html#a83b9727a9ec13a3615bba4156ff19092">prevscalevec</a></td></tr>
-<tr class="separator:a83b9727a9ec13a3615bba4156ff19092 inherit pro_attribs_classgNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_static_attribs_classgRenderObject"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_classgRenderObject')"><img src="closed.png" alt="-"/>&#160;Static Protected Attributes inherited from <a class="el" href="classgRenderObject.html">gRenderObject</a></td></tr>
 <tr class="memitem:a33bb9342f1ac27b19efcde25724571f5 inherit pro_static_attribs_classgRenderObject" id="r_a33bb9342f1ac27b19efcde25724571f5"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classgRenderer.html">gRenderer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgRenderObject.html#a33bb9342f1ac27b19efcde25724571f5">renderer</a></td></tr>
 <tr class="separator:a33bb9342f1ac27b19efcde25724571f5 inherit pro_static_attribs_classgRenderObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -858,6 +914,83 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a3047bfe29ef16ca0307d811d6f677d50" name="a3047bfe29ef16ca0307d811d6f677d50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3047bfe29ef16ca0307d811d6f677d50">&#9670;&#160;</a></span>panDegGizmos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gCamera::panDegGizmos </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>degrees</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af99c9cc4d1dddae5f0390356595ecec0" name="af99c9cc4d1dddae5f0390356595ecec0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af99c9cc4d1dddae5f0390356595ecec0">&#9670;&#160;</a></span>panGizmos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gCamera::panGizmos </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>radians</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a114f0a6aadc0cc5548f07ee424eebb60" name="a114f0a6aadc0cc5548f07ee424eebb60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a114f0a6aadc0cc5548f07ee424eebb60">&#9670;&#160;</a></span>processLookMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gCamera::processLookMatrix </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a04a3ce88aaa4f8afdd638e7c0a73dae4" name="a04a3ce88aaa4f8afdd638e7c0a73dae4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a04a3ce88aaa4f8afdd638e7c0a73dae4">&#9670;&#160;</a></span>resetLook()</h2>
 
@@ -907,6 +1040,58 @@ Additional Inherited Members</h2></td></tr>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab331a0969e3cb7f2bdb6271f580b16f2" name="ab331a0969e3cb7f2bdb6271f580b16f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab331a0969e3cb7f2bdb6271f580b16f2">&#9670;&#160;</a></span>rollDegGizmos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gCamera::rollDegGizmos </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>degrees</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab9ca5c1e0c9661164dcbf416a7c57680" name="ab9ca5c1e0c9661164dcbf416a7c57680"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9ca5c1e0c9661164dcbf416a7c57680">&#9670;&#160;</a></span>rollGizmos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gCamera::rollGizmos </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>radians</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -1073,6 +1258,128 @@ Additional Inherited Members</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abddea4e008cbaa674492ea90fa848e61" name="abddea4e008cbaa674492ea90fa848e61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abddea4e008cbaa674492ea90fa848e61">&#9670;&#160;</a></span>rotateDegGizmos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gCamera::rotateDegGizmos </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>angle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>ax</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>ay</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>az</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef1b71943170a35725df8951c09f3652" name="aef1b71943170a35725df8951c09f3652"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef1b71943170a35725df8951c09f3652">&#9670;&#160;</a></span>rotateGizmos() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gCamera::rotateGizmos </td>
+          <td>(</td>
+          <td class="paramtype">const glm::quat &amp;&#160;</td>
+          <td class="paramname"><em>o</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a797aeebb6bc7e827b66fd36e52b7f286" name="a797aeebb6bc7e827b66fd36e52b7f286"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a797aeebb6bc7e827b66fd36e52b7f286">&#9670;&#160;</a></span>rotateGizmos() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gCamera::rotateGizmos </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>radians</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>ax</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>ay</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>az</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -1259,6 +1566,32 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a611169d6f81bc3c26dceeed452d832f9" name="a611169d6f81bc3c26dceeed452d832f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a611169d6f81bc3c26dceeed452d832f9">&#9670;&#160;</a></span>setOrientationGizmos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gCamera::setOrientationGizmos </td>
+          <td>(</td>
+          <td class="paramtype">const glm::quat &amp;&#160;</td>
+          <td class="paramname"><em>o</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aa4df3cfef50ca29311e735540d940b98" name="aa4df3cfef50ca29311e735540d940b98"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa4df3cfef50ca29311e735540d940b98">&#9670;&#160;</a></span>setPosition() <span class="overload">[1/2]</span></h2>
 
@@ -1417,6 +1750,58 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="aa2a3b2a01e47415a4a32f49c18f55c3c" name="aa2a3b2a01e47415a4a32f49c18f55c3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2a3b2a01e47415a4a32f49c18f55c3c">&#9670;&#160;</a></span>tiltDegGizmos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gCamera::tiltDegGizmos </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>degrees</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9d52783c7db1282754812fddb1c9263" name="ad9d52783c7db1282754812fddb1c9263"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9d52783c7db1282754812fddb1c9263">&#9670;&#160;</a></span>tiltGizmos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gCamera::tiltGizmos </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>radians</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a4aa68e4581c4b252ef71d0c025feded6" name="a4aa68e4581c4b252ef71d0c025feded6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4aa68e4581c4b252ef71d0c025feded6">&#9670;&#160;</a></span>truck()</h2>
 
@@ -1435,9 +1820,9 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Friends And Related Symbol Documentation</h2>
-<a id="a5aa082749f82572eb0d493844d980e52" name="a5aa082749f82572eb0d493844d980e52"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5aa082749f82572eb0d493844d980e52">&#9670;&#160;</a></span>gScene</h2>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a4dfe1cbb945510392c891e0f08f2c11d" name="a4dfe1cbb945510392c891e0f08f2c11d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4dfe1cbb945510392c891e0f08f2c11d">&#9670;&#160;</a></span>farclip</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1446,12 +1831,188 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">friend class gScene</td>
+          <td class="memname">float gCamera::farclip</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2675ec7cfafc651050a31961badd701b" name="a2675ec7cfafc651050a31961badd701b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2675ec7cfafc651050a31961badd701b">&#9670;&#160;</a></span>fov</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float gCamera::fov</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7c63b87622c0fa3b59fb89022ae53420" name="a7c63b87622c0fa3b59fb89022ae53420"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c63b87622c0fa3b59fb89022ae53420">&#9670;&#160;</a></span>frustum</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structgCamera_1_1Frustum.html">Frustum</a> gCamera::frustum</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a299b81ceac7fbbbe5680f8155925647a" name="a299b81ceac7fbbbe5680f8155925647a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a299b81ceac7fbbbe5680f8155925647a">&#9670;&#160;</a></span>gizmos</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classgSkybox.html">gSkybox</a>* gCamera::gizmos</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0dc26b43c5e50b5a64b5f89d5cb232af" name="a0dc26b43c5e50b5a64b5f89d5cb232af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dc26b43c5e50b5a64b5f89d5cb232af">&#9670;&#160;</a></span>locallookmatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::mat4 gCamera::locallookmatrix</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a52ea0893e7b58c7f71adab41d3be2acc" name="a52ea0893e7b58c7f71adab41d3be2acc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52ea0893e7b58c7f71adab41d3be2acc">&#9670;&#160;</a></span>lookorientation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::quat gCamera::lookorientation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7af80e89900ae8af0da1c3bcca97a017" name="a7af80e89900ae8af0da1c3bcca97a017"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7af80e89900ae8af0da1c3bcca97a017">&#9670;&#160;</a></span>lookposition</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec3 gCamera::lookposition</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af2ce9c948ed6e486add8470bf5bd4af5" name="af2ce9c948ed6e486add8470bf5bd4af5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2ce9c948ed6e486add8470bf5bd4af5">&#9670;&#160;</a></span>lookscalevec</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec3 gCamera::lookscalevec</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2eeefd95c75a4c5567066acbeae222ac" name="a2eeefd95c75a4c5567066acbeae222ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2eeefd95c75a4c5567066acbeae222ac">&#9670;&#160;</a></span>nearclip</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float gCamera::nearclip</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

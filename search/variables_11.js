@@ -22,6 +22,7 @@ var searchData=
   ['resize_5fright_19',['RESIZE_RIGHT',['../classgGUIDialogue.html#a56ebe8b3e26b6b0a01f26c4a02f3802f',1,'gGUIDialogue']]],
   ['resize_5ftop_20',['RESIZE_TOP',['../classgGUIDialogue.html#a52f7b1d0bf11b62e45cf3c1c02b332ce',1,'gGUIDialogue']]],
   ['right_21',['right',['../classgBaseGUIObject.html#a24c6c54c2278be3ecc039067a3c463b0',1,'gBaseGUIObject']]],
-  ['root_22',['root',['../classgBaseCanvas.html#ad4479a8e080001ee5b4148e2375eb4ea',1,'gBaseCanvas::root'],['../classgBaseGUIObject.html#a1b904144beed0a06f3d1943a56b7edd6',1,'gBaseGUIObject::root']]],
-  ['roundedrectanglemesh_23',['roundedrectanglemesh',['../classgRenderer.html#a6237d68f0db92c4fdc6b445cef730b88',1,'gRenderer']]]
+  ['rightface_22',['rightFace',['../structgCamera_1_1Frustum.html#a7ee59026627af36e4d803967216ab0b6',1,'gCamera::Frustum']]],
+  ['root_23',['root',['../classgBaseCanvas.html#ad4479a8e080001ee5b4148e2375eb4ea',1,'gBaseCanvas::root'],['../classgBaseGUIObject.html#a1b904144beed0a06f3d1943a56b7edd6',1,'gBaseGUIObject::root']]],
+  ['roundedrectanglemesh_24',['roundedrectanglemesh',['../classgRenderer.html#a6237d68f0db92c4fdc6b445cef730b88',1,'gRenderer']]]
 ];
