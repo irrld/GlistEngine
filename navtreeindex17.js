@@ -1,5 +1,7 @@
 var NAVTREEINDEX17 =
 {
+"tinyfiledialogs_8c.html#aa1a9656338b38479c1d5e2a1dde4ed9b":[2,0,0,7,0,0,10],
+"tinyfiledialogs_8c.html#aa2db23282c31c40c4c12b4847b92659b":[2,0,0,7,0,0,26],
 "tinyfiledialogs_8c.html#aa3441498bf910ce05abb03d769782074":[2,0,0,7,0,0,37],
 "tinyfiledialogs_8c.html#aa695aeb3e9421913447afe95e6521e7f":[2,0,0,7,0,0,23],
 "tinyfiledialogs_8c.html#ab96061de83b195bf847e44d164d6056e":[2,0,0,7,0,0,39],
