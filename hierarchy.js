@@ -109,6 +109,7 @@ var hierarchy =
               [ "gGUITreelist", "classgGUITreelist.html", null ]
             ] ],
             [ "gGUISizer", "classgGUISizer.html", null ],
+            [ "gGUISizerSpace", "classgGUISizerSpace.html", null ],
             [ "gGUISlider", "classgGUISlider.html", null ],
             [ "gGUISwitchButton", "classgGUISwitchButton.html", null ],
             [ "gGUIText", "classgGUIText.html", null ],
@@ -192,6 +193,7 @@ var hierarchy =
       [ "gRenderer", "classgRenderer.html", [
         [ "gGLRenderEngine", "classgGLRenderEngine.html", null ]
       ] ],
+      [ "gSoundRecorder", "classgSoundRecorder.html", null ],
       [ "gSpriteAnimation", "classgSpriteAnimation.html", null ],
       [ "gSpriteAnimator", "classgSpriteAnimator.html", null ],
       [ "gThread", "classgThread.html", [
