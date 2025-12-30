@@ -64,23 +64,23 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classgBaseGUIObject.html#aed67c5e826a9bf7ff061d90c904f0369",
-"classgChromaticAberration.html#a27e20200767ff9c3f366f873a4dfa01b",
-"classgGLRenderEngine.html#a43d5f3947a4a0b720fbbeef0ba2d8675",
-"classgGUIContainer.html#adb70c8cf38e94936bcf06490ecb817dd",
-"classgGUIGraph.html#add293c9fe9dd0490e4e7a0333c2d2c75",
-"classgGUINavigation.html#a63b6062783426938116f18be3ff7b9f1",
-"classgGUISizer.html#a81a4769ca9b69780a7feec9139591b3e",
-"classgGUITreelist.html#ab8334ce9dc492d3cd39b21ab62cd4f81",
-"classgMaterial.html",
-"classgMouseButtonPressedEvent.html#a5e5e6dd0f0e0e580a0ee63bccc36beb7",
-"classgRenderer.html#a53623bf6ac29c7af22eb0d5dead4ece5",
-"classgShader.html#aae6d255ceea2c6b9040eefe575538756",
-"classgThread.html#a0e0fec7f66f036b1507fffa3f8a5674c",
-"gBasePlugin_8h_source.html",
-"gImage_8h.html",
-"gSphere_8h.html",
-"structgRenderer_1_1gSceneData.html#a09b83f2ce02728412c123b8173084c3d"
+"classgBaseGUIObject.html#ad906f7ad3dc14a9c27f5fe26c779051e",
+"classgCanvasManager.html#a74a7bd65c5ce09ea25c195600b143c76",
+"classgGLRenderEngine.html#a23bd7e2140444e2aa65bfb3ac9510731",
+"classgGUIContainer.html#a8085e00a95b282029c5b9e33fae94cf2",
+"classgGUIGraph.html#aa75e83f42eed80a72a65614cc353121e",
+"classgGUINavigation.html#a1c38be49aaaf0d342bd16beb03232962",
+"classgGUISizer.html#a4e28560e02f143d5a4a0d70d15c88e42",
+"classgGUITreelist.html#a8a8d6949009c9d0d6e3410dafc166c0b",
+"classgLogd.html",
+"classgMouseButtonEvent.html#a02938f73b12be3ccac32303b2bd7b3df",
+"classgRenderer.html#a4cfac46f1016a0381f98a5e12923f029",
+"classgShader.html#a532d37218603f8fb84e8f42e3330693c",
+"classgTexture.html#ae9581a25115b2be9c2e7915753c6980c",
+"gBaseCanvas_8h_source.html",
+"gGrayscale_8h.html",
+"gSkybox_8h_source.html",
+"structgGUITreelist_1_1Element.html#ad09a7f97d9279ba6d64826e4c2c0badb"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
