@@ -64,23 +64,24 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classgBaseGUIObject.html#ad906f7ad3dc14a9c27f5fe26c779051e",
-"classgCanvasManager.html#a74a7bd65c5ce09ea25c195600b143c76",
-"classgGLRenderEngine.html#a1a8990336cca89991e2eed09db68c1ca",
-"classgGUIContainer.html#a31a14ad8324c12ab8808b1a8912b383b",
-"classgGUIGraph.html#a8873c811549f894bcd355ab9b2e1962c",
-"classgGUINavigation.html",
-"classgGUISizer.html#a0dc33ec3ac73fd58274bfdeb07718f8a",
-"classgGUITreelist.html#a6539e51e327517ee6a54831ff91f628e",
-"classgLog.html#a150b1e7e081d3bab521bc9e5d7d7e23b",
-"classgMorphingMesh.html#ad93d1472db09feb256fd859df21fb61b",
-"classgRenderer.html#a48d8fabc173ce59e31b73d671f4e3630",
-"classgShader.html#a3e5d7edcaf854501b16f5d0c4e251178",
-"classgTexture.html#acca450f20de3e35a8dcef0a641dd2191aed33a01f115a1eb07c8829c1aab1c479",
-"gArc_8h.html",
-"gGUIToolbar_8h_source.html",
-"gShadowsMidtonesHighlights_8h.html",
-"structgGUITreelist_1_1Element.html#a6d3cad1a3e49b03fe642c4f0c836b505"
+"classgBaseGUIObject.html#ad8a76f59d9975c919cf8d34a2a0eddc6",
+"classgCameraController.html#a579ffe541faeb1f233a96146ed2ffe4d",
+"classgGLFWWindow.html#a5796a0f73e65428f97cfeff5ca737d52",
+"classgGUIColorbox.html",
+"classgGUIGraph.html#a231a625ebb7bafd1efd2bd0c301a355e",
+"classgGUIMenuItem.html#a2524883ec447de4dbca439e45016535a",
+"classgGUIScrollable.html#a6a5698aaf73204b817e93440d50fc72d",
+"classgGUITooltipText.html#a282acabffa43599ae4c2fd003cde1701",
+"classgLight.html#a12e84ee3fcf915e1eb6d037a3dbbdb9d",
+"classgModel.html#a554b98f02c61949dc0cfa11bddff4ac4",
+"classgRect.html#ab9474c63fee1840f3d7055be8d7ad155",
+"classgRenderer.html#ab62a176c82e0a8060c31af50b2396325",
+"classgSound.html#aba593e8c7971d5ff927efe593ddec4b7",
+"classgWhiteBalance.html#a4a4c798c7f480eca23aff77a79721857",
+"gFile_8h.html#abd38bed113ec30fc0cf304e41ee3ff12",
+"gKeyCode_8h.html#ab58f35e083da90fcf049ad9843a12d6c",
+"gUtils_8h.html#aa15cce4ae90efc10418c2f3eeb989fc1",
+"tinyfiledialogs_8h.html#a570a95a1dce391ed29f7fc5861ecee69"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
