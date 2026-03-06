@@ -23,7 +23,11 @@
 #include "gCamera.h"
 #include "gGrid.h"
 #include "gRenderer.h"
+#if defined(GLIST_VULKAN)
+#include "gVulkanRenderEngine.h"
+#else
 #include "gGLRenderEngine.h"
+#endif
 
 bool gRenderObject::isshadowmappingenabled = false;
 
@@ -102,7 +106,11 @@ gRenderer* gRenderObject::getRenderer() {
 
 void gRenderObject::createRenderer() {
 	destroyRenderer(); // Delete the previous renderer if exists. If renderer is null, this will have no effect.
+#if defined(GLIST_VULKAN)
+	renderer = new gVulkanRenderEngine();
+#else
 	renderer = new gGLRenderEngine();
+#endif
 	renderer->init();
 }
 

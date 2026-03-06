@@ -8,7 +8,7 @@
 #include "gCircle.h"
 
 gCircle::gCircle() {
-
+	vbo->setDynamic(true);
 }
 
 gCircle::gCircle(float xCenter, float yCenter, float radius, bool isFilled, float numberOfSides) {

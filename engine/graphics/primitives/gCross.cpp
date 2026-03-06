@@ -8,7 +8,7 @@
 #include "gCross.h"
 
 gCross::gCross() {
-
+	vbo->setDynamic(true);
 }
 
 gCross::~gCross() {

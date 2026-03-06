@@ -9,8 +9,10 @@
 #define ENGINE_CORE_GGLFWWINDOW_H_
 
 #include "gBaseWindow.h"
+#if !defined(GLIST_VULKAN)
 // #include <glad/glad.h> //case_win
 #include <GL/glew.h>
+#endif
 #include <GLFW/glfw3.h>
 #include "gCamera.h"
 
@@ -86,6 +88,8 @@ public:
 	}
 
 	void setScale(float x, float y);
+
+	GLFWwindow* getGLFWwindow() const { return window; }
 
   private:
 	GLFWwindow* window;

@@ -17,7 +17,9 @@
 static GLFWwindow* currentwindow = nullptr;
 
 static void onFramebufferResize(GLFWwindow* window, int width, int height) {
+#if !defined(GLIST_VULKAN)
     glViewport(0, 0, width, height);
+#endif
 	auto handle = static_cast<gGLFWWindow*>(glfwGetWindowUserPointer(window));
 	if (handle) {
 		handle->setSize(width, height);
@@ -202,13 +204,17 @@ void gGLFWWindow::initialize(int width, int height, int windowMode, bool isResiz
 		return;
 	}
 
-	// Configure glfw
+#if defined(GLIST_VULKAN)
+	// Vulkan: tell GLFW not to create an OpenGL context
+	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+#else
+	// Configure glfw for OpenGL
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
 #if TARGET_OS_OSX
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); //case_mac
+#endif
 #endif
 
 	// All hints available at https://www.glfw.org/docs/latest/window.html#window_hints
@@ -248,7 +254,9 @@ void gGLFWWindow::initialize(int width, int height, int windowMode, bool isResiz
 	   	if (monitor) {
 	   		glfwSetWindowMonitor(window, monitor, 0, 0, width, height, currentrefreshrate);
 	   	}
+#if !defined(GLIST_VULKAN)
 	   	glViewport(0, 0, width, height);
+#endif
 	}
 
 	glfwGetFramebufferSize(window, &width, &height);
@@ -288,6 +296,7 @@ void gGLFWWindow::initialize(int width, int height, int windowMode, bool isResiz
 		glfwSetCursor(window, cursor[0]);
 	}
 
+#if !defined(GLIST_VULKAN)
 	glfwMakeContextCurrent(window);
     glfwSwapInterval(vsync ? 1 : 0);
 	glewExperimental = GL_TRUE;
@@ -297,16 +306,14 @@ void gGLFWWindow::initialize(int width, int height, int windowMode, bool isResiz
 		glfwTerminate();
 		return;
 	}
-
-//	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-//	    std::cout << "Failed to initialize GLAD" << std::endl;
-//	    return -1;
-//	}
+#endif
 
 	glfwSetWindowUserPointer(window, this);
 
+#if !defined(GLIST_VULKAN)
 	// Window specs to OpenGL
 	glViewport(0, 0, width, height);
+#endif
 
 	// Notify OpenGL if the window size changed
 	glfwSetFramebufferSizeCallback(window, onFramebufferResize);
@@ -334,8 +341,10 @@ bool gGLFWWindow::getShouldClose() {
 
 void gGLFWWindow::update() {
 	G_PROFILE_ZONE_SCOPED_N("gGLFWWindow::update()");
-	// End window drawing
+#if !defined(GLIST_VULKAN)
+	// End window drawing (OpenGL swaps buffers here; Vulkan presents in the renderer)
 	G_CHECK_GL(glfwSwapBuffers(window));
+#endif
 	G_CHECK_GL(glfwPollEvents());
 }
 
@@ -356,7 +365,9 @@ void gGLFWWindow::close() {
 
 void gGLFWWindow::setVsync(bool vsync) {
 	gBaseWindow::setVsync(vsync);
+#if !defined(GLIST_VULKAN)
 	glfwSwapInterval(vsync);
+#endif
 }
 
 void gGLFWWindow::setCursor(int cursorNo) {
@@ -482,7 +493,9 @@ void gGLFWWindow::setScale(float x, float y) {
 	// Update framebuffer size since scale changed
 	int width, height;
 	glfwGetFramebufferSize(window, &width, &height);
+#if !defined(GLIST_VULKAN)
 	glViewport(0, 0, width, height);
+#endif
 	gWindowScaleChangedEvent event{width, height, x, y};
 	callEvent(event);
 	setSize(width, height);

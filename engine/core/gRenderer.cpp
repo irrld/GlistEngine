@@ -24,6 +24,7 @@
 #include "gCone.h"
 #include "gTube.h"
 #include "gUbo.h"
+#include "gVbo.h"
 #include "gShader.h"
 #include "gCamera.h"
 #include "gGrid.h"
@@ -281,7 +282,7 @@ void gRenderer::init() {
 	ssaoresultfbo = nullptr;
 	ssaoshader = nullptr;
 	ssaoblurshader = nullptr;
-	ssaonoisetexture = 0;
+	ssaonoisetexid = 0;
 	ssaorealdefaultfbo = 0;
 	isgammacorrectionenabled = false;
 	ishdrenabled = false;
@@ -292,9 +293,18 @@ void gRenderer::init() {
 	originalgrid = new gGrid();
 	grid = originalgrid;
 
-	fullscreenquadvao = 0;
-	fullscreenquadvbo = 0;
-	createFullscreenQuad(fullscreenquadvao, fullscreenquadvbo);
+	static const float QUAD_VERTICES[] = {
+		// positions   // texCoords
+		-1.0f, 1.0f, 0.0f, 1.0f,
+		-1.0f, -1.0f, 0.0f, 0.0f,
+		1.0f, -1.0f, 1.0f, 0.0f,
+
+		-1.0f, 1.0f, 0.0f, 1.0f,
+		1.0f, -1.0f, 1.0f, 0.0f,
+		1.0f, 1.0f, 1.0f, 1.0f
+	};
+	fullscreenquad = new gVbo();
+	fullscreenquad->setVertexData(QUAD_VERTICES, 4, 6, GL_STATIC_DRAW);
 
 	linemesh = std::make_unique<gLine>();
 	linemesh2 = std::make_unique<gLine>();
@@ -307,8 +317,10 @@ void gRenderer::init() {
 	roundedrectanglemesh = std::make_unique<gRoundedRectangle>();
 	boxmesh = std::make_unique<gBox>();
 
+#if !defined(GLIST_VULKAN)
 	enableSSAO();
 	enableSoftShadows();
+#endif
 }
 
 void gRenderer::cleanup() {
@@ -362,13 +374,20 @@ void gRenderer::cleanup() {
 	lightsubo = nullptr;
 	sceneubo = nullptr;
 
-	deleteFullscreenQuad(fullscreenquadvao, &fullscreenquadvbo);
-	fullscreenquadvao = 0;
-	fullscreenquadvbo = 0;
+	delete fullscreenquad;
+	fullscreenquad = nullptr;
 }
 
-unsigned int gRenderer::getFullscreenQuadVAO() const {
-	return fullscreenquadvao;
+gVbo* gRenderer::getFullscreenQuad() const {
+	return fullscreenquad;
+}
+
+void gRenderer::bindQuadVAO() {
+	fullscreenquad->bind();
+}
+
+void gRenderer::drawFullscreenQuad() {
+	drawArrays(GL_TRIANGLES, 6);
 }
 
 gShader* gRenderer::getColorShader() {
@@ -827,6 +846,9 @@ void gRenderer::updateScene() {
 	gSceneData* data = sceneubo->getData();
 	bool ischanged = false;
 
+#if !defined(GLIST_VULKAN)
+	// In Vulkan, renderColor/viewPos/viewMatrix are per-draw (in MaterialUBOData),
+	// so we skip writing them to the shared Scene UBO to avoid cross-frame race conditions.
 	// Check render color changes
 	if (data->rendercolor != rendercolor) {
 		data->rendercolor = rendercolor;
@@ -843,6 +865,7 @@ void gRenderer::updateScene() {
 		data->viewmatrix = viewmatrix;
 		ischanged = true;
 	}
+#endif
 
 	// Update flags
 	int previousflags = data->flags;
@@ -893,6 +916,7 @@ void gRenderer::updateScene() {
 	}
 }
 
+#if !defined(GLIST_VULKAN)
 #include "graphics/shaders/grid_vert.h"
 #include "graphics/shaders/grid_frag.h"
 #include "graphics/shaders/color_vert.h"
@@ -920,147 +944,67 @@ void gRenderer::updateScene() {
 #include "graphics/shaders/ssao_vert.h"
 #include "graphics/shaders/ssao_frag.h"
 #include "graphics/shaders/ssao_blur_frag.h"
+#endif
 
-const std::string& gRenderer::getShaderSrcGridVertex() {
-	static std::string str{shader_grid_vert.data(), shader_grid_vert.size()};
-	return str;
-}
+// Under Vulkan, shader source getters return @vk: identifier strings.
+// Shader source getters.
+// Under Vulkan, return a "@vk:<id>" tag that the shader handle maps to embedded SPIR-V.
+// Under OpenGL, return the embedded GLSL source as a string.
+#define GLIST_STRINGIFY_(x) #x
+#define GLIST_STRINGIFY(x) GLIST_STRINGIFY_(x)
 
-const std::string& gRenderer::getShaderSrcGridFragment() {
-	static std::string str{shader_grid_frag.data(), shader_grid_frag.size()};
-	return str;
-}
+#if defined(GLIST_VULKAN)
+#define GLIST_SHADER_SRC_GETTER(name, shaderid) \
+	const std::string& gRenderer::name() { \
+		static std::string str = "@vk:" GLIST_STRINGIFY(shaderid); \
+		return str; \
+	}
+#else
+#define GLIST_SHADER_SRC_GETTER(name, shaderid) \
+	const std::string& gRenderer::name() { \
+		static std::string str{reinterpret_cast<const char*>(shader_##shaderid.data()), shader_##shaderid.size()}; \
+		return str; \
+	}
+#endif
 
-const std::string& gRenderer::getShaderSrcColorVertex() {
-	static std::string str{shader_color_vert.data(), shader_color_vert.size()};
-	return str;
-}
+GLIST_SHADER_SRC_GETTER(getShaderSrcGridVertex, grid_vert)
+GLIST_SHADER_SRC_GETTER(getShaderSrcGridFragment, grid_frag)
+GLIST_SHADER_SRC_GETTER(getShaderSrcColorVertex, color_vert)
+GLIST_SHADER_SRC_GETTER(getShaderSrcColorFragment, color_frag)
+GLIST_SHADER_SRC_GETTER(getShaderSrcTextureVertex, texture_vert)
+GLIST_SHADER_SRC_GETTER(getShaderSrcTextureFragment, texture_frag)
+GLIST_SHADER_SRC_GETTER(getShaderSrcImageVertex, image_vert)
+GLIST_SHADER_SRC_GETTER(getShaderSrcImageFragment, image_frag)
+GLIST_SHADER_SRC_GETTER(getShaderSrcFontVertex, font_vert)
+GLIST_SHADER_SRC_GETTER(getShaderSrcFontFragment, font_frag)
+GLIST_SHADER_SRC_GETTER(getShaderSrcSkyboxVertex, skybox_vert)
+GLIST_SHADER_SRC_GETTER(getShaderSrcSkyboxFragment, skybox_frag)
+GLIST_SHADER_SRC_GETTER(getShaderSrcShadowmapVertex, shadowmap_vert)
+GLIST_SHADER_SRC_GETTER(getShaderSrcShadowmapFragment, shadowmap_frag)
+GLIST_SHADER_SRC_GETTER(getShaderSrcPbrVertex, pbr_vert)
+GLIST_SHADER_SRC_GETTER(getShaderSrcPbrFragment, pbr_frag)
+GLIST_SHADER_SRC_GETTER(getShaderSrcCubemapVertex, cubemap_vert)
+GLIST_SHADER_SRC_GETTER(getShaderSrcEquirectangularFragment, equirectangular_frag)
+GLIST_SHADER_SRC_GETTER(getShaderSrcIrradianceFragment, irradiance_frag)
+GLIST_SHADER_SRC_GETTER(getShaderSrcPrefilterFragment, prefilter_frag)
+GLIST_SHADER_SRC_GETTER(getShaderSrcBrdfVertex, brdf_vert)
+GLIST_SHADER_SRC_GETTER(getShaderSrcBrdfFragment, brdf_frag)
+GLIST_SHADER_SRC_GETTER(getShaderSrcFboVertex, fbo_vert)
+GLIST_SHADER_SRC_GETTER(getShaderSrcFboFragment, fbo_frag)
+GLIST_SHADER_SRC_GETTER(getShaderSrcSSAOVertex, ssao_vert)
+GLIST_SHADER_SRC_GETTER(getShaderSrcSSAOFragment, ssao_frag)
+GLIST_SHADER_SRC_GETTER(getShaderSrcSSAOBlurFragment, ssao_blur_frag)
 
-const std::string& gRenderer::getShaderSrcColorFragment() {
-	static std::string str{shader_color_frag.data(), shader_color_frag.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcTextureVertex() {
-	static std::string str{shader_texture_vert.data(), shader_texture_vert.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcTextureFragment() {
-	static std::string str{shader_texture_frag.data(), shader_texture_frag.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcImageVertex() {
-	static std::string str{shader_image_vert.data(), shader_image_vert.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcImageFragment() {
-	static std::string str{shader_image_frag.data(), shader_image_frag.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcFontVertex() {
-	static std::string str{shader_font_vert.data(), shader_font_vert.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcFontFragment() {
-	static std::string str{shader_font_frag.data(), shader_font_frag.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcSkyboxVertex() {
-	static std::string str{shader_skybox_vert.data(), shader_skybox_vert.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcSkyboxFragment() {
-	static std::string str{shader_skybox_frag.data(), shader_skybox_frag.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcShadowmapVertex() {
-	static std::string str{shader_shadowmap_vert.data(), shader_shadowmap_vert.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcShadowmapFragment() {
-	static std::string str{shader_shadowmap_frag.data(), shader_shadowmap_frag.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcPbrVertex() {
-	static std::string str{shader_pbr_vert.data(), shader_pbr_vert.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcPbrFragment() {
-	static std::string str{shader_pbr_frag.data(), shader_pbr_frag.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcCubemapVertex() {
-	static std::string str{shader_cubemap_vert.data(), shader_cubemap_vert.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcEquirectangularFragment() {
-	static std::string str{shader_equirectangular_frag.data(), shader_equirectangular_frag.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcIrradianceFragment() {
-	static std::string str{shader_irradiance_frag.data(), shader_irradiance_frag.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcPrefilterFragment() {
-	static std::string str{shader_prefilter_frag.data(), shader_prefilter_frag.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcBrdfVertex() {
-	static std::string str{shader_brdf_vert.data(), shader_brdf_vert.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcBrdfFragment() {
-	static std::string str{shader_brdf_frag.data(), shader_brdf_frag.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcFboVertex() {
-	static std::string str{shader_fbo_vert.data(), shader_fbo_vert.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcFboFragment() {
-	static std::string str{shader_fbo_frag.data(), shader_fbo_frag.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcSSAOVertex() {
-	static std::string str{shader_ssao_vert.data(), shader_ssao_vert.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcSSAOFragment() {
-	static std::string str{shader_ssao_frag.data(), shader_ssao_frag.size()};
-	return str;
-}
-
-const std::string& gRenderer::getShaderSrcSSAOBlurFragment() {
-	static std::string str{shader_ssao_blur_frag.data(), shader_ssao_blur_frag.size()};
-	return str;
-}
+#undef GLIST_SHADER_SRC_GETTER
 
 bool gRenderer::isSSAOEnabled() {
 	return isssaoenabled;
 }
 
 void gRenderer::enableSSAO() {
+#if defined(GLIST_VULKAN)
+	return; // SSAO requires FBO support — not yet available in Vulkan
+#endif
 	isssaoenabled = true;
 	if (!isssaoallocated) {
 		initSSAOResources();
@@ -1157,11 +1101,15 @@ void gRenderer::initSSAOResources() {
 		noiseData.push_back(ssaoNoise[i].z * 0.5f + 0.5f);
 	}
 
-	ssaonoisetexture = createTextures();
-	bindTexture(ssaonoisetexture);
-	texImage2D(GL_TEXTURE_2D, GL_RGB16F, 4, 4, GL_RGB, GL_FLOAT, noiseData.data());
-	setWrapping(GL_TEXTURE_2D, GL_REPEAT, GL_REPEAT);
-	setFiltering(GL_TEXTURE_2D, GL_NEAREST, GL_NEAREST);
+#if !defined(GLIST_VULKAN)
+	G_CHECK_GL(glGenTextures(1, &ssaonoisetexid));
+	G_CHECK_GL(glBindTexture(GL_TEXTURE_2D, ssaonoisetexid));
+	G_CHECK_GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, 4, 4, 0, GL_RGB, GL_FLOAT, noiseData.data()));
+	G_CHECK_GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
+	G_CHECK_GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
+	G_CHECK_GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+	G_CHECK_GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+#endif
 
 	// Allocate result FBO for SSAO AO output (blur reads from this)
 	ssaoresultfbo = new gFbo();
@@ -1204,10 +1152,12 @@ void gRenderer::cleanupSSAOResources() {
 	delete ssaoblurshader;
 	ssaoblurshader = nullptr;
 
-	if (ssaonoisetexture) {
-		deleteTexture(ssaonoisetexture);
-		ssaonoisetexture = 0;
+#if !defined(GLIST_VULKAN)
+	if (ssaonoisetexid != 0) {
+		G_CHECK_GL(glDeleteTextures(1, &ssaonoisetexid));
+		ssaonoisetexid = 0;
 	}
+#endif
 
 	ssaokernel.clear();
 	isssaoallocated = false;
@@ -1247,9 +1197,12 @@ void gRenderer::endSSAO() {
 	ssaoshader->setFloat("nearClip", camera ? camera->getNearClip() : 0.01f);
 	ssaoshader->setFloat("farClip", camera ? camera->getFarClip() : 1000.0f);
 
-	bindTexture(ssaofbo->getTextureId(), 0);
-	bindTexture(ssaofbo->getDepthTextureId(), 1);
-	bindTexture(ssaonoisetexture, 2);
+	ssaofbo->getTexture().bind(0);
+	ssaofbo->getDepthTexture().bind(1);
+#if !defined(GLIST_VULKAN)
+	G_CHECK_GL(glActiveTexture(GL_TEXTURE2));
+	G_CHECK_GL(glBindTexture(GL_TEXTURE_2D, ssaonoisetexid));
+#endif
 
 	bindQuadVAO();
 	drawFullscreenQuad();
@@ -1267,9 +1220,9 @@ void gRenderer::endSSAO() {
 	ssaoblurshader->setFloat("nearClip", camera ? camera->getNearClip() : 0.01f);
 	ssaoblurshader->setFloat("farClip", camera ? camera->getFarClip() : 1000.0f);
 
-	bindTexture(ssaofbo->getTextureId(), 0);        // scene color
-	bindTexture(ssaoresultfbo->getTextureId(), 1);   // raw AO
-	bindTexture(ssaofbo->getDepthTextureId(), 2);    // depth (for bilateral blur)
+	ssaofbo->getTexture().bind(0);              // scene color
+	ssaoresultfbo->getTexture().bind(1);         // raw AO
+	ssaofbo->getDepthTexture().bind(2);          // depth (for bilateral blur)
 
 	bindQuadVAO();
 	drawFullscreenQuad();

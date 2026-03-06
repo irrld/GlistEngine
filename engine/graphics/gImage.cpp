@@ -95,10 +95,7 @@ unsigned int gImage::load(const std::string& fullPath) {
 
     ishdr = stbi_is_hdr_from_memory(mem, len);
 
-    if (!istextureallocated) {
-        id = renderer->createTextures();
-        istextureallocated = true;
-    }
+    allocateTexture();
 
     if (ishdr) {
         stbi_set_flip_vertically_on_load(true);
@@ -177,10 +174,7 @@ void gImage::loadImageData(const std::string& imagePath) {
 }
 
 unsigned int gImage::useData() {
-	if (!istextureallocated) {
-		id = renderer->createTextures();
-		istextureallocated = true;
-	}
+	allocateTexture();
 
 	if (ishdr) {
 		setDataInternalHDR(datahdr, ismutable, isstbimage, false);

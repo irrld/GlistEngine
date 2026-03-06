@@ -19,7 +19,7 @@
  */
 
 gRectangle::gRectangle() {
-
+	vbo->setDynamic(true);
 }
 
 gRectangle::gRectangle(float x, float y, float w, float h, bool isFilled) {

@@ -7,7 +7,7 @@
 
 #include "gRoundedRectangle.h"
 gRoundedRectangle::gRoundedRectangle() {
-
+	vbo->setDynamic(true);
 }
 
 gRoundedRectangle::gRoundedRectangle(int x, int y, int w, int h, int radius, bool isFilled) {

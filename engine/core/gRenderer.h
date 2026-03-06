@@ -12,6 +12,180 @@
 
 #include "gObject.h"
 
+#if defined(GLIST_VULKAN)
+// ---- Vulkan backend: provide GL-compatible typedefs so existing engine code
+//      (gVbo, gFbo, gShader, gTexture, gUbo, gMesh, etc.) compiles unchanged.
+//      The Vulkan renderer interprets these handle values through internal mapping.
+#include <cstdint>
+typedef uint32_t GLuint;
+typedef uint32_t GLenum;
+typedef int32_t  GLint;
+typedef int32_t  GLsizei;
+typedef intptr_t GLsizeiptr;
+typedef uint8_t  GLboolean;
+typedef float    GLfloat;
+
+// GL constants referenced in the public engine interface and graphics classes.
+// Values match the real OpenGL constants so serialized data remains compatible.
+// Use #ifndef guards because GL/gl.h may still be included (e.g. via GLFW).
+#ifndef GL_NONE
+#define GL_NONE                          0
+#endif
+#ifndef GL_FALSE
+#define GL_FALSE                         0
+#endif
+#ifndef GL_TRUE
+#define GL_TRUE                          1
+#endif
+#ifndef GL_POINTS
+#define GL_POINTS                        0x0000
+#endif
+#ifndef GL_LINES
+#define GL_LINES                         0x0001
+#endif
+#ifndef GL_LINE_LOOP
+#define GL_LINE_LOOP                     0x0002
+#endif
+#ifndef GL_LINE_STRIP
+#define GL_LINE_STRIP                    0x0003
+#endif
+#ifndef GL_TRIANGLES
+#define GL_TRIANGLES                     0x0004
+#endif
+#ifndef GL_TRIANGLE_STRIP
+#define GL_TRIANGLE_STRIP                0x0005
+#endif
+#ifndef GL_TRIANGLE_FAN
+#define GL_TRIANGLE_FAN                  0x0006
+#endif
+#ifndef GL_UNSIGNED_BYTE
+#define GL_UNSIGNED_BYTE                 0x1401
+#endif
+#ifndef GL_UNSIGNED_SHORT
+#define GL_UNSIGNED_SHORT                0x1403
+#endif
+#ifndef GL_UNSIGNED_INT
+#define GL_UNSIGNED_INT                  0x1405
+#endif
+#ifndef GL_FLOAT
+#define GL_FLOAT                         0x1406
+#endif
+#ifndef GL_UNSIGNED_INT_24_8
+#define GL_UNSIGNED_INT_24_8             0x84FA
+#endif
+#ifndef GL_DEPTH_COMPONENT
+#define GL_DEPTH_COMPONENT               0x1902
+#endif
+#ifndef GL_RED
+#define GL_RED                           0x1903
+#endif
+#ifndef GL_GREEN
+#define GL_GREEN                         0x1904
+#endif
+#ifndef GL_BLUE
+#define GL_BLUE                          0x1905
+#endif
+#ifndef GL_RGBA
+#define GL_RGBA                          0x1908
+#endif
+#ifndef GL_RGB
+#define GL_RGB                           0x1907
+#endif
+#ifndef GL_RG
+#define GL_RG                            0x8227
+#endif
+#ifndef GL_DEPTH_STENCIL
+#define GL_DEPTH_STENCIL                 0x84F9
+#endif
+#ifndef GL_LESS
+#define GL_LESS                          0x0201
+#endif
+#ifndef GL_ALWAYS
+#define GL_ALWAYS                        0x0207
+#endif
+#ifndef GL_TEXTURE_2D
+#define GL_TEXTURE_2D                    0x0DE1
+#endif
+#ifndef GL_TEXTURE_CUBE_MAP
+#define GL_TEXTURE_CUBE_MAP              0x8513
+#endif
+#ifndef GL_TEXTURE_CUBE_MAP_POSITIVE_X
+#define GL_TEXTURE_CUBE_MAP_POSITIVE_X   0x8515
+#endif
+#ifndef GL_NEAREST
+#define GL_NEAREST                       0x2600
+#endif
+#ifndef GL_LINEAR
+#define GL_LINEAR                        0x2601
+#endif
+#ifndef GL_LINEAR_MIPMAP_LINEAR
+#define GL_LINEAR_MIPMAP_LINEAR          0x2703
+#endif
+#ifndef GL_REPEAT
+#define GL_REPEAT                        0x2901
+#endif
+#ifndef GL_CLAMP
+#define GL_CLAMP                         0x2900
+#endif
+#ifndef GL_CLAMP_TO_EDGE
+#define GL_CLAMP_TO_EDGE                 0x812F
+#endif
+#ifndef GL_STATIC_DRAW
+#define GL_STATIC_DRAW                   0x88E4
+#endif
+#ifndef GL_DYNAMIC_DRAW
+#define GL_DYNAMIC_DRAW                  0x88E8
+#endif
+#ifndef GL_ARRAY_BUFFER
+#define GL_ARRAY_BUFFER                  0x8892
+#endif
+#ifndef GL_UNIFORM_BUFFER
+#define GL_UNIFORM_BUFFER                0x8A11
+#endif
+#ifndef GL_TEXTURE0
+#define GL_TEXTURE0                      0x84C0
+#endif
+#ifndef GL_TEXTURE1
+#define GL_TEXTURE1                      0x84C1
+#endif
+#ifndef GL_TEXTURE2
+#define GL_TEXTURE2                      0x84C2
+#endif
+#ifndef GL_COLOR_ATTACHMENT0
+#define GL_COLOR_ATTACHMENT0             0x8CE0
+#endif
+#ifndef GL_DEPTH_ATTACHMENT
+#define GL_DEPTH_ATTACHMENT              0x8D00
+#endif
+#ifndef GL_DEPTH_STENCIL_ATTACHMENT
+#define GL_DEPTH_STENCIL_ATTACHMENT      0x821A
+#endif
+#ifndef GL_DEPTH_COMPONENT24
+#define GL_DEPTH_COMPONENT24             0x81A6
+#endif
+#ifndef GL_DEPTH24_STENCIL8
+#define GL_DEPTH24_STENCIL8              0x88F0
+#endif
+#ifndef GL_RGB16F
+#define GL_RGB16F                        0x881B
+#endif
+#ifndef GL_RGBA16F
+#define GL_RGBA16F                       0x881A
+#endif
+#ifndef GL_RGB32F
+#define GL_RGB32F                        0x8815
+#endif
+#ifndef GL_RG32F
+#define GL_RG32F                         0x8230
+#endif
+#ifndef GL_SRGB
+#define GL_SRGB                          0x8C40
+#endif
+#ifndef GL_SRGB_ALPHA
+#define GL_SRGB_ALPHA                    0x8C42
+#endif
+
+#else // GLIST_OGL -- OpenGL backend
 #if defined(WIN32) || defined(LINUX)
 //#include <GL/glext.h>
 #include <GL/glew.h>
@@ -38,6 +212,7 @@
 #	include <OpenGLES/ES3/glext.h>
 #	include <OpenGLES/gltypes.h>
 #endif
+#endif // GLIST_VULKAN
 #define GLM_ENABLE_EXPERIMENTAL
 #define GLM_FORCE_DEFAULT_ALIGNED_GENTYPES
 #include <glm/glm.hpp>
@@ -58,6 +233,11 @@
 
 // You can define ENGINE_OPENGL_CHECKS to enable OpenGL checks
 // without debugging.
+#if defined(GLIST_VULKAN)
+// Under Vulkan, GL error checking macros are pass-throughs
+#define G_CHECK_GL(fn) fn
+#define G_CHECK_GL2(value, fn) value = fn
+#else
 #if defined(DEBUG) || defined(ENGINE_OPENGL_CHECKS)
 #define G_CHECK_GL(a) gCheckGLErrorAndPrint("Previously Unhandled ", __PRETTY_FUNCTION__, __LINE__); a; gCheckGLErrorAndPrint("", __PRETTY_FUNCTION__, __LINE__)
 #define G_CHECK_GL2(value, fn) gCheckGLErrorAndPrint("Previously Unhandled ", __PRETTY_FUNCTION__, __LINE__); value = fn; gCheckGLErrorAndPrint("", __PRETTY_FUNCTION__, __LINE__)
@@ -65,8 +245,11 @@
 #define G_CHECK_GL(fn) fn
 #define G_CHECK_GL2(value, fn) value = fn
 #endif
+#endif
 
+#if !defined(GLIST_VULKAN)
 void gCheckGLErrorAndPrint(const std::string& prefix, const std::string& func, int line);
+#endif
 
 void gEnableCulling();
 void gDisableCulling();
@@ -101,14 +284,29 @@ void gDrawTubeOblique(float x, float y, float z, int outerradius,int innerradiou
 void gDrawTubeTrapezodial(float x, float y, float z, int topouterradius,int topinnerradious, int buttomouterradious, int buttominnerradious, int h, glm::vec3 scale = glm::vec3(1.0f, 1.0f, 1.0f), int segmentnum = 32, bool isFilled = true);
 void gDrawTubeObliqueTrapezodial(float x, float y, float z, int topouterradius,int topinnerradious, int buttomouterradious, int buttominnerradious, int h, glm::vec2 shiftdistance, glm::vec3 scale = glm::vec3(1.0f, 1.0f, 1.0f), int segmentnum = 32, bool isFilled = true);
 
-class gVbo;
-class gFbo;
-
-template<typename T>
-class gUbo;
+// Forward declarations — concrete class + type alias to avoid conflict
+// with the type alias headers (gVbo.h, gFbo.h, gShader.h, gUbo.h).
+#if defined(GLIST_VULKAN)
+class gVboVk;
+using gVbo = gVboVk;
+class gFboVk;
+using gFbo = gFboVk;
+class gShaderVk;
+using gShader = gShaderVk;
+template<typename T> class gUboVk;
+template<typename T> using gUbo = gUboVk<T>;
+#else
+class gVboGL;
+using gVbo = gVboGL;
+class gFboGL;
+using gFbo = gFboGL;
+class gShaderGL;
+using gShader = gShaderGL;
+template<typename T> class gUboGL;
+template<typename T> using gUbo = gUboGL<T>;
+#endif
 class gLight;
 class gImage;
-class gShader;
 class gCamera;
 class gGrid;
 class gLine;
@@ -119,6 +317,7 @@ class gArc;
 class gRectangle;
 class gRoundedRectangle;
 class gBox;
+
 
 class gRenderer : public gObject {
 public:
@@ -145,8 +344,8 @@ public:
 		alignas(4) int lightnum = 0;
 		// bitwise enabled lights, 1 means enabled, 0 means disabled, 32-bit integer
 		// supports only 32 max lights, make sure to change this if max lights is changed to be something above 32
-		alignas(4) int enabledlights;
-		alignas(16) glm::vec4 globalambientcolor;
+		alignas(4) int enabledlights = 0;
+		alignas(16) glm::vec4 globalambientcolor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 		gSceneLightData lights[GLIST_MAX_LIGHTS];
 	};
 
@@ -188,7 +387,7 @@ public:
 	int getUnitWidth();
 	int getUnitHeight();
 	static int getScreenScaling();
-	unsigned int getFullscreenQuadVAO() const;
+	gVbo* getFullscreenQuad() const;
 
 	static void setCurrentResolution(int resolution);
 	static void setCurrentResolution(int screenWidth, int screenHeight);
@@ -243,6 +442,9 @@ public:
 	void setColor(const gColor& color);
 	void setColor(gColor* color);
 	gColor* getColor();
+
+	virtual void beginFrame() {}
+	virtual void endFrame() {}
 
 	virtual void clear() = 0;
 	virtual void clearColor(int r, int g, int b, int a = 255) = 0;
@@ -370,120 +572,19 @@ public:
 	 */
 	virtual void takeScreenshot(gImage& img, int x, int y, int width, int height) = 0;
 
-	/* -------------- gUbo ------------- */
-	virtual GLuint genBuffers() = 0;
-	virtual void deleteBuffer(GLuint& buffer) = 0;
-
-	virtual void bindBuffer(GLenum target, GLuint buffer) = 0;
-	virtual void unbindBuffer(GLenum target) = 0;
-
-	virtual void bufSubData(GLuint buffer, int offset, int size, const void* data) = 0;
-	virtual void setBufferData(GLuint buffer, const void* data, size_t size, int usage) = 0;
-	virtual void setBufferRange(int index, GLuint buffer, int offset, int size) = 0;
-
-	virtual void attachUbo(GLuint id, int bindingpoint, const std::string& uboName) = 0;
-
-	/* -------------- gVbo --------------- */
-	virtual GLuint createVAO() = 0;
-	virtual void deleteVAO(GLuint& vao) = 0;
-
-	virtual void bindVAO(GLuint vao) = 0;
-	virtual void unbindVAO() = 0;
-
-	virtual void setVertexBufferData(GLuint vbo, size_t size, const void* data, int usage) = 0;
-	virtual void setIndexBufferData(GLuint ebo, size_t size, const void* data, int usage) = 0;
-
+	/* -------------- Drawing ------------- */
 	virtual void drawArrays(int drawMode, int count) = 0;
 	virtual void drawElements(int drawMode, int count) = 0;
-
-	virtual void enableVertexAttrib(int index) = 0;
-	virtual void disableVertexAttrib(int index) = 0;
-	virtual void setVertexAttribPointer(int index, int size, int type, bool normalized, int stride, const void* pointer) = 0;
-
 	virtual void setViewport(int x, int y, int width, int height) = 0;
 
-	/* -------------- gFbo --------------- */
-	virtual GLuint createFramebuffer() = 0;
-	virtual void deleteFramebuffer(GLuint& fbo) = 0;
-	virtual void bindFramebuffer(GLuint fbo) = 0;
-	virtual void checkFramebufferStatus() = 0;
-
-	virtual GLuint createRenderbuffer() = 0;
-	virtual void deleteRenderbuffer(GLuint& rbo) = 0;
-	virtual void bindRenderbuffer(GLuint rbo) = 0;
-	virtual void setRenderbufferStorage(GLenum format, int width, int height) = 0;
-
-	virtual void attachTextureToFramebuffer(GLenum attachment, GLenum textarget, GLuint texId, GLuint level = 0) = 0;
-	virtual void attachRenderbufferToFramebuffer(GLenum attachment, GLuint rbo) = 0;
-
-	virtual void setDrawBufferNone() = 0;
-	virtual void setReadBufferNone() = 0;
-
-	virtual void createFullscreenQuad(GLuint& vao, GLuint& vbo) = 0;
-	virtual void deleteFullscreenQuad(GLuint& vao, GLuint* vbo) = 0;
-
-	/* -------------- gShader --------------- */
-	// This function loads shaders without preproccesing them. Geometry source can be nullptr.
-	virtual GLuint loadProgram(const char* vertexSource, const char* fragmentSource, const char* geometrySource) = 0;
-	virtual void checkCompileErrors(GLuint shader, const std::string& type) = 0;
-	virtual void setBool(GLuint uniformloc, bool value) = 0;
-	virtual void setInt(GLuint uniformloc, int value) = 0;
-	virtual void setUnsignedInt(GLuint uniformloc, unsigned int value) = 0;
-	virtual void setFloat(GLuint uniformloc, float value) = 0;
-	virtual void setVec2(GLuint uniformloc, const glm::vec2& value) = 0;
-	virtual void setVec2(GLuint uniformloc, float x, float y) = 0;
-	virtual void setVec3(GLuint uniformloc, const glm::vec3& value) = 0;
-	virtual void setVec3(GLuint uniformloc, float x, float y, float z) = 0;
-	virtual void setVec4(GLuint uniformloc, const glm::vec4& value) = 0;
-	virtual void setVec4(GLuint uniformloc, float x, float y, float z, float w) = 0;
-	virtual void setMat2(GLuint uniformloc, const glm::mat2& mat) = 0;
-	virtual void setMat3(GLuint uniformloc, const glm::mat3& mat) = 0;
-	virtual void setMat4(GLuint uniformloc, const glm::mat4& mat) = 0;
-	virtual GLuint getUniformLocation(GLuint id, const std::string& name) = 0;
-
-	virtual void useShader(GLuint id) const = 0;
-	virtual void resetShader(GLuint id, bool loaded) const = 0;
-
-	/* ------------ gPostProcessManager ------------- */
+	/* ------------ Screen / Framebuffer ------------- */
 	virtual void clearScreen(bool color = true, bool depth = true) = 0;
-	virtual void bindQuadVAO() = 0;
-	virtual void drawFullscreenQuad() = 0;
+	void bindQuadVAO();
+	void drawFullscreenQuad();
 	virtual void bindDefaultFramebuffer() = 0;
 
-	/* -------------- gGrid --------------- */
-	virtual void drawVbo(const gVbo& vbo) = 0;
-
-	/* ---------------- gTexture ---------------- */
-	virtual GLuint createTextures() = 0;
-	virtual void bindTexture(GLuint texId) = 0;
-	virtual void bindTexture(GLuint texId, int textureSlotNo) = 0;
-	virtual void unbindTexture() = 0;
-	virtual void activateTexture(int textureSlotNo = 0) = 0;
-	virtual void resetTexture() = 0;
-	virtual void deleteTexture(GLuint& texId) = 0;
-
-	virtual void texImage2D(GLenum target, GLint internalFormat, int width, int height, GLint format, GLint type, void* data) = 0;
-	virtual void setWrapping(GLenum target, GLint wrapS, GLint wrapT) = 0;
-	virtual void setWrapping(GLenum target, GLint wrapS, GLint wrapT, GLint wrapR) = 0;
-
-	virtual void setFiltering(GLenum target, GLint minFilter, GLint magFilter) = 0;
-	virtual void setWrappingAndFiltering(GLenum target, GLint wrapS, GLint wrapT, GLint minFilter, GLint magFilter) = 0;
-	virtual void setWrappingAndFiltering(GLenum target, GLint wrapS, GLint wrapT, GLint wrapR, GLint minFilter, GLint magFilter) = 0;
-	virtual void setSwizzleMask(GLint swizzleMask[4]) = 0;
-
-	virtual void readTexturePixels(unsigned char* inPixels, GLuint textureId, int width, int height, GLenum format) = 0;
-	virtual void readTexturePixelsHDR(float* inPixels, GLuint textureId, int width, int height, GLenum format) = 0;
-
-	virtual void generateMipMap() = 0;
-
-	/* ---------------- gSkybox ---------------- */
-	virtual void bindSkyTexture(GLuint texId) = 0;
-	virtual void bindSkyTexture(GLuint texId, int textureSlot) = 0;
-	virtual void unbindSkyTexture() = 0;
-	virtual void unbindSkyTexture(int textureSlotNo) = 0;
-	virtual void generateSkyMipMap() = 0;
+	/* -------------- Depth / Skybox --------------- */
 	virtual void enableDepthTestEqual() = 0;
-	virtual void createQuad(GLuint& inQuadVAO, GLuint& inQuadVBO) = 0;
 	virtual void enableCubeMap() = 0;
 
 	/* ---------------- gRenderObject ---------------- */
@@ -560,7 +661,7 @@ protected:
 	gFbo* ssaoresultfbo;
 	gShader* ssaoshader;
 	gShader* ssaoblurshader;
-	unsigned int ssaonoisetexture;
+	uint32_t ssaonoisetexid;
 	std::vector<glm::vec3> ssaokernel;
 	int ssaorealdefaultfbo;
 	bool isssaorendering;
@@ -595,8 +696,7 @@ protected:
 	gGrid* grid;
 	gGrid* originalgrid;
 
-	unsigned int fullscreenquadvao;
-	unsigned int fullscreenquadvbo;
+	gVbo* fullscreenquad;
 
 	// std::unique_ptr is automatically deletes the underlying object when this gRenderer object is deleted
 	std::unique_ptr<gLine> linemesh, linemesh2, linemesh3;

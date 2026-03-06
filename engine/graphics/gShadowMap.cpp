@@ -100,20 +100,20 @@ void gShadowMap::enable() {
 	isshadowmappingenabled = true;
 
 	if (updateshadows && renderpassno == 0) {
-		glViewport(0, 0, depthfbo.getWidth(), depthfbo.getHeight());
+		renderer->setViewport(0, 0, depthfbo.getWidth(), depthfbo.getHeight());
 		renderer->getShadowmapShader()->use();
 		renderer->getShadowmapShader()->setMat4("lightMatrix", lightmatrix);
 		depthfbo.bind();
 	//	glViewport(0, 0, width, height);
 		renderer->clearScreen(false, true);
 	} else {
-		glViewport(0, 0, renderer->getScreenWidth(), renderer->getScreenHeight());
+		renderer->setViewport(0, 0, renderer->getScreenWidth(), renderer->getScreenHeight());
 		renderer->getColorShader()->use();
 		renderer->getColorShader()->setInt("aUseShadowMap", 1);
 		renderer->getColorShader()->setVec3("lightPos", lightposition);
 		renderer->getColorShader()->setInt("shadowMap", shadowmaptextureslot);
 
-		renderer->bindTexture(depthfbo.getTextureId(), shadowmaptextureslot);
+		depthfbo.getTexture().bind(shadowmaptextureslot);
 		renderpassno = 1;
 	}
 }

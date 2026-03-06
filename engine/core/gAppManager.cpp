@@ -530,6 +530,7 @@ void gAppManager::tick() {
     }
 
     if(window->isRendering()) {
+    	renderer->beginFrame();
     	if(!isguiapp) {
 			if(canvas) {
 				canvas->clearBackground();
@@ -544,6 +545,7 @@ void gAppManager::tick() {
     	}
 		if(guimanager) guimanager->draw();
         totaldraws++;
+        renderer->endFrame();
     }
 	if(inputmanager) inputmanager->update();
 	if(usewindow) window->update();

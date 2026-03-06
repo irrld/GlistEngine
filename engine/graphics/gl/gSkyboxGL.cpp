@@ -1,14 +1,17 @@
 /*
- * gSkybox.cpp
+ * gSkyboxGL.cpp
  *
  *  Created on: 18 Mar 2021
  *      Author: Acer
+ *
+ *  Refactored: OpenGL implementation
  */
 
-#include "gSkybox.h"
+#include "gSkyboxGL.h"
 #include "gShader.h"
 #include "gTexture.h"
 #include "gFbo.h"
+#include "gImage.h"
 #include "gTracy.h"
 
 glm::mat4 captureProjection = glm::perspective(glm::radians(90.0f), 1.0f, 0.1f, 10.0f);
@@ -21,21 +24,48 @@ glm::mat4 captureViews[] = {
 	glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3( 0.0f,  0.0f, -1.0f), glm::vec3(0.0f, -1.0f,  0.0f))
 };
 
-gSkybox::gSkybox() {
-	id = GL_NONE;
-
-	width = 0;
-	height = 0;
-	nrChannels = 0;
-	ishdr = false;
-	ispbr = false;
-	scale(200);
-	setupRenderData();
+gSkyboxGL::gSkyboxGL() {
+	captureFBO = 0;
+	captureRBO = 0;
+	irradianceHandle = nullptr;
+	prefilterHandle = nullptr;
+	brdfTexture = 0;
+	cubeVAO = 0;
+	cubeVBO = 0;
+	quadVAO = 0;
+	quadVBO = 0;
+	skyboxshader = nullptr;
+	pbrShader = nullptr;
+	equirectangularToCubemapShader = nullptr;
+	irradianceShader = nullptr;
+	prefilterShader = nullptr;
+	brdfShader = nullptr;
 }
 
-gSkybox::~gSkybox() {}
+gSkyboxGL::~gSkyboxGL() {
+	// skyhandle is stack-allocated, its destructor calls destroy()
+	if (cubeVAO) {
+		G_CHECK_GL(glDeleteVertexArrays(1, &cubeVAO));
+		G_CHECK_GL(glDeleteBuffers(1, &cubeVBO));
+	}
+	if (quadVAO) {
+		G_CHECK_GL(glDeleteVertexArrays(1, &quadVAO));
+		G_CHECK_GL(glDeleteBuffers(1, &quadVBO));
+	}
+	if (captureRBO != 0) {
+		G_CHECK_GL(glDeleteRenderbuffers(1, &captureRBO));
+	}
+	if (captureFBO != 0) {
+		G_CHECK_GL(glDeleteFramebuffers(1, &captureFBO));
+	}
+	delete irradianceHandle;
+	delete prefilterHandle;
+	if (brdfTexture != 0) {
+		G_CHECK_GL(glDeleteTextures(1, &brdfTexture));
+	}
+}
 
-unsigned int gSkybox::loadTextures(const std::vector<std::string>& paths) {
+unsigned int gSkyboxGL::loadTextures(const std::vector<std::string>& paths) {
 	std::vector<std::string> fullpaths;
 	fullpaths.resize(6);
 	for (int i = 0; i < paths.size(); i++) {
@@ -44,143 +74,140 @@ unsigned int gSkybox::loadTextures(const std::vector<std::string>& paths) {
 	return load(fullpaths);
 }
 
-unsigned int gSkybox::load(const std::vector<std::string>& fullPaths) {
+unsigned int gSkyboxGL::load(const std::vector<std::string>& fullPaths) {
 	skymapslot = GL_TEXTURE0;
 	skymapint = 0;
 
 	renderer->enableCubeMap();
 
-	id = renderer->createTextures();
-	renderer->bindSkyTexture(id, skymapslot);
+	id = skyhandle.create();
+	skyhandle.bind(skymapslot);
 
 	for (unsigned int i = 0; i < fullPaths.size(); i++) {
         unsigned char *data = stbi_load(fullPaths[i].c_str(), &width, &height, &nrChannels, 0);
         if (data) {
-        	renderer->texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_RGB, width, height, GL_RGB, GL_UNSIGNED_BYTE, data);
+        	skyhandle.texImage2D(i, GL_RGB, width, height, GL_RGB, GL_UNSIGNED_BYTE, data);
             stbi_image_free(data);
         } else {
         	gLoge("gSkyBox") << "Cubemap tex failed to load at path: " << fullPaths[i];
             stbi_image_free(data);
         }
     }
-	renderer->setWrappingAndFiltering(GL_TEXTURE_CUBE_MAP, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR, GL_LINEAR);
+	skyhandle.setWrappingAndFiltering(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR, GL_LINEAR);
 
 	renderer->getSkyboxShader()->use();
 	renderer->getSkyboxShader()->setInt("skymap", skymapint);
 
 	if(ispbr) generatePbrMaps();
-	renderer->unbindSkyTexture(0);
+	skyhandle.unbind(0);
 
     return id;
 }
 
-void gSkybox::loadSkybox(gImage* images) {
+void gSkyboxGL::loadSkybox(gImage* images) {
 	skymapslot = GL_TEXTURE0;
 	skymapint = 0;
 
 	renderer->enableCubeMap();
 
-	id = renderer->createTextures();
-	renderer->bindSkyTexture(id, skymapslot);
+	id = skyhandle.create();
+	skyhandle.bind(skymapslot);
 
 	for (unsigned int i = 0; i < 6; i++) {
-		renderer->texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_RGB,
+		skyhandle.texImage2D(i, GL_RGB,
 			images[i].getWidth(), images[i].getHeight(), GL_RGB,
 			GL_UNSIGNED_BYTE, images[i].getImageData());
     }
 
-	renderer->setWrappingAndFiltering(GL_TEXTURE_CUBE_MAP, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR, GL_LINEAR);
+	skyhandle.setWrappingAndFiltering(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR, GL_LINEAR);
 
 	renderer->getSkyboxShader()->use();
 	renderer->getSkyboxShader()->setInt("skymap", skymapint);
 
 	if(ispbr) generatePbrMaps();
 
-	renderer->unbindSkyTexture(0);
+	skyhandle.unbind(0);
 }
 
-void gSkybox::loadFromData(std::array<int, 6> widths, std::array<int, 6> heights, std::array<void*, 6> rawdata, std::array<bool, 6> ishdr) {
+void gSkyboxGL::loadFromData(std::array<int, 6> widths, std::array<int, 6> heights, std::array<void*, 6> rawdata, std::array<bool, 6> ishdr) {
 	skymapslot = GL_TEXTURE0;
 	skymapint = 0;
 
 	renderer->enableCubeMap();
 
-	id = renderer->createTextures();
-	renderer->bindSkyTexture(id, skymapslot);
+	id = skyhandle.create();
+	skyhandle.bind(skymapslot);
 
 	for (unsigned int i = 0; i < 6; i++) {
 		if (ishdr[i]) {
-			renderer->texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_RGB, widths[i], heights[i], GL_RGB, GL_FLOAT, rawdata[i]);
+			skyhandle.texImage2D(i, GL_RGB, widths[i], heights[i], GL_RGB, GL_FLOAT, rawdata[i]);
 		} else {
-			renderer->texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_RGB, widths[i], heights[i], GL_RGB, GL_UNSIGNED_BYTE, rawdata[i]);
+			skyhandle.texImage2D(i, GL_RGB, widths[i], heights[i], GL_RGB, GL_UNSIGNED_BYTE, rawdata[i]);
 		}
 	}
 
-	renderer->setWrappingAndFiltering(GL_TEXTURE_CUBE_MAP, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR, GL_LINEAR);
+	skyhandle.setWrappingAndFiltering(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR, GL_LINEAR);
 
 	renderer->getSkyboxShader()->use();
 	renderer->getSkyboxShader()->setInt("skymap", skymapint);
 
 	if(ispbr) generatePbrMaps();
 
-	renderer->unbindSkyTexture(0);
+	skyhandle.unbind(0);
 }
 
-void gSkybox::loadDataSkybox(std::string *data, int width, int height) {
+void gSkyboxGL::loadDataSkybox(std::string *data, int width, int height) {
 	skymapslot = GL_TEXTURE0;
 	skymapint = 0;
 
 	renderer->enableCubeMap();
 
-	id = renderer->createTextures();
-	renderer->bindSkyTexture(id, skymapslot);
+	id = skyhandle.create();
+	skyhandle.bind(skymapslot);
 
 	for (unsigned int i = 0; i < 6; i++) {
-		renderer->texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_RGB,
+		skyhandle.texImage2D(i, GL_RGB,
 				width, height, GL_RGB, GL_UNSIGNED_BYTE,
 				(unsigned char*)gDecodeBase64(data[i]).c_str());
     }
 
-	renderer->setWrappingAndFiltering(GL_TEXTURE_CUBE_MAP, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR, GL_LINEAR);
+	skyhandle.setWrappingAndFiltering(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR, GL_LINEAR);
 
 	renderer->getSkyboxShader()->use();
 	renderer->getSkyboxShader()->setInt("skymap", skymapint);
 
 	if(ispbr) generatePbrMaps();
 
-	renderer->unbindSkyTexture(0);
+	skyhandle.unbind(0);
 }
 
-unsigned int gSkybox::loadTextureEquirectangular(const std::string& texturePath) {
+unsigned int gSkyboxGL::loadTextureEquirectangular(const std::string& texturePath) {
 	return loadEquirectangular(gGetTexturesDir() + texturePath);
 }
 
-unsigned int gSkybox::loadEquirectangular(const std::string& fullPath) {
+unsigned int gSkyboxGL::loadEquirectangular(const std::string& fullPath) {
 	ishdr = true;
 	skymapslot = GL_TEXTURE0;
 	skymapint = 0;
-//	glActiveTexture(skymapslot);
-//	glGenTextures(1, &id);
-//	glBindTexture(GL_TEXTURE_CUBE_MAP, id);
 
 	renderer->enableCubeMap();
 
 	equirectangularToCubemapShader = renderer->getEquirectangularShader();
 
-	captureFBO = renderer->createFramebuffer();
-	captureRBO = renderer->createRenderbuffer();
-	renderer->bindFramebuffer(captureFBO);
-	renderer->bindRenderbuffer(captureRBO);
-	renderer->setRenderbufferStorage(GL_DEPTH_COMPONENT24, 512, 512);
-	renderer->attachRenderbufferToFramebuffer(GL_DEPTH_ATTACHMENT, captureRBO);
+	G_CHECK_GL(glGenFramebuffers(1, &captureFBO));
+	G_CHECK_GL(glBindFramebuffer(GL_FRAMEBUFFER, captureFBO));
+	G_CHECK_GL(glGenRenderbuffers(1, &captureRBO));
+	G_CHECK_GL(glBindRenderbuffer(GL_RENDERBUFFER, captureRBO));
+	G_CHECK_GL(glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, 512, 512));
+	G_CHECK_GL(glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, captureRBO));
 
 	//***********************************************
-	id = renderer->createTextures();
-	renderer->bindSkyTexture(id, skymapslot);
+	id = skyhandle.create();
+	skyhandle.bind(skymapslot);
 	for (unsigned int i = 0; i < 6; ++i) {
-		renderer->texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_RGB32F, 512, 512, GL_RGB, GL_FLOAT, nullptr);
+		skyhandle.texImage2D(i, GL_RGB32F, 512, 512, GL_RGB, GL_FLOAT, nullptr);
 	}
-	renderer->setWrappingAndFiltering(GL_TEXTURE_CUBE_MAP, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR, GL_LINEAR);
+	skyhandle.setWrappingAndFiltering(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR, GL_LINEAR);
 
 	equirectangularToCubemapShader->use();
 	equirectangularToCubemapShader->setInt("equirectangularMap", 0);
@@ -189,29 +216,29 @@ unsigned int gSkybox::loadEquirectangular(const std::string& fullPath) {
 	// pbr: load the HDR environment map
 	gTexture hdr;
 	hdr.load(fullPath);
-	renderer->bindTexture(hdr.getId(), 0);
+	hdr.bind(0);
 
-	glViewport(0, 0, 512, 512); // don't forget to configure the viewport to the capture dimensions.
-	renderer->bindFramebuffer(captureFBO);
+	renderer->setViewport(0, 0, 512, 512); // don't forget to configure the viewport to the capture dimensions.
+	G_CHECK_GL(glBindFramebuffer(GL_FRAMEBUFFER, captureFBO));
 	for (unsigned int i = 0; i < 6; ++i) {
 		equirectangularToCubemapShader->setMat4("view", captureViews[i]);
-		renderer->attachTextureToFramebuffer(GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, id);
+		G_CHECK_GL(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, skyhandle.getId(), 0));
 		renderer->clearScreen(true, true);
 		renderCube();
 	}
-	renderer->bindDefaultFramebuffer();
+	G_CHECK_GL(glBindFramebuffer(GL_FRAMEBUFFER, gFbo::defaultfbo));
 
 	// then let OpenGL generate mipmaps from first mip face (combatting visible dots artifact)
-	renderer->bindSkyTexture(id);
-	renderer->generateSkyMipMap();
+	skyhandle.bind();
+	skyhandle.generateMipMap();
 
 	if(ispbr) generatePbrMaps();
-	glViewport(0, 0, getScreenWidth(), getScreenHeight());
+	renderer->setViewport(0, 0, getScreenWidth(), getScreenHeight());
 	return id;
 }
 
-void gSkybox::generatePbrMaps() {
-	renderer->bindSkyTexture(id, skymapslot);
+void gSkyboxGL::generatePbrMaps() {
+	skyhandle.bind(skymapslot);
 
 	pbrShader = renderer->getPbrShader();
 	irradianceShader = renderer->getIrradianceShader();
@@ -221,97 +248,107 @@ void gSkybox::generatePbrMaps() {
 	// pbr: create an irradiance cubemap, and re-scale capture FBO to irradiance scale.
 	// --------------------------------------------------------------------------------
 
-	irradianceMap = renderer->createTextures();
-	renderer->bindSkyTexture(irradianceMap);
+	irradianceHandle = new gSkyTextureGL();
+	irradianceHandle->create();
+	irradianceHandle->bind();
 	for (unsigned int i = 0; i < 6; ++i) {
-		renderer->texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_RGB32F, 32, 32, GL_RGB, GL_FLOAT, nullptr);
+		irradianceHandle->texImage2D(i, GL_RGB32F, 32, 32, GL_RGB, GL_FLOAT, nullptr);
 	}
-	renderer->setWrappingAndFiltering(GL_TEXTURE_CUBE_MAP, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR, GL_LINEAR);
+	irradianceHandle->setWrappingAndFiltering(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR, GL_LINEAR);
 
-	renderer->bindFramebuffer(captureFBO);
-	renderer->bindRenderbuffer(captureRBO);
-	renderer->setRenderbufferStorage(GL_DEPTH_COMPONENT24, 32, 32);
+	G_CHECK_GL(glBindFramebuffer(GL_FRAMEBUFFER, captureFBO));
+	G_CHECK_GL(glBindRenderbuffer(GL_RENDERBUFFER, captureRBO));
+	G_CHECK_GL(glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, 32, 32));
 
 	// pbr: solve diffuse integral by convolution to create an irradiance (cube)map.
 	// -----------------------------------------------------------------------------
 	irradianceShader->use();
 	irradianceShader->setInt("environmentMap", 0);
 	irradianceShader->setMat4("projection", captureProjection);
-	renderer->bindSkyTexture(id, GL_TEXTURE0);
+	skyhandle.bind(GL_TEXTURE0);
 
-	glViewport(0, 0, 32, 32); // don't forget to configure the viewport to the capture dimensions.
-	renderer->bindFramebuffer(captureFBO);
+	renderer->setViewport(0, 0, 32, 32); // don't forget to configure the viewport to the capture dimensions.
+	G_CHECK_GL(glBindFramebuffer(GL_FRAMEBUFFER, captureFBO));
 	for (unsigned int i = 0; i < 6; ++i) {
 		irradianceShader->setMat4("view", captureViews[i]);
-		renderer->attachTextureToFramebuffer(GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, irradianceMap);
+		G_CHECK_GL(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, irradianceHandle->getId(), 0));
 		renderer->clearScreen(true, true);
 		renderCube();
 	}
-	renderer->bindDefaultFramebuffer();
+	G_CHECK_GL(glBindFramebuffer(GL_FRAMEBUFFER, gFbo::defaultfbo));
 
 	// pbr: create a pre-filter cubemap, and re-scale capture FBO to pre-filter scale.
 	// --------------------------------------------------------------------------------
 
-	prefilterMap = renderer->createTextures();
-	renderer->bindSkyTexture(prefilterMap);
+	prefilterHandle = new gSkyTextureGL();
+	prefilterHandle->create();
+	prefilterHandle->bind();
 	for (unsigned int i = 0; i < 6; ++i) {
-		renderer->texImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, GL_RGB32F, 128, 128, GL_RGB, GL_FLOAT, nullptr);
+		prefilterHandle->texImage2D(i, GL_RGB32F, 128, 128, GL_RGB, GL_FLOAT, nullptr);
 	}
-	renderer->setWrappingAndFiltering(GL_TEXTURE_CUBE_MAP, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
+	prefilterHandle->setWrappingAndFiltering(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
 	// generate mipmaps for the cubemap so OpenGL automatically allocates the required memory.
-	renderer->generateSkyMipMap();
+	prefilterHandle->generateMipMap();
 	// pbr: run a quasi monte-carlo simulation on the environment lighting to create a prefilter (cube)map.
 	// ----------------------------------------------------------------------------------------------------
 	prefilterShader->use();
 	prefilterShader->setInt("environmentMap", 0);
 	prefilterShader->setMat4("projection", captureProjection);
-	renderer->bindSkyTexture(id, GL_TEXTURE0);
+	skyhandle.bind(GL_TEXTURE0);
 
-	renderer->bindFramebuffer(captureFBO);
+	G_CHECK_GL(glBindFramebuffer(GL_FRAMEBUFFER, captureFBO));
 	unsigned int maxMipLevels = 5;
 	for (unsigned int mip = 0; mip < maxMipLevels; ++mip) {
 		// reisze framebuffer according to mip-level size.
 		unsigned int mipWidth = 128 * std::pow(0.5, mip);
 		unsigned int mipHeight = 128 * std::pow(0.5, mip);
-		renderer->bindRenderbuffer(captureRBO);
-		renderer->setRenderbufferStorage(GL_DEPTH_COMPONENT24, mipWidth, mipHeight);
-		glViewport(0, 0, mipWidth, mipHeight);
+		G_CHECK_GL(glBindRenderbuffer(GL_RENDERBUFFER, captureRBO));
+		G_CHECK_GL(glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, mipWidth, mipHeight));
+		renderer->setViewport(0, 0, mipWidth, mipHeight);
 
 		float roughness = (float)mip / (float)(maxMipLevels - 1);
 		prefilterShader->setFloat("roughness", roughness);
 		for (unsigned int i = 0; i < 6; ++i) {
 			prefilterShader->setMat4("view", captureViews[i]);
-			renderer->attachTextureToFramebuffer(GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, prefilterMap, mip);
+			G_CHECK_GL(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, prefilterHandle->getId(), mip));
 			renderer->clearScreen(true, true);
 			renderCube();
 		}
 	}
-	renderer->bindDefaultFramebuffer();
+	G_CHECK_GL(glBindFramebuffer(GL_FRAMEBUFFER, gFbo::defaultfbo));
 
 	// pbr: generate a 2D LUT from the BRDF equations used.
 	// ----------------------------------------------------
 
-	brdfLUTTexture = renderer->createTextures();
+	G_CHECK_GL(glGenTextures(1, &brdfTexture));
 
 	// pre-allocate enough memory for the LUT texture.
-	renderer->bindTexture(brdfLUTTexture);
-	renderer->texImage2D(GL_TEXTURE_2D, GL_RG32F, 512, 512, GL_RG, GL_FLOAT, 0);
+	G_CHECK_GL(glBindTexture(GL_TEXTURE_2D, brdfTexture));
+	G_CHECK_GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RG32F, 512, 512, 0, GL_RG, GL_FLOAT, 0));
 	// be sure to set wrapping mode to GL_CLAMP_TO_EDGE
-	renderer->setWrappingAndFiltering(GL_TEXTURE_2D, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE,
-	                                      GL_LINEAR, GL_LINEAR);
+	G_CHECK_GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+	G_CHECK_GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+	G_CHECK_GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+	G_CHECK_GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
 
 	// then re-configure capture framebuffer object and render screen-space quad with BRDF shader.
-	captureFBO = renderer->createFramebuffer();
-	captureRBO = renderer->createRenderbuffer();
-	renderer->setRenderbufferStorage(GL_DEPTH_COMPONENT24, 512, 512);
-	renderer->attachTextureToFramebuffer(GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, brdfLUTTexture);
+	G_CHECK_GL(glDeleteRenderbuffers(1, &captureRBO));
+	G_CHECK_GL(glDeleteFramebuffers(1, &captureFBO));
+	captureFBO = 0;
+	captureRBO = 0;
+	G_CHECK_GL(glGenFramebuffers(1, &captureFBO));
+	G_CHECK_GL(glBindFramebuffer(GL_FRAMEBUFFER, captureFBO));
+	G_CHECK_GL(glGenRenderbuffers(1, &captureRBO));
+	G_CHECK_GL(glBindRenderbuffer(GL_RENDERBUFFER, captureRBO));
+	G_CHECK_GL(glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, 512, 512));
+	G_CHECK_GL(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, brdfTexture, 0));
 
-	glViewport(0, 0, renderer->getScreenWidth(), renderer->getScreenHeight());
+	renderer->setViewport(0, 0, renderer->getScreenWidth(), renderer->getScreenHeight());
 	brdfShader->use();
 	renderer->clearScreen(true, true);
 	renderQuad();
 
-	renderer->bindDefaultFramebuffer();
+	G_CHECK_GL(glBindFramebuffer(GL_FRAMEBUFFER, gFbo::defaultfbo));
 
 	pbrShader->use();
 	pbrShader->setInt("irradianceMap", 0);
@@ -329,20 +366,21 @@ void gSkybox::generatePbrMaps() {
 	renderer->getSkyboxShader()->use();
 	renderer->getSkyboxShader()->setInt("skymap", skymapint);
 
-	renderer->unbindSkyTexture(0);
+	skyhandle.unbind(0);
 	ispbr = true;
 }
 
-void gSkybox::bindPbrMaps() {
+void gSkyboxGL::bindPbrMaps() {
 	pbrShader->use();
 	pbrShader->setMat4("view", renderer->getViewMatrix());
 	pbrShader->setVec3("camPos", renderer->getCameraPosition());
-	renderer->bindSkyTexture(irradianceMap, GL_TEXTURE0);
-	renderer->bindSkyTexture(prefilterMap, GL_TEXTURE1);
-	renderer->bindTexture(brdfLUTTexture, GL_TEXTURE2 - GL_TEXTURE0);
+	irradianceHandle->bind(GL_TEXTURE0);
+	prefilterHandle->bind(GL_TEXTURE1);
+	G_CHECK_GL(glActiveTexture(GL_TEXTURE2));
+	G_CHECK_GL(glBindTexture(GL_TEXTURE_2D, brdfTexture));
 }
 
-void gSkybox::draw() {
+void gSkyboxGL::draw() {
 	G_PROFILE_ZONE_SCOPED_N("gSkybox::draw()");
 	skyboxshader = renderer->getSkyboxShader();
 	renderer->enableDepthTestEqual(); // change depth function so depth test passes when values are equal to depth buffer's content
@@ -352,122 +390,15 @@ void gSkybox::draw() {
 	skyboxshader->setMat4("view", renderer->getViewMatrix());
 	skyboxshader->setMat4("model", localtransformationmatrix);
 
-//	skyboxshader->setInt("skymap", skymapint);
-
-	renderer->bindSkyTexture(id, skymapslot);
+	skyhandle.bind(skymapslot);
     vbo.bind();
 	renderer->drawElements(GL_TRIANGLES, vbo.getIndicesNum());
     vbo.unbind();
-	renderer->unbindSkyTexture();
-}
-
-void gSkybox::setupRenderData() {
-
-	float vertexdata[]= {
-	    // x,   y,   z,  s,  t,
-		-1.0f,  1.0f, -1.0f, 1.0f, 1.0f, // Back
-		 1.0f,  1.0f, -1.0f, 0.0f, 1.0f,
-		-1.0f, -1.0f, -1.0f, 1.0f, 0.0f,
-		 1.0f, -1.0f, -1.0f, 0.0f, 0.0f,
-		-1.0f,  1.0f,  1.0f, 0.0f, 1.0f, // Front
-		 1.0f,  1.0f,  1.0f, 1.0f, 1.0f,
-		-1.0f, -1.0f,  1.0f, 0.0f, 0.0f,
-		 1.0f, -1.0f,  1.0f, 1.0f, 0.0f,
-		-1.0f,  1.0f, -1.0f, 0.0f, 1.0f, // Left
-		-1.0f, -1.0f, -1.0f, 0.0f, 0.0f,
-		-1.0f, -1.0f,  1.0f, 1.0f, 0.0f,
-		-1.0f,  1.0f,  1.0f, 1.0f, 1.0f,
-		 1.0f,  1.0f, -1.0f, 1.0f, 1.0f, // Right
-		 1.0f, -1.0f, -1.0f, 1.0f, 0.0f,
-		 1.0f, -1.0f,  1.0f, 0.0f, 0.0f,
-		 1.0f,  1.0f,  1.0f, 0.0f, 1.0f,
-		-1.0f, -1.0f, -1.0f, 0.0f, 1.0f, // Top
-		-1.0f, -1.0f,  1.0f, 0.0f, 0.0f,
-		 1.0f, -1.0f,  1.0f, 1.0f, 0.0f,
-		 1.0f, -1.0f, -1.0f, 1.0f, 1.0f,
-		-1.0f,  1.0f, -1.0f, 0.0f, 0.0f, // Bottom
-		-1.0f,  1.0f,  1.0f, 0.0f, 1.0f,
-		 1.0f,  1.0f,  1.0f, 1.0f, 1.0f,
-		 1.0f,  1.0f, -1.0f, 1.0f, 0.0f
-    };
-
-	float normaldata[] = {
-		-1.0f,  1.0f, -1.0f, // Back
-	     1.0f,  1.0f, -1.0f,
-	    -1.0f, -1.0f, -1.0f,
-	     1.0f, -1.0f, -1.0f,
-	    -1.0f,  1.0f,  1.0f, // Front
-	     1.0f,  1.0f,  1.0f,
-	    -1.0f, -1.0f,  1.0f,
-	     1.0f, -1.0f,  1.0f,
-	    -1.0f,  1.0f, -1.0f, // Left
-	    -1.0f,  -1.0f,  -1.0f,
-	    -1.0f, -1.0f, 1.0f,
-	    -1.0f, 1.0f,  1.0f,
-	     1.0f,  1.0f,  -1.0f, // Right
-	     1.0f,  -1.0f, -1.0f,
-	     1.0f, -1.0f,  1.0f,
-	     1.0f, 1.0f, 1.0f,
-	    -1.0f, -1.0f,  -1.0f, // Top
-	    -1.0f, -1.0f,  1.0f,
-	     1.0f, -1.0f, 1.0f,
-	     1.0f, -1.0f, -1.0f,
-	    -1.0f,  1.0f, -1.0f, // Bottom
-	    -1.0f,  1.0f, 1.0f,
-	     1.0f,  1.0f,  1.0f,
-	     1.0f,  1.0f,  -1.0f
-	};
-
-
-	gIndex indexdata[] = {
-	   // back
-		 0,  2, 3,
-		 0,  1, 3,
-	   // front
-		 4,  6, 7,
-		 4,  5, 7,
-	   // left
-		 8,  9, 10,
-		11,  8, 10,
-	   // right
-		12, 13, 14,
-		15, 12, 14,
-	   // top
-		16, 17, 18,
-		16, 19, 18,
-	   // bottom
-		20, 21, 22,
-		20, 23, 22
-	};
-
-
-	int nv = (sizeof(vertexdata) / sizeof(vertexdata[0])) / 5;
-	std::vector<gVertex> verticesb;
-	for (int i=0; i<nv; i++) {
-		gVertex v;
-		v.position.x = vertexdata[(i * 5)];
-		v.position.y = vertexdata[(i * 5) + 1];
-		v.position.z = vertexdata[(i * 5) + 2];
-		v.texcoords.x = vertexdata[(i * 5) + 3];
-		v.texcoords.y = vertexdata[(i * 5) + 4];
-		v.normal.x = normaldata[(i * 3)];
-		v.normal.y = normaldata[(i * 3) + 1];
-		v.normal.z = normaldata[(i * 3) + 2];
-		verticesb.push_back(v);
-	}
-
-	int ni = sizeof(indexdata) / sizeof(indexdata[0]);
-	std::vector<gIndex> indicesb;
-	for (int i=0; i<ni; i++) {
-		indicesb.push_back(indexdata[i]);
-	}
-
-	vbo.setVertexData(&verticesb[0], sizeof(gVertex), verticesb.size());
-	if (indicesb.size() != 0) vbo.setIndexData(&indicesb[0], indicesb.size());
+	skyhandle.unbind();
 }
 
 
-void gSkybox::renderCube() {
+void gSkyboxGL::renderCube() {
 	G_PROFILE_ZONE_SCOPED_N("gSkybox::renderCube()");
     // initialize (if necessary)
     if (cubeVAO == 0) {
@@ -515,35 +446,49 @@ void gSkybox::renderCube() {
             -1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f, 0.0f, 1.0f, // top-left
             -1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f, 0.0f, 0.0f  // bottom-left
         };
-    	cubeVAO = renderer->createVAO();
-    	cubeVBO = renderer->genBuffers();
+    	G_CHECK_GL(glGenVertexArrays(1, &cubeVAO));
+    	G_CHECK_GL(glGenBuffers(1, &cubeVBO));
         // fill buffer
-    	renderer->setVertexBufferData(cubeVBO, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    	G_CHECK_GL(glBindBuffer(GL_ARRAY_BUFFER, cubeVBO));
+    	G_CHECK_GL(glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW));
         // link vertex attributes
-    	renderer->bindVAO(cubeVAO);
-		renderer->enableVertexAttrib(0);
-    	renderer->setVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
-    	renderer->enableVertexAttrib(1);
-    	renderer->setVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-    	renderer->enableVertexAttrib(2);
-    	renderer->setVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-		renderer->unbindBuffer(GL_ARRAY_BUFFER);
-    	renderer->unbindVAO();
+    	G_CHECK_GL(glBindVertexArray(cubeVAO));
+    	G_CHECK_GL(glEnableVertexAttribArray(0));
+    	G_CHECK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0));
+    	G_CHECK_GL(glEnableVertexAttribArray(1));
+    	G_CHECK_GL(glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float))));
+    	G_CHECK_GL(glEnableVertexAttribArray(2));
+    	G_CHECK_GL(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float))));
+    	G_CHECK_GL(glBindVertexArray(0));
     }
     // render Cube
-	renderer->bindVAO(cubeVAO);
-	renderer->drawArrays(GL_TRIANGLES, 36);
-	renderer->unbindVAO();
+	G_CHECK_GL(glBindVertexArray(cubeVAO));
+	G_CHECK_GL(glDrawArrays(GL_TRIANGLES, 0, 36));
+	G_CHECK_GL(glBindVertexArray(0));
 }
 
-void gSkybox::renderQuad() {
+void gSkyboxGL::renderQuad() {
 	G_PROFILE_ZONE_SCOPED_N("gSkybox::renderQuad()");
     if (quadVAO == 0) {
-    	renderer->createQuad(quadVAO, quadVBO);
+    	float quadVertices[] = {
+    		// positions        // texture Coords
+    		-1.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+    		-1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
+    		1.0f, 1.0f, 0.0f, 1.0f, 1.0f,
+    		1.0f, -1.0f, 0.0f, 1.0f, 0.0f,
+    	};
+    	G_CHECK_GL(glGenVertexArrays(1, &quadVAO));
+    	G_CHECK_GL(glGenBuffers(1, &quadVBO));
+    	G_CHECK_GL(glBindBuffer(GL_ARRAY_BUFFER, quadVBO));
+    	G_CHECK_GL(glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW));
+    	G_CHECK_GL(glBindVertexArray(quadVAO));
+    	G_CHECK_GL(glEnableVertexAttribArray(0));
+    	G_CHECK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0));
+    	G_CHECK_GL(glEnableVertexAttribArray(1));
+    	G_CHECK_GL(glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float))));
+    	G_CHECK_GL(glBindVertexArray(0));
     }
-	renderer->bindVAO(quadVAO);
-	renderer->drawArrays(GL_TRIANGLES, 36);
-	renderer->unbindVAO();
+	G_CHECK_GL(glBindVertexArray(quadVAO));
+	G_CHECK_GL(glDrawArrays(GL_TRIANGLE_STRIP, 0, 4));
+	G_CHECK_GL(glBindVertexArray(0));
 }
-
-

@@ -8,7 +8,7 @@
 #include "gArc.h"
 
 gArc::gArc() {
-
+	vbo->setDynamic(true);
 }
 
 gArc::~gArc() {

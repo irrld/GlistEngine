@@ -72,6 +72,10 @@ if(EMSCRIPTEN)
 endif()
 
 option(ENABLE_TRACY "Enables the tracy profiler." OFF)
+option(GLIST_USE_VULKAN "Use the Vulkan rendering backend instead of OpenGL." OFF)
+if(NOT GLIST_USE_VULKAN)
+	set(GLIST_USE_OGL ON)
+endif()
 
 set(CMAKE_THREAD_LIBS_INIT "-lpthread")
 set(CMAKE_HAVE_THREADS_LIBRARY 1)
@@ -143,6 +147,22 @@ if(ENABLE_TRACY)
 	endif()
 endif()
 
+########## VULKAN DEPENDENCIES ##########
+if(GLIST_USE_VULKAN)
+	find_package(Vulkan REQUIRED)
+	message(STATUS "Vulkan found: ${Vulkan_INCLUDE_DIRS}")
+
+	include(FetchContent)
+	FetchContent_Declare(
+		VulkanMemoryAllocator
+		GIT_REPOSITORY https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator.git
+		GIT_TAG v3.1.0
+		GIT_SHALLOW TRUE
+		GIT_PROGRESS TRUE
+	)
+	FetchContent_MakeAvailable(VulkanMemoryAllocator)
+endif()
+
 set(GENERATED_HEADERS_DIR "${CMAKE_BINARY_DIR}/generated")
 
 #configure_file( ${ENGINE_DIR}/gConfig.h.in ${CMAKE_BINARY_DIR}/generated/gConfig.h )
@@ -202,17 +222,16 @@ set(SRC_FILES
 	${ENGINE_DIR}/utils/gUUID.cpp
 	${ENGINE_DIR}/utils/gFile.cpp
 	${ENGINE_DIR}/utils/gHttpFile.cpp
-	${ENGINE_DIR}/graphics/gShader.cpp
+	${ENGINE_DIR}/graphics/gShaderBase.cpp
 	${ENGINE_DIR}/graphics/gFog.cpp
 	${ENGINE_DIR}/core/gObject.cpp
 	${ENGINE_DIR}/core/gRenderer.cpp
-	${ENGINE_DIR}/core/gGLRenderEngine.cpp
 	${ENGINE_DIR}/core/gRenderObject.cpp
 	${ENGINE_DIR}/core/gGUIActionManager.cpp
-	${ENGINE_DIR}/graphics/gTexture.cpp
+	${ENGINE_DIR}/graphics/gTextureBase.cpp
 	${ENGINE_DIR}/graphics/gGrid.cpp
 	${ENGINE_DIR}/graphics/gImage.cpp
-	${ENGINE_DIR}/graphics/gSkybox.cpp
+	${ENGINE_DIR}/graphics/gSkyboxBase.cpp
 	${ENGINE_DIR}/graphics/gNode.cpp
 	${ENGINE_DIR}/graphics/gLight.cpp
 	${ENGINE_DIR}/graphics/gShadowMap.cpp
@@ -242,9 +261,9 @@ set(SRC_FILES
 	${ENGINE_DIR}/graphics/primitives/gCylinder.cpp
 	${ENGINE_DIR}/graphics/primitives/gCone.cpp
 	${ENGINE_DIR}/graphics/primitives/gTube.cpp
-	${ENGINE_DIR}/graphics/gVbo.cpp
-	${ENGINE_DIR}/graphics/gFbo.cpp
-	${ENGINE_DIR}/graphics/gUbo.cpp
+	${ENGINE_DIR}/graphics/gVboBase.cpp
+	${ENGINE_DIR}/graphics/gFboBase.cpp
+	${ENGINE_DIR}/graphics/gSkyTextureBase.cpp
 	${ENGINE_DIR}/graphics/gRay.cpp
 	${ENGINE_DIR}/graphics/gBoundingBox.cpp
 	${ENGINE_DIR}/graphics/gRect.cpp
@@ -337,6 +356,20 @@ set(SRC_FILES
 	${ENGINE_DIR}/graphics/posteffects/kerneleffects/gEdgeDetection.cpp
 )
 
+if(GLIST_USE_VULKAN)
+	list(APPEND SRC_FILES
+		${ENGINE_DIR}/core/gVulkanRenderEngine.cpp
+	)
+	file(GLOB VK_GRAPHICS_SRCS "${ENGINE_DIR}/graphics/vk/*.cpp")
+	list(APPEND SRC_FILES ${VK_GRAPHICS_SRCS})
+else()
+	list(APPEND SRC_FILES
+		${ENGINE_DIR}/core/gGLRenderEngine.cpp
+	)
+	file(GLOB GL_GRAPHICS_SRCS "${ENGINE_DIR}/graphics/gl/*.cpp")
+	list(APPEND SRC_FILES ${GL_GRAPHICS_SRCS})
+endif()
+
 if(DEFINED TRACY_ENABLE)
 	list(PREPEND SRC_FILES
 			${ENGINE_DIR}/utils/gTracy.cpp
@@ -403,6 +436,49 @@ endif()
 
 target_link_options(GlistEngine PRIVATE ${GLIST_SHARED_LINKER_FLAGS})
 
+if(GLIST_USE_VULKAN)
+	target_compile_definitions(GlistEngine PUBLIC GLIST_VULKAN)
+	target_include_directories(GlistEngine PUBLIC ${Vulkan_INCLUDE_DIRS})
+else()
+	target_compile_definitions(GlistEngine PUBLIC GLIST_OGL)
+endif()
+
+########## SPIR-V SHADER COMPILATION ##########
+if(GLIST_USE_VULKAN)
+	set(VK_SHADERS_DIR "${ENGINE_DIR}/graphics/shaders_vk")
+	set(GENERATED_SPIRV_DIR "${GENERATED_HEADERS_DIR}/graphics/shaders_vk")
+	file(MAKE_DIRECTORY ${GENERATED_SPIRV_DIR})
+
+	find_program(GLSLC glslc HINTS "$ENV{VULKAN_SDK}/Bin" "$ENV{VULKAN_SDK}/bin")
+	if(NOT GLSLC)
+		message(FATAL_ERROR "glslc not found. Please install the Vulkan SDK and ensure glslc is in your PATH or VULKAN_SDK is set.")
+	endif()
+	message(STATUS "Found glslc: ${GLSLC}")
+
+	file(GLOB VK_SHADER_FILES "${VK_SHADERS_DIR}/*.vert" "${VK_SHADERS_DIR}/*.frag")
+	foreach(SHADER_FILE ${VK_SHADER_FILES})
+		get_filename_component(SHADER_NAME_WE ${SHADER_FILE} NAME_WE)
+		get_filename_component(SHADER_NAME ${SHADER_FILE} NAME)
+		set(SPV_FILE "${GENERATED_SPIRV_DIR}/${SHADER_NAME_WE}.spv")
+		set(SPV_HEADER "${GENERATED_SPIRV_DIR}/${SHADER_NAME_WE}.h")
+
+		add_custom_command(
+			OUTPUT ${SPV_FILE}
+			COMMAND ${GLSLC} ${SHADER_FILE} -o ${SPV_FILE}
+			DEPENDS ${SHADER_FILE}
+			COMMENT "Compiling ${SHADER_NAME} to SPIR-V"
+		)
+		add_custom_command(
+			OUTPUT ${SPV_HEADER}
+			COMMAND ${SHADERTOHEADER_EXEC_PATH} ${SPV_FILE} ${SPV_HEADER}
+			DEPENDS ${SPV_FILE} GlistShaderToHeader
+			COMMENT "Generating header for ${SHADER_NAME_WE}.spv"
+		)
+		list(APPEND VK_SPIRV_HEADERS ${SPV_HEADER})
+	endforeach()
+	target_sources(GlistEngine PRIVATE ${VK_SPIRV_HEADERS})
+endif()
+
 list(APPEND GLIST_CXX_FLAGS_DEBUG ${GLIST_CXX_FLAGS_COMMON} ${GLIST_CXX_FLAGS_DEBUG})
 list(APPEND GLIST_CXX_FLAGS_RELEASE ${GLIST_CXX_FLAGS_COMMON} ${GLIST_CXX_FLAGS_RELEASE})
 target_compile_options(
@@ -458,6 +534,8 @@ set(ENGINE_INCLUDES
     ${ENGINE_DIR}/types
     ${ENGINE_DIR}/media
     ${ENGINE_DIR}/graphics
+    ${ENGINE_DIR}/graphics/gl
+    ${ENGINE_DIR}/graphics/vk
     ${ENGINE_DIR}/graphics/primitives
     ${ENGINE_DIR}/graphics/posteffects
     ${ENGINE_DIR}/graphics/posteffects/kerneleffects
@@ -648,20 +726,14 @@ elseif(WIN32)
 		curl
 		libcrypto
 		glfw3
-		opengl32
-		glew32
 		dbghelp
 		Shcore
-#		msvcr100
-#		psapi
-#		swscale-5
-#		swresample-3
-#		avutil-56
-#		avformat-58
-#		avfilter-7
-#		avdevice-58
-#		avcodec-58
 	)
+	if(GLIST_USE_VULKAN)
+		list(APPEND LINK_LIBS Vulkan::Vulkan GPUOpen::VulkanMemoryAllocator)
+	else()
+		list(APPEND LINK_LIBS opengl32 glew32)
+	endif()
 	if(DEFINED TRACY_ENABLE)
 		list(APPEND LINK_LIBS
 				ws2_32      # Windows Sockets API
@@ -677,23 +749,28 @@ elseif(LINUX)
 		curl
 		crypto
 		glfw
-		GL
-		GLEW
 		dl
-	# TODO: FFMPEG
 	)
+	if(GLIST_USE_VULKAN)
+		list(APPEND LINK_LIBS Vulkan::Vulkan GPUOpen::VulkanMemoryAllocator)
+	else()
+		list(APPEND LINK_LIBS GL GLEW)
+	endif()
+	# TODO: FFMPEG
 elseif(APPLE)
 	list(APPEND LINK_LIBS
 		PkgConfig::assimp
 		PkgConfig::freetype
 		PkgConfig::curl
 		PkgConfig::glfw
-		${Lib_GL}
-		PkgConfig::glew
 		${Lib_crypto}
-#		${Lib_cpp}
-	# TODO: FFMPEG
 	)
+	if(GLIST_USE_VULKAN)
+		list(APPEND LINK_LIBS Vulkan::Vulkan GPUOpen::VulkanMemoryAllocator)
+	else()
+		list(APPEND LINK_LIBS ${Lib_GL} PkgConfig::glew)
+	endif()
+	# TODO: FFMPEG
 endif()
 
 # add lib dependencies

@@ -223,8 +223,7 @@ void gMesh::drawStart() {
 	    colorshader.setInt("material.useDiffuseMap", hasDiffuse);
 	    if (hasDiffuse) {
 			colorshader.setInt("material.diffusemap", 0);
-	    	renderer->activateTexture(0);
-		    material.bindMap(gTexture::TEXTURETYPE_DIFFUSE);
+		    material.bindMap(gTexture::TEXTURETYPE_DIFFUSE, 0);
 	    }
 
 	    // Bind specular textures
@@ -232,8 +231,7 @@ void gMesh::drawStart() {
 	    colorshader.setInt("material.useSpecularMap", hasSpecular);
 	    if (hasSpecular) {
 			colorshader.setInt("material.specularmap", 1);
-	    	renderer->activateTexture(1);
-		    material.bindMap(gTexture::TEXTURETYPE_SPECULAR);
+		    material.bindMap(gTexture::TEXTURETYPE_SPECULAR, 1);
 	    }
 
 	    // Bind normal textures
@@ -241,8 +239,7 @@ void gMesh::drawStart() {
 	    colorshader.setInt("material.useNormalMap", hasNormal);
 	    if (hasNormal) {
 			colorshader.setInt("material.normalMap", 2);
-	    	renderer->activateTexture(2);
-		    material.bindMap(gTexture::TEXTURETYPE_NORMAL);
+		    material.bindMap(gTexture::TEXTURETYPE_NORMAL, 2);
 	    }
 
 	    // Set matrices

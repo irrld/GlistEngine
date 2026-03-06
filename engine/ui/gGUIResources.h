@@ -9,7 +9,7 @@
 #define UI_GGUIRESOURCES_H_
 
 #include "gObject.h"
-class gTexture;
+#include "gTexture.h"
 
 /**
  * gGUIResources keeps all images in base64 format that the programmer can use

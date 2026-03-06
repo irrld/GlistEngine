@@ -9,6 +9,7 @@
 
 
 gLine::gLine() {
+	vbo->setDynamic(true);
 	thickness = 1.0f;
 }
 

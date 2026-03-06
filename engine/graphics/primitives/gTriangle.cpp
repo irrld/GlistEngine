@@ -7,7 +7,9 @@
 
 #include "gTriangle.h"
 
-gTriangle::gTriangle() {}
+gTriangle::gTriangle() {
+	vbo->setDynamic(true);
+}
 
 gTriangle::~gTriangle() {}
 
