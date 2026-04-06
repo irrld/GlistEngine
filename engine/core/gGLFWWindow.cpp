@@ -99,9 +99,6 @@ static void onMouseMove(GLFWwindow* window, double xpos, double ypos) {
 	if (handle) {
 		float x = xpos * handle->getScaleX();
 		float y = ypos * handle->getScaleY();
-		if (x > handle->getWidth() || y > handle->getHeight() || x < 0 || y < 0) {
-			return;
-		}
 		if (handle->getCursorMode() == CURSORMODE_RELATIVE) {
 			// y is intentionally divided to width instead of height to get the same aspect ratio
 			x = (handle->getWidth() / 2.0f - x) / handle->getWidth();
