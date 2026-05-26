@@ -77,6 +77,7 @@ var hierarchy =
         [ "gBaseGUIObject", "classgBaseGUIObject.html", [
           [ "gGUIControl", "classgGUIControl.html", [
             [ "gGUIBitmap", "classgGUIBitmap.html", null ],
+            [ "gGUIBoxPlot", "classgGUIBoxPlot.html", null ],
             [ "gGUIButton", "classgGUIButton.html", [
               [ "gGUICheckbox", "classgGUICheckbox.html", null ],
               [ "gGUIImageButton", "classgGUIImageButton.html", null ],
@@ -153,6 +154,7 @@ var hierarchy =
             [ "gEdgeDetection", "classgEdgeDetection.html", null ],
             [ "gSharpen", "classgSharpen.html", null ]
           ] ],
+          [ "gScreenSpaceReflections", "classgScreenSpaceReflections.html", null ],
           [ "gSepiatone", "classgSepiatone.html", null ],
           [ "gShadowsMidtonesHighlights", "classgShadowsMidtonesHighlights.html", null ],
           [ "gSoftFocus", "classgSoftFocus.html", null ],
