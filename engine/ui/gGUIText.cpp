@@ -182,7 +182,10 @@ void gGUIText::resetAlignment() {
 
 std::vector<std::string> gGUIText::splitString(const std::string& textToSplit, gFont* font, int lineWidth) {
     std::vector<std::string> tokens;
-    if (textToSplit.empty() || lineWidth == 0) return tokens;
+    if (textToSplit.empty() || lineWidth == 0) {
+    	 tokens.push_back(textToSplit);
+    	 return tokens;
+    }
 
     std::istringstream iss(textToSplit); // Create an std::istringstream object to read the text.
     std::string word;
