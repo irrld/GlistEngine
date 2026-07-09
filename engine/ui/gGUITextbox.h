@@ -260,6 +260,7 @@ private:
 	void findCursorPosition();
 	void findCursorPositionPassword();
 	void calculateLineCount();
+	void resetCursorPosition();
 	bool selectionmode;
 	int selectionposchar1, selectionposchar2;
 	int selectionposx1, selectionposx2;
@@ -298,6 +299,7 @@ private:
 	gColor* textcolor;
 	bool colorset;
 	bool isdisabled;
+    float cursoroffset;
 
 	bool widthexceeded;
 	int widthAdjusmentDelay;
