@@ -299,7 +299,7 @@ private:
 	gColor* textcolor;
 	bool colorset;
 	bool isdisabled;
-    float cursoroffset = 0.0f; //Offset for cursor position to prevent blending with last character
+    float cursoroffset;
 
 	bool widthexceeded;
 	int widthAdjusmentDelay;
