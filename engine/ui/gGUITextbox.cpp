@@ -101,6 +101,7 @@ gGUITextbox::gGUITextbox() {
 	textcolor = fontcolor;
 	colorset = false;
 	isdisabled = false;
+	cursoroffset = 10.0f;
 	setTextAlignment(textalignment, boxw, initx);
 	
 	widthexceeded = false;
