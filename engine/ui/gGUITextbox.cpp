@@ -118,6 +118,7 @@ void gGUITextbox::set(gBaseApp* root, gBaseGUIObject* topParentGUIObject, gBaseG
 	toplimit = top;
 	bottomlimit = bottom;
 	textfont = appmanager->getGUIManager()->getFont(gGUIManager::FONT_FREESANS);
+	cursoroffset = textfont->getStringWidth("a") * 0.2f;
 }
 
 void gGUITextbox::setText(const std::string& text) {
@@ -249,6 +250,7 @@ void gGUITextbox::update() {
 		}
 
 		handleKeys();
+		resetCursorPosition();
 	}
 	if(boxw - width > 0) boxshrinked = true;
 	else if(boxw - width < 0) boxexpanded = true;
@@ -1888,4 +1890,8 @@ void gGUITextbox::setEditMode(bool editMode) {
 
 int gGUITextbox::calculateContentHeight() {
 	return totalh;
+}
+
+void gGUITextbox::resetCursorPosition() {
+	cursorposx = cursoroffset + textfont->getStringWidth(lines[currentline - 1].substr(firstutf, cursorposutf - firstutf));
 }
