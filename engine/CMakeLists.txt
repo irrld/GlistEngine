@@ -249,8 +249,8 @@ set(SRC_FILES
 	${ENGINE_DIR}/graphics/gRay.cpp
 	${ENGINE_DIR}/graphics/gBoundingBox.cpp
 	${ENGINE_DIR}/graphics/gRect.cpp
-	${ENGINE_DIR}/animation/gSpriteAnimation.cpp
-	${ENGINE_DIR}/animation/gSpriteAnimator.cpp
+	${ENGINE_DIR}/animation/gSpriteAnimation.cpp 
+	${ENGINE_DIR}/animation/gTweenAnimation.cpp 
 	${ENGINE_DIR}/ui/gGUITable.cpp
 	${ENGINE_DIR}/ui/gGUISurface.cpp
 	${ENGINE_DIR}/ui/gGUIGrid.cpp
