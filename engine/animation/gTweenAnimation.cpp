@@ -14,7 +14,7 @@ gTweenAnimation::~gTweenAnimation() {}
 void gTweenAnimation::Set(float startvalue, float endvalue, float duration, float *targetptr, EASE_TYPE easetype, std::function<void()> FinishCallback) {
     this->startvalue = startvalue;
     this->endvalue = endvalue;
-    this->duration = (duration <= 0.0f) ? 0.001f : duration; // 0'a bölme hatasýný önlemek için güvenlik sýnýrý
+    this->duration = (duration <= 0.0f) ? 0.001f : duration; // To prevent to devide to 0 bug
     this->elapsedtime = 0.0f;
     this->targetptr = targetptr;
     this->easetype = easetype;
@@ -50,16 +50,16 @@ void gTweenAnimation::Update(float deltatime) {
 
     if (isfinished) {
         if (repeatcount == -1) {
-            // Sonsuz döngü modu
+            //Unlimited cycle
             elapsedtime = 0.0f;
             isfinished = false;
         } else if (repeatcount > 1) {
-            // Kalan tekrar sayýsý var ise azalt ve sýfýrla
+            //Decrease work count time
             repeatcount--;
             elapsedtime = 0.0f;
             isfinished = false;
         } else {
-            // repeatcount == 0 (Animasyon tamamen bitti)
+            // repeatcount == 0 (Animasyon is finished)
             isactive = false;
         }
         if (FinishCallback != nullptr) {
