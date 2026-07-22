@@ -101,6 +101,22 @@ void gBaseCanvas::onGuiEvent(int guiObjectId, int eventType, std::string value1,
 
 }
 
+void gBaseCanvas::deviceOrientationChanged(DeviceOrientation deviceorientation) {
+
+}
+
+void gBaseCanvas::touchMoved(int x, int y, int fingerId) {
+
+}
+
+void gBaseCanvas::touchPressed(int x, int y, int fingerId) {
+
+}
+
+void gBaseCanvas::touchReleased(int x, int y, int fingerId) {
+
+}
+
 void gBaseCanvas::pause() {
 
 }

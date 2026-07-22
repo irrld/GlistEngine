@@ -846,63 +846,44 @@ bool gAppManager::onAppResumeEvent(gAppResumeEvent& event) {
 bool gAppManager::onDeviceOrientationChangedEvent(gDeviceOrientationChangedEvent& event) {
 	deviceorientation = event.getOrientation();
     if(canvasmanager && getCurrentCanvas()) {
-		if (
-#if GLIST_ANDROID
-            auto* target = dynamic_cast<gAndroidCanvas*>(getCurrentCanvas())
-#elif GLIST_IOS
-            auto* target = static_cast<gIOSCanvas*>(getCurrentCanvas())
-#elif GLIST_WEB
-			auto* target = static_cast<gWebCanvas*>(getCurrentCanvas())
-#endif
-        ) {
-			target->deviceOrientationChanged(event.getOrientation());
-		}
+		getCurrentCanvas()->deviceOrientationChanged(event.getOrientation());
     }
     return false;
 }
 
 bool gAppManager::onTouchEvent(gTouchEvent& event) {
 	if(canvasmanager && getCurrentCanvas()) {
-		if (
-#if GLIST_ANDROID
-            auto* target = dynamic_cast<gAndroidCanvas*>(getCurrentCanvas())
-#elif GLIST_IOS
-            auto* target = static_cast<gIOSCanvas*>(getCurrentCanvas())
-#elif GLIST_WEB
-			auto* target = static_cast<gWebCanvas*>(getCurrentCanvas())
-#endif
-        ) {
-			if (event.getAction() == ACTIONTYPE_POINTER_DOWN || (event.getInputCount() == 1 && event.getAction() == ACTIONTYPE_DOWN)) {
-				int inputindex = event.getActionIndex();
-				TouchInput& input = event.getInputs()[inputindex];
-				int x = input.x;
-				int y = input.y;
-				if(gRenderer::getScreenScaling() > G_SCREENSCALING_NONE) {
-					x = gRenderer::scaleX(x);
-					y = gRenderer::scaleY(y);
-				}
-				target->touchPressed(x, y, input.fingerid);
-			} else if (event.getAction() == ACTIONTYPE_POINTER_UP || (event.getInputCount() == 1 && event.getAction() == ACTIONTYPE_UP)) {
-				int inputindex = event.getActionIndex();
-				TouchInput& input = event.getInputs()[inputindex];
-				int x = input.x;
-				int y = input.y;
-				if(gRenderer::getScreenScaling() > G_SCREENSCALING_NONE) {
-					x = gRenderer::scaleX(x);
-					y = gRenderer::scaleY(y);
-				}
-				target->touchReleased(x, y, input.fingerid);
-			} else if (event.getAction() == ACTIONTYPE_MOVE) {
-				int inputindex = event.getActionIndex();
-				TouchInput& input = event.getInputs()[inputindex];
-				int x = input.x;
-				int y = input.y;
-				if(gRenderer::getScreenScaling() > G_SCREENSCALING_NONE) {
-					x = gRenderer::scaleX(x);
-					y = gRenderer::scaleY(y);
-				}
-				target->touchMoved(x, y, input.fingerid);
+		auto* target = getCurrentCanvas();
+		if (event.getAction() == ACTIONTYPE_POINTER_DOWN || (event.getInputCount() == 1 && event.getAction() == ACTIONTYPE_DOWN)) {
+			int inputindex = event.getActionIndex();
+			TouchInput& input = event.getInputs()[inputindex];
+			int x = input.x;
+			int y = input.y;
+			if(gRenderer::getScreenScaling() > G_SCREENSCALING_NONE) {
+				x = gRenderer::scaleX(x);
+				y = gRenderer::scaleY(y);
 			}
+			target->touchPressed(x, y, input.fingerid);
+		} else if (event.getAction() == ACTIONTYPE_POINTER_UP || (event.getInputCount() == 1 && event.getAction() == ACTIONTYPE_UP)) {
+			int inputindex = event.getActionIndex();
+			TouchInput& input = event.getInputs()[inputindex];
+			int x = input.x;
+			int y = input.y;
+			if(gRenderer::getScreenScaling() > G_SCREENSCALING_NONE) {
+				x = gRenderer::scaleX(x);
+				y = gRenderer::scaleY(y);
+			}
+			target->touchReleased(x, y, input.fingerid);
+		} else if (event.getAction() == ACTIONTYPE_MOVE) {
+			int inputindex = event.getActionIndex();
+			TouchInput& input = event.getInputs()[inputindex];
+			int x = input.x;
+			int y = input.y;
+			if(gRenderer::getScreenScaling() > G_SCREENSCALING_NONE) {
+				x = gRenderer::scaleX(x);
+				y = gRenderer::scaleY(y);
+			}
+			target->touchMoved(x, y, input.fingerid);
 		}
 	}
 	return false;
