@@ -11,7 +11,7 @@
 #include "gBaseApp.h"
 #include "gRenderObject.h"
 #include "gKeyCode.h"
-
+#include "gWindowEvents.h"
 
 class gBaseCanvas : public gRenderObject {
 public:
@@ -39,10 +39,19 @@ public:
 	virtual void gamepadButtonPressed(int joystickId, int key);
 	virtual void gamepadButtonReleased(int joystickId, int key);
 	virtual void onGuiEvent(int guiObjectId, int eventType, std::string value1 = "", std::string value2 = "");
+
+	virtual void deviceOrientationChanged(DeviceOrientation deviceorientation);
+
+	virtual void touchMoved(int x, int y, int fingerId);
+	virtual void touchPressed(int x, int y, int fingerId);
+	virtual void touchReleased(int x, int y, int fingerId);
+
 	virtual void pause();
 	virtual void resume();
 
 	virtual void onEvent(gEvent& event);
+
+
 
 	virtual void showNotify();
 	virtual void hideNotify();

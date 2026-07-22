@@ -221,7 +221,6 @@ private:
 	int joystickid;
 };
 
-#if GLIST_ANDROID || GLIST_IOS
 enum InputType {
 	INPUTTYPE_UNKNOWN = 0,
 	INPUTTYPE_FINGER = 1,
@@ -287,8 +286,6 @@ public:
 private:
 	DeviceOrientation orientation;
 };
-
-#endif
 
 class gAppPauseEvent : public gEvent {
 public:
