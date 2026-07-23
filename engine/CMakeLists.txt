@@ -175,8 +175,6 @@ foreach(pluginname ${PLUGINS})
 	if(IOS)
         if(${pluginname} STREQUAL "gipIOS")
             set(IOS_PLUGIN_PRESENT 1)
-			# We do not compile the gipIOS inside glistengine.
-			continue()
         endif()
 	endif()
 
