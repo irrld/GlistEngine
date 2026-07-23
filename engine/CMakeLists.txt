@@ -111,7 +111,6 @@ endif(NOT WIN32)
 endif()
 
 if(ENABLE_TRACY)
-#if(CMAKE_BUILD_TYPE MATCHES "Debug|RelWithDebInfo")
 	message(STATUS "Tracy profiling enabled for ${CMAKE_BUILD_TYPE} build")
 	include(FetchContent)
 	FetchContent_Declare(
@@ -141,6 +140,8 @@ if(ENABLE_TRACY)
 		message(WARNING "Failed to download/configure Tracy - profiling disabled")
 		set(TRACY_ENABLE OFF CACHE BOOL "Tracy download failed" FORCE)
 	endif()
+else()
+	set(TRACY_ENABLE OFF CACHE BOOL "Tracy was not enabled" FORCE)
 endif()
 
 set(GENERATED_HEADERS_DIR "${CMAKE_BINARY_DIR}/generated")
@@ -350,7 +351,7 @@ set(SRC_FILES
 	${LIBS_DIR}/sqlite/lib/sqlite3.c
 )
 
-if(DEFINED TRACY_ENABLE)
+if(TRACY_ENABLE)
 	list(PREPEND SRC_FILES
 			${ENGINE_DIR}/utils/gTracy.cpp
 	)
@@ -502,7 +503,7 @@ set(ENGINE_INCLUDES
 
 list(APPEND INC_DIRS ${ENGINE_INCLUDES})
 
-if(DEFINED TRACY_ENABLE)
+if(TRACY_ENABLE)
 	target_compile_definitions(GlistEngine PUBLIC TRACY_ENABLE)
 	list(APPEND INC_DIRS
 			${LIBS_DIR}/tracy/public
@@ -697,7 +698,7 @@ elseif(WIN32)
 #		avdevice-58
 #		avcodec-58
 	)
-	if(DEFINED TRACY_ENABLE)
+	if(TRACY_ENABLE)
 		list(APPEND LINK_LIBS
 				ws2_32      # Windows Sockets API
 				wsock32     # Additional socket functions
