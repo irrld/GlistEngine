@@ -1,11 +1,13 @@
 var searchData=
 [
-  ['maskmode_5fboth_0',['MASKMODE_BOTH',['../classgTexture.html#a16fdda9b18a477bf257841b57e2d26c6af6180ba40620950a45e600a4a8d9511b',1,'gTexture']]],
-  ['maskmode_5fboth_5ffree_5frotate_1',['MASKMODE_BOTH_FREE_ROTATE',['../classgTexture.html#a16fdda9b18a477bf257841b57e2d26c6ad5fff73aedc83fe5d904c43fa2bca2b4',1,'gTexture']]],
-  ['maskmode_5fmask_2',['MASKMODE_MASK',['../classgTexture.html#a16fdda9b18a477bf257841b57e2d26c6ab4f7f86b5ce535d06cf5370f8b5baf98',1,'gTexture']]],
-  ['maskmode_5fpicture_3',['MASKMODE_PICTURE',['../classgTexture.html#a16fdda9b18a477bf257841b57e2d26c6ad338417b9cf85aa1500e0f7b267f3e61',1,'gTexture']]],
-  ['max_5ftrigger_5fconditions_4',['MAX_TRIGGER_CONDITIONS',['../gSpriteAnimation_8h.html#a05ace1778679794e816adbd5d83eb7bca8615d1dec37d65a6c10dc4f58a15780e',1,'gSpriteAnimation.h']]],
-  ['mode_5fhold_5fon_5flast_5fframe_5',['MODE_HOLD_ON_LAST_FRAME',['../classgModelAnimator.html#af8179b8a114c684c97370d65f55fc31ea0ac96e6d5b42c60ae2b6bd57a08b3c6b',1,'gModelAnimator']]],
-  ['mode_5fonce_6',['MODE_ONCE',['../classgModelAnimator.html#af8179b8a114c684c97370d65f55fc31ea5632dad8231bf542df9463d0cc1fd908',1,'gModelAnimator']]],
-  ['mode_5frepeat_7',['MODE_REPEAT',['../classgModelAnimator.html#af8179b8a114c684c97370d65f55fc31eae0ade3a289d6af55e04a74101aee882c',1,'gModelAnimator']]]
+  ['left_0',['left',['../classgFont.html#a6e81faaa533f247131d7c7c0cb555529a684d325a7303f52e64011467ff5c5758',1,'gFont::LEFT'],['../classgGUINotebook.html#ad07430b2272895bd64cdfd33a1c2cf3ba684d325a7303f52e64011467ff5c5758',1,'gGUINotebook::LEFT']]],
+  ['less_1',['LESS',['../gSpriteAnimation_8h.html#a05ace1778679794e816adbd5d83eb7bca95c736070f99b99eb80d1eac1f4ca60f',1,'gSpriteAnimation.h']]],
+  ['less_5fequal_2',['LESS_EQUAL',['../gSpriteAnimation_8h.html#a05ace1778679794e816adbd5d83eb7bcac7fcbbb467ef6d40ec686d894e26accd',1,'gSpriteAnimation.h']]],
+  ['loglevel_5fdebug_3',['LOGLEVEL_DEBUG',['../classgLog.html#abd97f29ae75bfa87c66750ece5dc55b9a27fb8a5c75ebbf59dbb92b763ba3926a',1,'gLog']]],
+  ['loglevel_5ferror_4',['LOGLEVEL_ERROR',['../classgLog.html#abd97f29ae75bfa87c66750ece5dc55b9a923366514f9a943c17a6acaacf601e55',1,'gLog']]],
+  ['loglevel_5finfo_5',['LOGLEVEL_INFO',['../classgLog.html#abd97f29ae75bfa87c66750ece5dc55b9af860e6876f2eace422987c55349ffa15',1,'gLog']]],
+  ['loglevel_5fwarning_6',['LOGLEVEL_WARNING',['../classgLog.html#abd97f29ae75bfa87c66750ece5dc55b9a4975a21d54ff6404704fe8e29c3a0108',1,'gLog']]],
+  ['looptype_5fdefault_7',['LOOPTYPE_DEFAULT',['../classgBaseSound.html#a9a2c864371ad1dc1af545577445f05acab8ca9027855d5e9d8c8350ff6f468ba0',1,'gBaseSound']]],
+  ['looptype_5fnone_8',['LOOPTYPE_NONE',['../classgBaseSound.html#a9a2c864371ad1dc1af545577445f05acab15ab13b292335f3f7082444e2c554e1',1,'gBaseSound']]],
+  ['looptype_5fnormal_9',['LOOPTYPE_NORMAL',['../classgBaseSound.html#a9a2c864371ad1dc1af545577445f05aca11c46067c9272c024bf84d7230b8336b',1,'gBaseSound']]]
 ];
