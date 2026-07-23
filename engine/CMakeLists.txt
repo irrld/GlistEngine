@@ -171,27 +171,21 @@ if(EMSCRIPTEN)
 	list(APPEND PLUGINS gipWebGL)
 endif()
 
+list(REMOVE_DUPLICATES PLUGINS)
+
 foreach(pluginname ${PLUGINS})
-	if(IOS)
-        if(${pluginname} STREQUAL "gipIOS")
-            set(IOS_PLUGIN_PRESENT 1)
-        endif()
+	set(PLUGIN_CMAKE_PATH "${PLUGINS_DIR}/${pluginname}/CMakeLists.txt")
+	if(NOT EXISTS ${PLUGIN_CMAKE_PATH})
+		message(FATAL_ERROR
+			"Plugin '${pluginname}' was not found at:\n"
+			"  ${PLUGINS_DIR}/${pluginname}\n\n"
+			"Check that the plugin is installed under ${PLUGINS_DIR}\n"
+			"with exactly that folder name, and that it contains a CMakeLists.txt.\n"
+			"Plugins can be downloaded from https://github.com/GlistPlugins/"
+		)
 	endif()
-
-    if(ANDROID)
-        if(${pluginname} STREQUAL "gipAndroid")
-            set(ANDROID_PLUGIN_PRESENT 1)
-        endif()
-	endif()
-
-	if(EMSCRIPTEN)
-		if(${pluginname} STREQUAL "gipWebGL")
-			set(WEBGL_PLUGIN_PRESENT 1)
-		endif()
-	endif()
-
 	# Include the plugin cmake
-    include(${PLUGINS_DIR}/${pluginname}/CMakeLists.txt)
+	include(${PLUGIN_CMAKE_PATH})
 endforeach()
 
 
@@ -508,16 +502,7 @@ if(TRACY_ENABLE)
 	)
 endif()
 
-if(WIN32)
-	list(APPEND INC_DIRS
-		${MINGW64_DIR}/include/c++/v1
-		${MINGW64_DIR}/include
-		${MINGW64_DIR}/include/freetype2
-		${MINGW64_DIR}/include/curl
-		${MINGW64_DIR}/include/utf8
-		${MINGW64_DIR}/include/harfbuzz
-	)
-elseif(EMSCRIPTEN)
+if(EMSCRIPTEN)
 	# These are added by gipWebGL plugin
 	# Do not remove this scope
 elseif(ANDROID)
@@ -526,6 +511,15 @@ elseif(ANDROID)
 elseif(IOS)
     # These are added by gipIOS plugin
 	# Do not remove this scope
+elseif(WIN32)
+	list(APPEND INC_DIRS
+		${MINGW64_DIR}/include/c++/v1
+		${MINGW64_DIR}/include
+		${MINGW64_DIR}/include/freetype2
+		${MINGW64_DIR}/include/curl
+		${MINGW64_DIR}/include/utf8
+		${MINGW64_DIR}/include/harfbuzz
+	)
 elseif(LINUX)
 	list(APPEND INC_DIRS
 		${MINGW64_DIR}/include
@@ -574,37 +568,14 @@ endforeach()
 
 ########## FIND LIBRARIES ##########
 if(EMSCRIPTEN)
-    if(NOT DEFINED WEBGL_PLUGIN_PRESENT)
-        message(FATAL_ERROR
-                "gipWebGL was not found in the active plugins list while trying to create a web app.\n\n"
-                "This might be caused by not passing gipWebGL to the GlistApp's used plugins list.\n"
-                "You may also not have the gipIOS plugin installed in the correct\n"
-                "folder and not with the correct name. Check if you have installed the plugin\n"
-                "under ~/dev/glist/glistplugins/"
-        )
-    endif()
+	# These are added by gipWebGL plugin
+	# Do not remove this block
 elseif(ANDROID)
-    # These are added by gipAndroid plugin
-    # Do not remove the if, otherwise linux libraries will be linked/included.
-	if(NOT DEFINED ANDROID_PLUGIN_PRESENT)
-        message(FATAL_ERROR
-        	"gipAndroid was not found in the active plugins list while trying to create an Android app.\n\n"
-        	"This might be caused by not passing gipAndroid to the GlistApp's used plugins list.\n"
-        	"You may also not have the gipAndroid plugin installed in the correct\n"
-        	"folder and not with the correct name. Check if you have installed the plugin\n"
-        	"under ~/dev/glist/glistplugins/"
-        )
-	endif()
+	# These are added by gipAndroid plugin
+	# Do not remove this block
 elseif(IOS)
-    if(NOT DEFINED IOS_PLUGIN_PRESENT)
-		message(FATAL_ERROR
-			"gipIOS was not found in the active plugins list while trying to create an iOS app.\n\n"
-			"This might be caused by not passing gipIOS to the GlistApp's used plugins list.\n"
-			"You may also not have the gipIOS plugin installed in the correct\n"
-			"folder and not with the correct name. Check if you have installed the plugin\n"
-			"under ~/dev/glist/glistplugins/"
-		)
-    endif()
+	# These are added by gipIOS plugin
+	# Do not remove this block
 elseif(WIN32)
     link_directories(
             ${MINGW64_DIR}/bin
