@@ -157,6 +157,14 @@ set(PLUGIN_LINKDIRS)
 set(PLUGIN_LINKLIBS)
 set(PLUGIN_LIBDIRS)
 
+if(IOS)
+	# If compiling for iOS, we auto-add gipIOS, you don't have to.
+	list(APPEND PLUGINS gipIOS)
+endif()
+if(ANDROID)
+	# If compiling for Android, we auto-add gipAndroid, you don't have to.
+	list(APPEND PLUGINS gipAndroid)
+endif()
 if(EMSCRIPTEN)
 	# If emscripten is added, we auto-add gipWebGL, you don't have to.
 	list(APPEND PLUGINS gipWebGL)
@@ -339,6 +347,7 @@ set(SRC_FILES
 	${ENGINE_DIR}/graphics/posteffects/kerneleffects/gBlur.cpp
 	${ENGINE_DIR}/graphics/posteffects/kerneleffects/gSharpen.cpp
 	${ENGINE_DIR}/graphics/posteffects/kerneleffects/gEdgeDetection.cpp
+	${LIBS_DIR}/sqlite/lib/sqlite3.c
 )
 
 if(DEFINED TRACY_ENABLE)
@@ -363,12 +372,11 @@ if(IOS)
 	)
 endif()
 
-# These are handled from the appropriate plugin.
+# Window is defined by the plugin
 if(NOT (ANDROID OR IOS OR EMSCRIPTEN))
 	list(APPEND SRC_FILES
-		${LIBS_DIR}/sqlite/lib/sqlite3.c
-		${ENGINE_DIR}/core/backward.cpp
-		${ENGINE_DIR}/core/gGLFWWindow.cpp
+			${ENGINE_DIR}/core/backward.cpp
+			${ENGINE_DIR}/core/gGLFWWindow.cpp
 	)
 endif()
 
