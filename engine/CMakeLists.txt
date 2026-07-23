@@ -415,6 +415,13 @@ else()
 	)
 endif()
 
+if(IOS)
+	# gSound.cpp defines MINIAUDIO_IMPLEMENTATION, which pulls in AVFoundation
+	# (Objective-C) via miniaudio's Core Audio backend, so it must be compiled
+	# as Objective-C++ on iOS.
+	set_source_files_properties(${ENGINE_DIR}/media/gSound.cpp PROPERTIES LANGUAGE OBJCXX)
+endif()
+
 target_link_options(GlistEngine PRIVATE ${GLIST_SHARED_LINKER_FLAGS})
 
 list(APPEND GLIST_CXX_FLAGS_DEBUG ${GLIST_CXX_FLAGS_COMMON} ${GLIST_CXX_FLAGS_DEBUG})
