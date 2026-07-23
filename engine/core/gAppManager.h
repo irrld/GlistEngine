@@ -59,6 +59,7 @@ class gBaseApp;
 class gAppManager;
 class gGUIFrame;
 class gInputManager;
+class gImage;
 
 /**
  * Sets the app settings for the engine according to given name, mode of window,
@@ -322,6 +323,8 @@ public:
     void setCursor(int cursorId);
     void setCursorMode(gCursorMode cursorMode);
 	gCursorMode getCursorMode();
+
+	void setCustomCursor(gImage& image, int hotspotX, int hotspotY);
 
     void setWindowIcon(std::string pngFullpath);
     void setWindowIcon(unsigned char* imageData, int w, int h);

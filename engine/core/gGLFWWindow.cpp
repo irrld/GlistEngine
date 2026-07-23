@@ -164,7 +164,7 @@ static void glfwErrorCallback(int error, const char* description) {
 
 gGLFWWindow::gGLFWWindow() {
 	window = nullptr;
-	cursor = new GLFWcursor*[6];
+	cursor = new GLFWcursor*[7];
 	scalex = 1.0f;
 	scaley = 1.0f;
 }
@@ -274,12 +274,13 @@ void gGLFWWindow::initialize(int width, int height, int windowMode, bool isResiz
 #endif
 
 	// Create cursors
-	cursor[0] = glfwCreateStandardCursor(0x00036001);
-	cursor[1] = glfwCreateStandardCursor(0x00036002);
-	cursor[2] = glfwCreateStandardCursor(0x00036003);
-	cursor[3] = glfwCreateStandardCursor(0x00036004);
-	cursor[4] = glfwCreateStandardCursor(0x00036005);
-	cursor[5] = glfwCreateStandardCursor(0x00036006);
+	cursor[CURSOR_ARROW] = glfwCreateStandardCursor(0x00036001);
+	cursor[CURSOR_IBEAM] = glfwCreateStandardCursor(0x00036002);
+	cursor[CURSOR_CROSSHAIR] = glfwCreateStandardCursor(0x00036003);
+	cursor[CURSOR_HAND] = glfwCreateStandardCursor(0x00036004);
+	cursor[CURSOR_HRESIZE] = glfwCreateStandardCursor(0x00036005);
+	cursor[CURSOR_VRESIZE] = glfwCreateStandardCursor(0x00036006);
+	cursor[CURSOR_CUSTOM] = nullptr;
 
 	if (cursor[0]) {
 		glfwSetCursor(window, cursor[0]);
@@ -338,7 +339,7 @@ void gGLFWWindow::update() {
 
 void gGLFWWindow::close() {
 	// Clean up cursors
-	for (int i = 0; i < 6; i++) {
+	for (int i = 0; i < 7; i++) {
 		if (cursor[i]) {
 			glfwDestroyCursor(cursor[i]);
 			cursor[i] = nullptr;
@@ -357,7 +358,7 @@ void gGLFWWindow::setVsync(bool vsync) {
 }
 
 void gGLFWWindow::setCursor(int cursorNo) {
-	if (cursorNo >= 0 && cursorNo < 6 && cursor[cursorNo]) {
+	if (cursorNo >= 0 && cursorNo < 7 && cursor[cursorNo]) {
 		glfwSetCursor(window, cursor[cursorNo]);
 	}
 }
@@ -392,6 +393,35 @@ void gGLFWWindow::setCursorMode(gCursorMode cursorMode) {
 
 void gGLFWWindow::setCursorPos(int x, int y) {
 	glfwSetCursorPos(window, x / scalex, y / scaley);
+}
+
+void gGLFWWindow::setCustomCursor(gImage& image, int hotspotX, int hotspotY){
+	int w = image.getWidth();
+	int h = image.getHeight();
+	unsigned char* pixels = image.getImageData();
+
+	if(!pixels || w <= 0 || h <= 0){
+		gLogw("gGLFWWindow") << "Failed to set custom cursor: invalid gImage" << std::endl;
+		return;
+	}
+
+	GLFWimage img;
+	img.width = w;
+	img.height = h;
+	img.pixels = pixels;
+	GLFWcursor* newcursor = glfwCreateCursor(&img, hotspotX, hotspotY);
+
+	if(!newcursor){
+		gLoge("gGLFWWindow") << "Failed to create custom cursor" << std::endl;
+		return;
+	}
+	
+	if(cursor[CURSOR_CUSTOM]){
+		glfwDestroyCursor(cursor[CURSOR_CUSTOM]);
+	}
+
+	cursor[CURSOR_CUSTOM] = newcursor;
+	setCursor(CURSOR_CUSTOM);
 }
 
 void gGLFWWindow::setClipboardString(std::string text) {
