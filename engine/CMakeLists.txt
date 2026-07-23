@@ -158,18 +158,19 @@ set(PLUGIN_LINKDIRS)
 set(PLUGIN_LINKLIBS)
 set(PLUGIN_LIBDIRS)
 
-if(IOS)
-	# If compiling for iOS, we auto-add gipIOS, you don't have to.
-	list(APPEND PLUGINS gipIOS)
-endif()
-if(ANDROID)
-	# If compiling for Android, we auto-add gipAndroid, you don't have to.
-	list(APPEND PLUGINS gipAndroid)
-endif()
-if(EMSCRIPTEN)
-	# If emscripten is added, we auto-add gipWebGL, you don't have to.
-	list(APPEND PLUGINS gipWebGL)
-endif()
+# Enable these if you want its plugins to be included automatically on these platforms.
+##if(IOS)
+##	# If compiling for iOS, we auto-add gipIOS, you don't have to.
+##	list(APPEND PLUGINS gipIOS)
+##endif()
+##if(ANDROID)
+##	# If compiling for Android, we auto-add gipAndroid, you don't have to.
+##	list(APPEND PLUGINS gipAndroid)
+##endif()
+##if(EMSCRIPTEN)
+##	# If emscripten is added, we auto-add gipWebGL, you don't have to.
+##	list(APPEND PLUGINS gipWebGL)
+##endif()
 
 list(REMOVE_DUPLICATES PLUGINS)
 
