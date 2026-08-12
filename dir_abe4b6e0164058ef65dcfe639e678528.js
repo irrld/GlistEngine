@@ -2,11 +2,13 @@ var dir_abe4b6e0164058ef65dcfe639e678528 =
 [
     [ "kerneleffects", "dir_b580201c790916499315c7f8a5908d54.html", "dir_b580201c790916499315c7f8a5908d54" ],
     [ "gBloom.h", "gBloom_8h.html", "gBloom_8h" ],
+    [ "gBloomPyramid.h", "gBloomPyramid_8h.html", "gBloomPyramid_8h" ],
     [ "gChromaticAberration.h", "gChromaticAberration_8h.html", "gChromaticAberration_8h" ],
     [ "gColorAdjustments.h", "gColorAdjustments_8h.html", "gColorAdjustments_8h" ],
     [ "gColorChannelMixer.h", "gColorChannelMixer_8h.html", "gColorChannelMixer_8h" ],
     [ "gColorCurves.h", "gColorCurves_8h.html", "gColorCurves_8h" ],
     [ "gDynamicGrain.h", "gDynamicGrain_8h.html", "gDynamicGrain_8h" ],
+    [ "gFXAA.h", "gFXAA_8h.html", "gFXAA_8h" ],
     [ "gGrain.h", "gGrain_8h.html", "gGrain_8h" ],
     [ "gGrayscale.h", "gGrayscale_8h.html", "gGrayscale_8h" ],
     [ "gHighContrast.h", "gHighContrast_8h.html", "gHighContrast_8h" ],

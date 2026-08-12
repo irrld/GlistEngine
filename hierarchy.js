@@ -8,6 +8,7 @@ var hierarchy =
     [ "gInputPlayer::GamepadAxisBinding", "structgInputPlayer_1_1GamepadAxisBinding.html", null ],
     [ "gInputPlayer::GamepadButtonAxisBinding", "structgInputPlayer_1_1GamepadButtonAxisBinding.html", null ],
     [ "gAnimationTrigger", "classgAnimationTrigger.html", null ],
+    [ "gBitmapFont", "classgBitmapFont.html", null ],
     [ "gColor", "classgColor.html", null ],
     [ "gColorHSL", "classgColorHSL.html", null ],
     [ "gEvent", "classgEvent.html", [
@@ -50,6 +51,7 @@ var hierarchy =
       [ "gLogw", "classgLogw.html", null ]
     ] ],
     [ "gMatrix4", "classgMatrix4.html", null ],
+    [ "gRenderer::gMeshSurface", "structgRenderer_1_1gMeshSurface.html", null ],
     [ "gModelAnimator", "classgModelAnimator.html", null ],
     [ "gObject", "classgObject.html", [
       [ "gAES", "classgAES.html", null ],
@@ -97,6 +99,7 @@ var hierarchy =
               [ "gGUICandleStickChart", "classgGUICandleStickChart.html", null ],
               [ "gGUILineGraph", "classgGUILineGraph.html", null ]
             ] ],
+            [ "gGUILine", "classgGUILine.html", null ],
             [ "gGUIMenuItem", "classgGUIMenuItem.html", [
               [ "gGUIMenubar", "classgGUIMenubar.html", null ]
             ] ],
@@ -142,11 +145,13 @@ var hierarchy =
         [ "gBasePlugin", "classgBasePlugin.html", null ],
         [ "gBasePostProcess", "classgBasePostProcess.html", [
           [ "gBloom", "classgBloom.html", null ],
+          [ "gBloomPyramid", "classgBloomPyramid.html", null ],
           [ "gChromaticAberration", "classgChromaticAberration.html", null ],
           [ "gColorAdjustments", "classgColorAdjustments.html", null ],
           [ "gColorChannelMixer", "classgColorChannelMixer.html", null ],
           [ "gColorCurves", "classgColorCurves.html", null ],
           [ "gDynamicGrain", "classgDynamicGrain.html", null ],
+          [ "gFXAA", "classgFXAA.html", null ],
           [ "gGrain", "classgGrain.html", null ],
           [ "gGrayscale", "classgGrayscale.html", null ],
           [ "gHighContrast", "classgHighContrast.html", null ],
@@ -164,6 +169,7 @@ var hierarchy =
           [ "gVignette", "classgVignette.html", null ],
           [ "gWhiteBalance", "classgWhiteBalance.html", null ]
         ] ],
+        [ "gBezier", "classgBezier.html", null ],
         [ "gBoundingBox", "classgBoundingBox.html", null ],
         [ "gCameraController", "classgCameraController.html", null ],
         [ "gFbo", "classgFbo.html", null ],
@@ -230,6 +236,7 @@ var hierarchy =
     [ "gUtils", "classgUtils.html", null ],
     [ "gUUID", "classgUUID.html", null ],
     [ "gVertex", "structgVertex.html", null ],
+    [ "gVKVertexArray", "structgVKVertexArray.html", null ],
     [ "gCamera::Plane", "structgCamera_1_1Plane.html", null ],
     [ "gHttpFile::ProgressData", "structgHttpFile_1_1ProgressData.html", null ],
     [ "TouchInput", "structTouchInput.html", null ]

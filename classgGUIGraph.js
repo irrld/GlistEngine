@@ -4,6 +4,7 @@ var classgGUIGraph =
     [ "~gGUIGraph", "classgGUIGraph.html#ae91ce270173055f11a1d792def6eb3ed", null ],
     [ "clear", "classgGUIGraph.html#acd6d25a2d14f358027f06a36292f712e", null ],
     [ "draw", "classgGUIGraph.html#aa75e83f42eed80a72a65614cc353121e", null ],
+    [ "enableBackground", "classgGUIGraph.html#a02523f8f7bb9ee7a028dd0bbf9776411", null ],
     [ "enableGridlinesX", "classgGUIGraph.html#a5d0d0569a5100a9f07950aafdd1ac9d5", null ],
     [ "enableGridlinesY", "classgGUIGraph.html#aed707c32ccf671c32854eb55da910541", null ],
     [ "enableRange", "classgGUIGraph.html#a7e5daf8b2ca3624f4ec04896640a26d7", null ],
@@ -17,7 +18,9 @@ var classgGUIGraph =
     [ "getRangeStart", "classgGUIGraph.html#a542b7a4d40f36f0108e20b74df5f0a74", null ],
     [ "getTitleX", "classgGUIGraph.html#adfa889f351af143e53fb1915d8bf3891", null ],
     [ "getTitleY", "classgGUIGraph.html#aa87305bbd215f59f00c825b576ee6443", null ],
+    [ "isBackgroundEnabled", "classgGUIGraph.html#a219ee83a30efcf70e428a36d0bddf397", null ],
     [ "set", "classgGUIGraph.html#a510db11d39ee50ea46d6a98befe1b687", null ],
+    [ "setAxislinesEnable", "classgGUIGraph.html#a4e0147e20111e5e0ceb07c334a53c147", null ],
     [ "setLabelCountX", "classgGUIGraph.html#aed1c2d6c01a9df41e6798c38ca88e9b1", null ],
     [ "setLabelCountY", "classgGUIGraph.html#a029c150e6b53f4702fcc806a9f7f8d3e", null ],
     [ "setMaxX", "classgGUIGraph.html#abbf70b34957b013ee53e016bb96d1b3b", null ],
@@ -38,6 +41,8 @@ var classgGUIGraph =
     [ "floatlabelsenabled", "classgGUIGraph.html#a3e60779ba1c38c4807f90c6e44a6893a", null ],
     [ "gridlinesxenabled", "classgGUIGraph.html#a977a2d904c25dd55cdd84ed2594b5a47", null ],
     [ "gridlinesyenabled", "classgGUIGraph.html#ad189595d5e3299668991ba7b23d90ee8", null ],
+    [ "isbackgroundenabled", "classgGUIGraph.html#aa60c61213a65bfe3c7ce60ed1fb37963", null ],
+    [ "isxaxislinenable", "classgGUIGraph.html#ab8c5e89e3fd4111ea2ed08303b40f489", null ],
     [ "labelcountx", "classgGUIGraph.html#a56615b3efd195c3f3dbd377c103931a8", null ],
     [ "labelcounty", "classgGUIGraph.html#a116c26dcd78ac3d445c6bdff32ae914d", null ],
     [ "largestvaluex", "classgGUIGraph.html#a060d8ccc53d1010e9ad55047bb152166", null ],
@@ -50,5 +55,6 @@ var classgGUIGraph =
     [ "rangeend", "classgGUIGraph.html#add293c9fe9dd0490e4e7a0333c2d2c75", null ],
     [ "rangestart", "classgGUIGraph.html#a231a625ebb7bafd1efd2bd0c301a355e", null ],
     [ "smallestvaluex", "classgGUIGraph.html#a47b5e14949eaa5633df6d4aedc2cd17f", null ],
-    [ "smallestvaluey", "classgGUIGraph.html#a7ce9ae67649b6e53108c8bf6b2cc97f7", null ]
+    [ "smallestvaluey", "classgGUIGraph.html#a7ce9ae67649b6e53108c8bf6b2cc97f7", null ],
+    [ "yaxislenable", "classgGUIGraph.html#a24fb923a7ef753f21de35173de551766", null ]
 ];
