@@ -243,6 +243,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a735eca76a2f49b924845843e172a89ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a636e92ccd27653690fe04acc81e1e5" id="r_a7a636e92ccd27653690fe04acc81e1e5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgModel.html#a7a636e92ccd27653690fe04acc81e1e5">getAnimationFramerate</a> () const</td></tr>
 <tr class="separator:a7a636e92ccd27653690fe04acc81e1e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab516d3ea13e5d46b85fb2932c6b21bd1" id="r_ab516d3ea13e5d46b85fb2932c6b21bd1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgModel.html#ab516d3ea13e5d46b85fb2932c6b21bd1">setPoseCacheLimit</a> (int frameLimit)</td></tr>
+<tr class="separator:ab516d3ea13e5d46b85fb2932c6b21bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19aff1efb8af768659b9f13eeb4e78ac" id="r_a19aff1efb8af768659b9f13eeb4e78ac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgModel.html#a19aff1efb8af768659b9f13eeb4e78ac">getPoseCacheLimit</a> () const</td></tr>
+<tr class="separator:a19aff1efb8af768659b9f13eeb4e78ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac13a792647db1901d7946da7a686354f" id="r_ac13a792647db1901d7946da7a686354f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgModel.html#ac13a792647db1901d7946da7a686354f">clearPoseCache</a> ()</td></tr>
+<tr class="separator:ac13a792647db1901d7946da7a686354f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82abf38c7cfb26b51a09fdae425fb048" id="r_a82abf38c7cfb26b51a09fdae425fb048"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgModel.html#a82abf38c7cfb26b51a09fdae425fb048">setMorphingFrameNo</a> (int morphingAnimationNo)</td></tr>
 <tr class="separator:a82abf38c7cfb26b51a09fdae425fb048"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c7f8b7909e288bb3848a07cde33d8a5" id="r_a1c7f8b7909e288bb3848a07cde33d8a5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgModel.html#a1c7f8b7909e288bb3848a07cde33d8a5">getMorphingFrameNo</a> () const</td></tr>
@@ -600,6 +606,24 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac13a792647db1901d7946da7a686354f" name="ac13a792647db1901d7946da7a686354f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac13a792647db1901d7946da7a686354f">&#9670;&#160;</a></span>clearPoseCache()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gModel::clearPoseCache </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Drops every cached pose. Called automatically whenever the model or its animation keys change. </p>
 
 </div>
 </div>
@@ -992,6 +1016,23 @@ Additional Inherited Members</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">int gModel::getMorphingTarget </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a19aff1efb8af768659b9f13eeb4e78ac" name="a19aff1efb8af768659b9f13eeb4e78ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19aff1efb8af768659b9f13eeb4e78ac">&#9670;&#160;</a></span>getPoseCacheLimit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int gModel::getPoseCacheLimit </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1779,6 +1820,34 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab516d3ea13e5d46b85fb2932c6b21bd1" name="ab516d3ea13e5d46b85fb2932c6b21bd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab516d3ea13e5d46b85fb2932c6b21bd1">&#9670;&#160;</a></span>setPoseCacheLimit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gModel::setPoseCacheLimit </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>frameLimit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets how many animation frames keep their skinned vertices cached.</p>
+<p><a class="el" href="classgModel.html#a7068099a36182446d76bf65cf7f0c73d">setAnimationFrameNo()</a> recomputes the bone transforms and the skinned vertices on every call. A frame is often asked for more than once with nothing in between that would change the result: the engine draws the canvas once per render pass, so with a shadow map active every pose a frame shows is skinned twice, once for the shadow pass and once for the screen pass. The second computation produces exactly the same vertices as the first.</p>
+<p>With a cache limit above zero those repeats reuse the stored vertices and only the upload is repeated. The limit should be at least the number of distinct frames the model is drawn at within one rendered frame; a model shared by 24 characters at 24 different poses wants at least 24.</p>
+<p>Cost is two vec3 per vertex per cached frame. Set to 0 to disable, which restores the old behaviour of skinning on every call.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">frameLimit</td><td>Number of frames to keep, 0 disables the cache </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
