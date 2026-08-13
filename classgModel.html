@@ -1180,6 +1180,13 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Bakes every skeletal animation frame into stored vertices, once, so <a class="el" href="classgModel.html#a7068099a36182446d76bf65cf7f0c73d">setAnimationFrameNo()</a> only picks one afterwards and drawing costs no skinning. Call it after <a class="el" href="classgModel.html#adffdfd95a243a6681998e47264853ea6">setAnimationFrameNum()</a>, which decides the frame count. Memory is the trade, growing with frames x vertices.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">storeOnVram</td><td>True gives each frame its own GPU buffer, so drawing a pose only binds it: the fastest, and the usual choice. False keeps the frames in system memory and uploads the chosen one on each frame change, which is slower but spends no video memory. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1838,10 +1845,8 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Sets how many animation frames keep their skinned vertices cached.</p>
-<p><a class="el" href="classgModel.html#a7068099a36182446d76bf65cf7f0c73d">setAnimationFrameNo()</a> recomputes the bone transforms and the skinned vertices on every call. A frame is often asked for more than once with nothing in between that would change the result: the engine draws the canvas once per render pass, so with a shadow map active every pose a frame shows is skinned twice, once for the shadow pass and once for the screen pass. The second computation produces exactly the same vertices as the first.</p>
-<p>With a cache limit above zero those repeats reuse the stored vertices and only the upload is repeated. The limit should be at least the number of distinct frames the model is drawn at within one rendered frame; a model shared by 24 characters at 24 different poses wants at least 24.</p>
-<p>Cost is two vec3 per vertex per cached frame. Set to 0 to disable, which restores the old behaviour of skinning on every call.</p>
+<p>Sets how many animation frames keep their skinned vertices cached, so a pose asked for twice is skinned once. Off by default, and ignored once <a class="el" href="classgModel.html#a0f3c81d381a29b00e71cfd7a6d3c3645">makeVertexAnimated()</a> has baked the frames, which is the better answer wherever its memory fits.</p>
+<p>Set it to at least the number of distinct frames drawn within one rendered frame, remembering that a shadow pass draws them all a second time. Cost is two vec3 per vertex per cached frame.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">frameLimit</td><td>Number of frames to keep, 0 disables the cache </td></tr>
