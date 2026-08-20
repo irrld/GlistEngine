@@ -12,7 +12,7 @@ var searchData=
   ['m_5fpi_5ff_9',['M_PI_F',['../gTweenAnimation_8h.html#ab9c3c609e1d02430671de0a109410ac8',1,'gTweenAnimation.h']]],
   ['magenta_10',['MAGENTA',['../classgColor.html#af9aae79b668490557216b10312305b23',1,'gColor']]],
   ['makevertexanimated_11',['makeVertexAnimated',['../classgModel.html#a0f3c81d381a29b00e71cfd7a6d3c3645',1,'gModel']]],
-  ['maskmode_12',['maskmode',['../classgTexture.html#a5ca603f44afb54501680477f2b1f1ec2',1,'gTexture::MaskMode'],['../classgTexture.html#ab3cd05a4084bea80ddf93ac2cd72134a',1,'gTexture::maskmode']]],
+  ['maskmode_12',['maskmode',['../classgTexture.html#ab3cd05a4084bea80ddf93ac2cd72134a',1,'gTexture::maskmode'],['../classgTexture.html#a5ca603f44afb54501680477f2b1f1ec2',1,'gTexture::MaskMode']]],
   ['maskmode_5fboth_13',['MASKMODE_BOTH',['../classgTexture.html#a5ca603f44afb54501680477f2b1f1ec2af6180ba40620950a45e600a4a8d9511b',1,'gTexture']]],
   ['maskmode_5fboth_5ffree_5frotate_14',['MASKMODE_BOTH_FREE_ROTATE',['../classgTexture.html#a5ca603f44afb54501680477f2b1f1ec2ad5fff73aedc83fe5d904c43fa2bca2b4',1,'gTexture']]],
   ['maskmode_5fmask_15',['MASKMODE_MASK',['../classgTexture.html#a5ca603f44afb54501680477f2b1f1ec2ab4f7f86b5ce535d06cf5370f8b5baf98',1,'gTexture']]],

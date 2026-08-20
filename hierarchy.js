@@ -169,7 +169,6 @@ var hierarchy =
           [ "gVignette", "classgVignette.html", null ],
           [ "gWhiteBalance", "classgWhiteBalance.html", null ]
         ] ],
-        [ "gBezier", "classgBezier.html", null ],
         [ "gBoundingBox", "classgBoundingBox.html", null ],
         [ "gCameraController", "classgCameraController.html", null ],
         [ "gFbo", "classgFbo.html", null ],
@@ -182,6 +181,8 @@ var hierarchy =
           [ "gLight", "classgLight.html", null ],
           [ "gMesh", "classgMesh.html", [
             [ "gArc", "classgArc.html", null ],
+            [ "gBezier", "classgBezier.html", null ],
+            [ "gBezierQuad", "classgBezierQuad.html", null ],
             [ "gBox", "classgBox.html", null ],
             [ "gCircle", "classgCircle.html", null ],
             [ "gCone", "classgCone.html", null ],
@@ -192,9 +193,11 @@ var hierarchy =
               [ "gSkinnedMesh", "classgSkinnedMesh.html", null ]
             ] ],
             [ "gPlane", "classgPlane.html", null ],
+            [ "gPolygon", "classgPolygon.html", null ],
             [ "gRectangle", "classgRectangle.html", null ],
             [ "gRoundedRectangle", "classgRoundedRectangle.html", null ],
             [ "gSphere", "classgSphere.html", null ],
+            [ "gSpline", "classgSpline.html", null ],
             [ "gTerrain", "classgTerrain.html", null ],
             [ "gTriangle", "classgTriangle.html", null ],
             [ "gTube", "classgTube.html", null ]
@@ -226,11 +229,13 @@ var hierarchy =
       ] ],
       [ "gWindows", "classgWindows.html", null ]
     ] ],
+    [ "gPath", "classgPath.html", null ],
     [ "gRect", "classgRect.html", null ],
     [ "gRenderer::gSceneData", "structgRenderer_1_1gSceneData.html", null ],
     [ "gRenderer::gSceneFogData", "structgRenderer_1_1gSceneFogData.html", null ],
     [ "gRenderer::gSceneLightData", "structgRenderer_1_1gSceneLightData.html", null ],
     [ "gRenderer::gSceneLights", "structgRenderer_1_1gSceneLights.html", null ],
+    [ "gPath::gSubPath", "classgPath_1_1gSubPath.html", null ],
     [ "gTweenAnimation", "classgTweenAnimation.html", null ],
     [ "gUTF8Iterator", "classgUTF8Iterator.html", null ],
     [ "gUtils", "classgUtils.html", null ],
