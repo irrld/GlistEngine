@@ -1,7 +1,7 @@
 var classgGUINumberBox =
 [
     [ "gGUINumberBox", "classgGUINumberBox.html#a914679c40e6d06e841300fd439a59580", null ],
-    [ "~gGUINumberBox", "classgGUINumberBox.html#afd633030a8b4ff0ee61f7dfeb28ca007", null ],
+    [ "~gGUINumberBox", "classgGUINumberBox.html#ac5bcc40e1080d39d7e1d4259613d7f57", null ],
     [ "calculateContentHeight", "classgGUINumberBox.html#a3c5e06d811ace3fc9fd1936f5f27abd3", null ],
     [ "charPressed", "classgGUINumberBox.html#a206c07c97c8f7a93a8264ad4530b145e", null ],
     [ "draw", "classgGUINumberBox.html#a167c3e67c496fe092523fa1f449b507e", null ],
@@ -11,6 +11,7 @@ var classgGUINumberBox =
     [ "getInteger", "classgGUINumberBox.html#a4227476b1272f22335d2eb54d38c207c", null ],
     [ "getIntegerIncrement", "classgGUINumberBox.html#aa5d3b72ac600bbe88dd0f9ed38ca706e", null ],
     [ "getText", "classgGUINumberBox.html#a05f9ebcb8dad1760d0b3fcfbae840ee5", null ],
+    [ "getTextbox", "classgGUINumberBox.html#a589deecffb7f4332b99c74a6efac80c6", null ],
     [ "keyPressed", "classgGUINumberBox.html#adae394feac7a2b985bb97b0687522151", null ],
     [ "keyReleased", "classgGUINumberBox.html#a5d725a91dc0944d65487cd09351ec764", null ],
     [ "mouseDragged", "classgGUINumberBox.html#aa8b14eb00fa77807906f94a6253ff59f", null ],
