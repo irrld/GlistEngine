@@ -8,6 +8,7 @@ var hierarchy =
     [ "gInputPlayer::GamepadAxisBinding", "structgInputPlayer_1_1GamepadAxisBinding.html", null ],
     [ "gInputPlayer::GamepadButtonAxisBinding", "structgInputPlayer_1_1GamepadButtonAxisBinding.html", null ],
     [ "gAnimationTrigger", "classgAnimationTrigger.html", null ],
+    [ "gBasePlatform", "classgBasePlatform.html", null ],
     [ "gBitmapFont", "classgBitmapFont.html", null ],
     [ "gColor", "classgColor.html", null ],
     [ "gColorHSL", "classgColorHSL.html", null ],
@@ -161,6 +162,7 @@ var hierarchy =
             [ "gEdgeDetection", "classgEdgeDetection.html", null ],
             [ "gSharpen", "classgSharpen.html", null ]
           ] ],
+          [ "gMagnifier", "classgMagnifier.html", null ],
           [ "gScreenSpaceReflections", "classgScreenSpaceReflections.html", null ],
           [ "gSepiatone", "classgSepiatone.html", null ],
           [ "gShadowsMidtonesHighlights", "classgShadowsMidtonesHighlights.html", null ],
@@ -171,6 +173,7 @@ var hierarchy =
         ] ],
         [ "gBoundingBox", "classgBoundingBox.html", null ],
         [ "gCameraController", "classgCameraController.html", null ],
+        [ "gDeferredLight", "classgDeferredLight.html", null ],
         [ "gFbo", "classgFbo.html", null ],
         [ "gFog", "classgFog.html", null ],
         [ "gGrid", "classgGrid.html", null ],

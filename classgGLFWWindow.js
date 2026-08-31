@@ -14,6 +14,7 @@ var classgGLFWWindow =
     [ "initialize", "classgGLFWWindow.html#a379c147808dfeeefa7a4f4862803b819", null ],
     [ "isGamepadButtonPressed", "classgGLFWWindow.html#a15dc67d582f90b88049e03f21a3e657a", null ],
     [ "isJoystickPresent", "classgGLFWWindow.html#ad61bc4c718fc6a0cb7e88e1470b15122", null ],
+    [ "scalesToMonitor", "classgGLFWWindow.html#a910a0592ee911c5d561b2f32ea7583ee", null ],
     [ "setClipboardString", "classgGLFWWindow.html#adad54bb27d902185a85c02b8ae77079d", null ],
     [ "setCursor", "classgGLFWWindow.html#aad0f9c5efce47b2588c9ea96a4c3c099", null ],
     [ "setCursorMode", "classgGLFWWindow.html#ab8b79bcac167043c6803293e275393e5", null ],
