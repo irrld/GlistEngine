@@ -1,5 +1,6 @@
 var NAVTREEINDEX17 =
 {
+"functions_func_r.html":[1,3,1,16],
 "functions_func_s.html":[1,3,1,17],
 "functions_func_t.html":[1,3,1,18],
 "functions_func_u.html":[1,3,1,19],
@@ -248,6 +249,5 @@ var NAVTREEINDEX17 =
 "gGUIDialogue_8h_source.html":[2,0,0,7,13],
 "gGUIDivider_8h.html":[2,0,0,7,14],
 "gGUIDivider_8h_source.html":[2,0,0,7,14],
-"gGUIDropdownList_8h.html":[2,0,0,7,15],
-"gGUIDropdownList_8h_source.html":[2,0,0,7,15]
+"gGUIDropdownList_8h.html":[2,0,0,7,15]
 };

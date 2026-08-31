@@ -1,5 +1,6 @@
 var NAVTREEINDEX20 =
 {
+"gUtils_8h.html#af0abe3d6efdea731ce4c2b22ae166fe2":[2,0,0,8,9,21],
 "gUtils_8h.html#af152d32ffeb880314b9a77aa5de0f96b":[2,0,0,8,9,36],
 "gUtils_8h.html#af2e14cb61be4a0c76af6dbdc567a9023":[2,0,0,8,9,20],
 "gUtils_8h.html#af4679076f1cada4ce4b5022171ca1050":[2,0,0,8,9,68],
@@ -248,6 +249,5 @@ var NAVTREEINDEX20 =
 "structgRenderer_1_1gSceneFogData.html":[1,0,157,2],
 "structgRenderer_1_1gSceneFogData.html#a430bc52be9ae45e5c6161086fbdedd63":[1,0,157,2,5],
 "structgRenderer_1_1gSceneFogData.html#a52fbca828c7a89b94457ba5f0c8cb461":[1,0,157,2,4],
-"structgRenderer_1_1gSceneFogData.html#a555b19f83c6c0e00463b12da0f4d2cea":[1,0,157,2,1],
-"structgRenderer_1_1gSceneFogData.html#a6e3e7ba8c2a35dd85b44c3dbbef51d16":[1,0,157,2,0]
+"structgRenderer_1_1gSceneFogData.html#a555b19f83c6c0e00463b12da0f4d2cea":[1,0,157,2,1]
 };
