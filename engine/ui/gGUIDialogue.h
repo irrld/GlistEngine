@@ -86,6 +86,13 @@ public:
 	void enableResize(bool isResizeEnabled);
 
 	void setIsMaximized(bool isMaximized);
+	/*
+	 * Smallest size the user can drag the dialogue down to. Defaults to 400x100.
+	 * Controls keep a minimum height of their own, so a dialogue whose content
+	 * cannot render that small should raise this to its design size.
+	 */
+	void setMinimumSize(int minWidth, int minHeight);
+
 	void transformDialogue(int left, int top, int width, int height);
 
 	void setMessageText(std::string messageText);
@@ -128,6 +135,8 @@ private:
 	gGUIImageButton minimizebutton;
 	gGUIImageButton maximizebutton;
 	gGUIImageButton exitbutton;
+
+	int minwidth, minheight;
 
 	static const int titlebarh = 35, titlebarbitmapw = 24, titlebarbuttonw = 48;
 	static const int buttonsbarh = 45, buttonsbarbuttonw = 100, buttonsbarbuttonh = 27;

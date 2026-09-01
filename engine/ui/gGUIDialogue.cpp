@@ -26,6 +26,7 @@ gGUIDialogue::gGUIDialogue() {
 	buttontrigger = EVENT_NONE; buttonevent = EVENT_NONE;
 
 	isdragenabled = true; isresizeenabled = true;
+	minwidth = 400; minheight = 100;
 	ismaximized = false; isdragged = false;
 	isiconenabled = false;
 	icontypeid = ICONTYPE_NONE;
@@ -343,6 +344,11 @@ void gGUIDialogue::setIsMaximized(bool isMaximized) {
 	this->ismaximized = isMaximized;
 }
 
+void gGUIDialogue::setMinimumSize(int minWidth, int minHeight) {
+	minwidth = minWidth;
+	minheight = minHeight;
+}
+
 void gGUIDialogue::transformDialogue(int left, int top, int width, int height) {
 	this->left = left; this->top = top; this->width = width; this->height = height;
 	this->right = this->left + this->width; this->bottom = this->top + this->height;
@@ -429,8 +435,6 @@ void gGUIDialogue::mousePressed(int x, int y, int button) {
 void gGUIDialogue::mouseDragged(int x, int y, int button) {
 	int dx = x - dragposx; int dy = y - dragposy; int sx = x - sizeposx; int sy = y - sizeposy;
 	int tleft = left; int twidth = width; int theight = height; int ttop = top;
-
-	const int minwidth = 400, minheight = 100;
 
 	if((resizeposition == RESIZE_RIGHT && sx < 0 && width < minwidth) || (resizeposition == RESIZE_LEFT && sx > 0 && width < minwidth)) sx = 0;
 	if((resizeposition == RESIZE_BOTTOM && sy < 0 && height < minheight) || (resizeposition == RESIZE_TOP && sy > 0 && height < minheight)) sy = 0;

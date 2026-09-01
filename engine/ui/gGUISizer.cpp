@@ -304,9 +304,8 @@ void gGUISizer::reloadControl(gGUIControl& control, int line, int column) {
 	int w = width * (columntprs[column + 1] - columntprs[column]) - slotpadding * 2;
 	int h = height * (linetprs[line + 1] - linetprs[line]) - slotheightpadding;
 
-	// The paddings are fixed pixels taken out of a proportional slot, so a small
-	// enough sizer leaves them negative. A negative size lays the control out
-	// inverted, growing it up and left out of the sizer.
+	// slotpadding is a fixed pixel amount taken out of a proportional slot, so a
+	// narrow enough sizer leaves the width negative and lays the control out inverted
 	if (w < 0) w = 0;
 	if (h < 0) h = 0;
 
