@@ -303,18 +303,11 @@ void gGUISizer::reloadControl(gGUIControl& control, int line, int column) {
 	int y = top + (height * linetprs[line]) + slotheightpadding;
 	int w = width * (columntprs[column + 1] - columntprs[column]) - slotpadding * 2;
 	int h = height * (linetprs[line + 1] - linetprs[line]) - slotheightpadding;
-
-	// slotpadding is a fixed pixel amount taken out of a proportional slot, so a
-	// narrow enough sizer leaves the width negative and lays the control out inverted
-	if (w < 0) w = 0;
-	if (h < 0) h = 0;
-
 	if (alignvertically) {
 		int contentheight = control.calculateContentHeight();
-		// Only centre when the content fits, centring taller content would put it
-		// above the slot and overflow the same way
-		if (contentheight > 0 && contentheight <= h) {
-			y += (h - contentheight) / 2;
+		if (contentheight > 0) {
+			int diff = (h - contentheight) / 2;
+			y += diff;
 			h = contentheight;
 		}
 	}
