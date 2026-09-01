@@ -430,8 +430,10 @@ void gGUIDialogue::mouseDragged(int x, int y, int button) {
 	int dx = x - dragposx; int dy = y - dragposy; int sx = x - sizeposx; int sy = y - sizeposy;
 	int tleft = left; int twidth = width; int theight = height; int ttop = top;
 
-	if((resizeposition == RESIZE_RIGHT && sx < 0 && width < 400) || (resizeposition == RESIZE_LEFT && sx > 0 && width < 400)) sx = 0;
-	if((resizeposition == RESIZE_BOTTOM && sy < 0 && height < 100) || (resizeposition == RESIZE_TOP && sy > 0 && height < 100)) sy = 0;
+	const int minwidth = 400, minheight = 100;
+
+	if((resizeposition == RESIZE_RIGHT && sx < 0 && width < minwidth) || (resizeposition == RESIZE_LEFT && sx > 0 && width < minwidth)) sx = 0;
+	if((resizeposition == RESIZE_BOTTOM && sy < 0 && height < minheight) || (resizeposition == RESIZE_TOP && sy > 0 && height < minheight)) sy = 0;
 
 	if(isdragged && x >= titlebar.left - titlebar.width && x < titlebar.left + titlebar.width && y >= titlebar.top - titlebar.height - guisizer->height && y < titlebar.top + titlebar.height + guisizer->height) {
 		tleft += dx; ttop += dy;
@@ -477,6 +479,19 @@ void gGUIDialogue::mouseDragged(int x, int y, int button) {
 	if(resizeposition == RESIZE_RIGHT) {twidth += sx;}
 	if(resizeposition == RESIZE_TOP) {theight -= sy; ttop += sy;}
 	if(resizeposition == RESIZE_BOTTOM) {theight += sy;}
+
+	// The checks above only stop a drag that is already under the minimum, so one
+	// large drag can still jump past it and leave the size negative. A negative
+	// size makes the sizer lay its children out backwards, growing them past the
+	// dialogue. Clamp the result and keep the edge being dragged from moving.
+	if(twidth < minwidth) {
+		if(resizeposition == RESIZE_LEFT) tleft -= minwidth - twidth;
+		twidth = minwidth;
+	}
+	if(theight < minheight) {
+		if(resizeposition == RESIZE_TOP) ttop -= minheight - theight;
+		theight = minheight;
+	}
 
 	transformDialogue(tleft, ttop, twidth, theight);
 
