@@ -149,7 +149,9 @@ void gGUITextbox::set(gBaseApp* root, gBaseGUIObject* topParentGUIObject, gBaseG
 	if(!ismultiline) {
 		boxh = std::max(24, lineheight + std::max(6, (int)(lineheight * 0.4f)));
 		totalh = boxh;
-		hdiff = 0;
+		// The box keeps a font sized height whatever it is given, so centre it in
+		// the slot instead of leaving it pinned to the top
+		hdiff = std::max(0, (h - totalh) / 2);
 	} else {
 		boxh = lineheight + linetopmargin;
 		totalh = h;
@@ -701,8 +703,10 @@ void gGUITextbox::draw() {
 			charawidth = textfont->getStringWidth("a");
 			cursoroffset = charawidth / 2.0f;
 		}
-		int cursorOffset = (cursorposx > 0) ? (int)cursoroffset : 0;
-		int cursorDrawX = textDrawX + cursorposx + cursorOffset;
+		// cursorposx is already the drawn width up to the caret, so it lands on the
+		// glyph edge. The extra offset only applied past position 0, which both
+		// pushed the caret into the next letter and made it jump at the far left.
+		int cursorDrawX = textDrawX + cursorposx;
 		gDrawLine(cursorDrawX, cursorTop, cursorDrawX, cursorBottom);
 	}
 	if (isfocused && selectionmode && selectionposchar1 != selectionposchar2) {

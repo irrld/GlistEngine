@@ -159,8 +159,8 @@ void gFont::getVisualBoundsX(const std::string& text, float& xmin, float& xmax) 
 
 		const CharProperties& p = charproperties[c];
 
-		float gx1 = roundIfRequired(posx + p.dxleft  + b);
-		float gx2 = roundIfRequired(posx + p.dxright + b);
+		float gx1 = roundIfRequired(posx + p.dxleft);
+		float gx2 = roundIfRequired(posx + p.dxright);
 
 		if(gx1 < xmin) xmin = gx1;
 		if(gx2 > xmax) xmax = gx2;
@@ -298,7 +298,7 @@ void gFont::drawText(const std::string& text, float x, float y) {
 
 			const CharProperties& p = properties->second;
 			posx += getKerning(c, previous);
-			const float x0 = roundIfRequired(posx + p.leftmargin);
+			const float x0 = roundIfRequired(posx + p.leftmargin - b);
 			const float y0 = roundIfRequired(posy + p.dytop - b);
 			const float x1 = x0 + p.texturewidth;
 			const float y1 = y0 + p.textureheight;
@@ -362,7 +362,7 @@ void gFont::drawText(const std::string& text, float x, float y) {
 
 			const CharProperties& p = charproperties[c];
 			posx += getKerning(c, previous);
-			const float drawx = roundIfRequired(posx + p.leftmargin);
+			const float drawx = roundIfRequired(posx + p.leftmargin - b);
 			const float drawy = roundIfRequired(posy + p.dytop - b);
 
 			texture->second->draw(glm::vec2(drawx, drawy), glm::vec2(p.texturewidth, p.textureheight));
