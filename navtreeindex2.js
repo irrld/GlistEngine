@@ -212,13 +212,14 @@ var NAVTREEINDEX2 =
 "classgDatabase.html#acf36a173a1dda1ca2b70ee6d3ae9aa8a":[1,0,40,2],
 "classgDeferredLight.html":[1,0,41],
 "classgDeferredLight.html#a029f6bbf6773f8154445b561a0817e2a":[1,0,41,3],
+"classgDeferredLight.html#a15064a1b2efed9d5c03781b83bfa2b4a":[1,0,41,6],
 "classgDeferredLight.html#a27a0ed06b49ba231d200aed1ab205682":[1,0,41,2],
-"classgDeferredLight.html#a50c91b8ac08418f39c23a7d557688131":[1,0,41,7],
+"classgDeferredLight.html#a50c91b8ac08418f39c23a7d557688131":[1,0,41,8],
 "classgDeferredLight.html#a9fa4ccadc43872ab630a634ea0d04f7b":[1,0,41,5],
-"classgDeferredLight.html#aaa9cf1e36b5c31da35f69c28fa027c7e":[1,0,41,6],
 "classgDeferredLight.html#abb1f91b9c31a47337036a1de5348d8bc":[1,0,41,0],
 "classgDeferredLight.html#abc86feb211dc9413da911e3672e0b8ac":[1,0,41,1],
 "classgDeferredLight.html#af331545a36199d263f536d5a72e002b8":[1,0,41,4],
+"classgDeferredLight.html#afb28fb69675548001d2e4e0a10241940":[1,0,41,7],
 "classgDeviceOrientationChangedEvent.html":[1,0,42],
 "classgDeviceOrientationChangedEvent.html#aa588785af79d8e2df9df86e6bd0ca669":[1,0,42,0],
 "classgDeviceOrientationChangedEvent.html#af8d86eeeb7e223bfa7f3d40b38afbc1d":[1,0,42,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "classgEventHook.html#a408ca13a49589f90a9250243b83e7721":[1,0,47,2],
 "classgEventHook.html#a4e608921c9195114d200b2fcd9b44691":[1,0,47,0],
 "classgEventHook.html#aedf68a2d41b0f4e7693dadf68e3b17a5":[1,0,47,1],
-"classgFXAA.html":[1,0,55],
-"classgFXAA.html#a222c8aa59feb1975520c8807586773ef":[1,0,55,4]
+"classgFXAA.html":[1,0,55]
 };

@@ -1,5 +1,13 @@
 var NAVTREEINDEX20 =
 {
+"gUtils_8h.html#ad2161baa188e15f33441b176830db027":[2,0,0,8,9,22],
+"gUtils_8h.html#ad69032ffae2da4a7748563f1a1cd42c8":[2,0,0,8,9,24],
+"gUtils_8h.html#adefdf209d09b50f0f30397bb98d0d563":[2,0,0,8,9,62],
+"gUtils_8h.html#ae6513f2591dc2716494570e4d98802b9":[2,0,0,8,9,17],
+"gUtils_8h.html#aea9355233c86690f6f7b0d0d7dcbfbba":[2,0,0,8,9,54],
+"gUtils_8h.html#aeaca45855ab7131fc82243d8a590aa85":[2,0,0,8,9,27],
+"gUtils_8h.html#aebd1c53c1078f8a2aa439bab7b4d6907":[2,0,0,8,9,42],
+"gUtils_8h.html#aed9621ab2aab7745c939d975e3c320b2":[2,0,0,8,9,67],
 "gUtils_8h.html#af0abe3d6efdea731ce4c2b22ae166fe2":[2,0,0,8,9,21],
 "gUtils_8h.html#af152d32ffeb880314b9a77aa5de0f96b":[2,0,0,8,9,36],
 "gUtils_8h.html#af2e14cb61be4a0c76af6dbdc567a9023":[2,0,0,8,9,20],
@@ -97,8 +105,8 @@ var NAVTREEINDEX20 =
 "gWindowEvents_8h_source.html":[2,0,0,3,2],
 "gWindows_8h.html":[2,0,0,8,11],
 "gWindows_8h_source.html":[2,0,0,8,11],
-"globals.html":[2,1,0],
 "globals.html":[2,1,0,0],
+"globals.html":[2,1,0],
 "globals_a.html":[2,1,0,1],
 "globals_b.html":[2,1,0,2],
 "globals_c.html":[2,1,0,3],
@@ -228,6 +236,7 @@ var NAVTREEINDEX20 =
 "structgInputPlayer_1_1GamepadButtonAxisBinding.html#aa6d24c955849ea1753f35fbe98d681a0":[1,0,119,2,0],
 "structgRenderer_1_1gMeshSurface.html":[1,0,157,0],
 "structgRenderer_1_1gMeshSurface.html#a2d0bb2d60c220ce89a1208c4139544b7":[1,0,157,0,6],
+"structgRenderer_1_1gMeshSurface.html#a35567724fa966f7e3d11a16e3ea19d51":[1,0,157,0,13],
 "structgRenderer_1_1gMeshSurface.html#a3afd633a20ce586abaa667bed48a9d02":[1,0,157,0,3],
 "structgRenderer_1_1gMeshSurface.html#a3fe4572a4530fd5d36f5564bd64b8c1f":[1,0,157,0,4],
 "structgRenderer_1_1gMeshSurface.html#a6491ddb1c6a3c7279789560d70230969":[1,0,157,0,5],
@@ -240,14 +249,5 @@ var NAVTREEINDEX20 =
 "structgRenderer_1_1gMeshSurface.html#ad8ed67babb500c0dfc8221f0a579fad6":[1,0,157,0,2],
 "structgRenderer_1_1gMeshSurface.html#aedfbca9603cf66d21ddde138a2d7540c":[1,0,157,0,9],
 "structgRenderer_1_1gMeshSurface.html#aff330a13900e5d15b72a6c939935b363":[1,0,157,0,0],
-"structgRenderer_1_1gSceneData.html":[1,0,157,1],
-"structgRenderer_1_1gSceneData.html#a09b83f2ce02728412c123b8173084c3d":[1,0,157,1,1],
-"structgRenderer_1_1gSceneData.html#a521328c0feca9f21460fe8b3b3350e3e":[1,0,157,1,0],
-"structgRenderer_1_1gSceneData.html#a89f96a2a3d34fdc9e05c1f4b0720204e":[1,0,157,1,3],
-"structgRenderer_1_1gSceneData.html#aa301bd9a32069c1189021b592d8c2b1d":[1,0,157,1,4],
-"structgRenderer_1_1gSceneData.html#aad361730c6a440e3b644bf0bb45c264c":[1,0,157,1,2],
-"structgRenderer_1_1gSceneFogData.html":[1,0,157,2],
-"structgRenderer_1_1gSceneFogData.html#a430bc52be9ae45e5c6161086fbdedd63":[1,0,157,2,5],
-"structgRenderer_1_1gSceneFogData.html#a52fbca828c7a89b94457ba5f0c8cb461":[1,0,157,2,4],
-"structgRenderer_1_1gSceneFogData.html#a555b19f83c6c0e00463b12da0f4d2cea":[1,0,157,2,1]
+"structgRenderer_1_1gSceneData.html":[1,0,157,1]
 };

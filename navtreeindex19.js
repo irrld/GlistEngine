@@ -1,5 +1,10 @@
 var NAVTREEINDEX19 =
 {
+"gKeyCode_8h.html#af49a38c42416d8c82bc7f45be9710160":[2,0,0,8,5,19],
+"gKeyCode_8h.html#af56db5917ffe87d2b0865238ee6a9522":[2,0,0,8,5,104],
+"gKeyCode_8h.html#af615b67153dd8a1524420fa3d24f58dc":[2,0,0,8,5,29],
+"gKeyCode_8h.html#af9c049e7a37dfa752d4e894d2f1bd3ff":[2,0,0,8,5,31],
+"gKeyCode_8h.html#afb5457dd22bdc224e05cd13ff67c47e9":[2,0,0,8,5,15],
 "gKeyCode_8h.html#afde9356dd1fc3d70cc790ae61b249138":[2,0,0,8,5,77],
 "gKeyCode_8h_source.html":[2,0,0,8,5],
 "gLight_8h.html":[2,0,0,4,15],
@@ -151,6 +156,9 @@ var NAVTREEINDEX19 =
 "gSpriteAnimation_8h_source.html":[2,0,0,0,0],
 "gSpriteAnimator_8h.html":[2,0,0,0,1],
 "gSpriteAnimator_8h_source.html":[2,0,0,0,1],
+"gTargetDefines_8h.html":[2,0,0,6,3],
+"gTargetDefines_8h.html#a968fa9a4ed8cd3c13ab0f38d3028e702":[2,0,0,6,3,0],
+"gTargetDefines_8h_source.html":[2,0,0,6,3],
 "gTerrain_8h.html":[2,0,0,4,30],
 "gTerrain_8h_source.html":[2,0,0,4,30],
 "gTexture_8h.html":[2,0,0,4,31],
@@ -241,13 +249,5 @@ var NAVTREEINDEX19 =
 "gUtils_8h.html#abe1614a0462f0cbc0732cd4d09601094":[2,0,0,8,9,51],
 "gUtils_8h.html#abf310bfb56fd14bb74129e57b5bac009":[2,0,0,8,9,61],
 "gUtils_8h.html#abf6e82125e0f3a430ab6a088a97821ff":[2,0,0,8,9,16],
-"gUtils_8h.html#ac324a5269afd31384c9dfaf0344855dd":[2,0,0,8,9,70],
-"gUtils_8h.html#ad2161baa188e15f33441b176830db027":[2,0,0,8,9,22],
-"gUtils_8h.html#ad69032ffae2da4a7748563f1a1cd42c8":[2,0,0,8,9,24],
-"gUtils_8h.html#adefdf209d09b50f0f30397bb98d0d563":[2,0,0,8,9,62],
-"gUtils_8h.html#ae6513f2591dc2716494570e4d98802b9":[2,0,0,8,9,17],
-"gUtils_8h.html#aea9355233c86690f6f7b0d0d7dcbfbba":[2,0,0,8,9,54],
-"gUtils_8h.html#aeaca45855ab7131fc82243d8a590aa85":[2,0,0,8,9,27],
-"gUtils_8h.html#aebd1c53c1078f8a2aa439bab7b4d6907":[2,0,0,8,9,42],
-"gUtils_8h.html#aed9621ab2aab7745c939d975e3c320b2":[2,0,0,8,9,67]
+"gUtils_8h.html#ac324a5269afd31384c9dfaf0344855dd":[2,0,0,8,9,70]
 };
