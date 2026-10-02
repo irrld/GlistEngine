@@ -1,5 +1,10 @@
 var NAVTREEINDEX9 =
 {
+"classgGUIToolbar.html#a29cfaffb6460137bca34855bc77e37d8":[1,0,111,5],
+"classgGUIToolbar.html#a2a91cb416b74251353763c95eb74c9c1":[1,0,111,10],
+"classgGUIToolbar.html#a3d47acc97379f20beace7e44a009da22":[1,0,111,6],
+"classgGUIToolbar.html#a584aa582d42fd4462f024d529a76fd85":[1,0,111,15],
+"classgGUIToolbar.html#a5933b36763d92e4aaa7d204a1e85548d":[1,0,111,11],
 "classgGUIToolbar.html#a5cbab2be859511b4c758a3a22236b06a":[1,0,111,8],
 "classgGUIToolbar.html#a5f9746e2e20435b326e0e3e3c02bd108":[1,0,111,2],
 "classgGUIToolbar.html#a692b04d02920abaf1e7e03310b85ec76":[1,0,111,0],
@@ -244,10 +249,5 @@ var NAVTREEINDEX9 =
 "classgInversion.html#ae11536c7489a82ed75ce100d5ac920c4":[1,0,120,1],
 "classgJoystickConnectEvent.html":[1,0,121],
 "classgJoystickConnectEvent.html#a45850d7839135c15b2f197219d97e830":[1,0,121,2],
-"classgJoystickConnectEvent.html#af4e7100feffdd911e59c15259b09a00f":[1,0,121,1],
-"classgJoystickConnectEvent.html#aff65c19ed83656186a5bb592cb9dcc84":[1,0,121,0],
-"classgJoystickDisconnectEvent.html":[1,0,122],
-"classgJoystickDisconnectEvent.html#a53d9e5e04f4690866df9438193020f5a":[1,0,122,1],
-"classgJoystickDisconnectEvent.html#aeeb81a07d969e9fb69f0ff4546d2267e":[1,0,122,0],
-"classgKernelEffect.html":[1,0,123]
+"classgJoystickConnectEvent.html#af4e7100feffdd911e59c15259b09a00f":[1,0,121,1]
 };

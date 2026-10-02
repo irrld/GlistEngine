@@ -1,5 +1,10 @@
 var NAVTREEINDEX10 =
 {
+"classgJoystickConnectEvent.html#aff65c19ed83656186a5bb592cb9dcc84":[1,0,121,0],
+"classgJoystickDisconnectEvent.html":[1,0,122],
+"classgJoystickDisconnectEvent.html#a53d9e5e04f4690866df9438193020f5a":[1,0,122,1],
+"classgJoystickDisconnectEvent.html#aeeb81a07d969e9fb69f0ff4546d2267e":[1,0,122,0],
+"classgKernelEffect.html":[1,0,123],
 "classgKernelEffect.html#a12c6f5b6e44e7491bec4151ec3297cfe":[1,0,123,2],
 "classgKernelEffect.html#a74bafb92c0b02ec662731c8727d41471":[1,0,123,1],
 "classgKernelEffect.html#a999a47a5c9130c30036dbc2bbc0dcef8":[1,0,123,3],
@@ -244,10 +249,5 @@ var NAVTREEINDEX10 =
 "classgMesh.html#a6502b918df5354a3ae9b8722558e5511":[1,0,138,24],
 "classgMesh.html#a74af7057b49c8b42883635b62ff89301":[1,0,138,28],
 "classgMesh.html#a793d2b7855545e2f8f16e73512bc6461":[1,0,138,22],
-"classgMesh.html#a7a6a241ac759ee7354b9eb166e83b6f8":[1,0,138,29],
-"classgMesh.html#a8b41ef6c3181eeae1c67567ff959b834":[1,0,138,45],
-"classgMesh.html#a8e7fcb3cae34ce3a69cbbe6c6f8ba757":[1,0,138,47],
-"classgMesh.html#a9787ff6ab8776d874b2262d2b2ecb3a5":[1,0,138,39],
-"classgMesh.html#aa544ae3b925841d04418c4028ad06c50":[1,0,138,44],
-"classgMesh.html#aa5ea135e74def0f916e1456e519e3c5c":[1,0,138,15]
+"classgMesh.html#a7a6a241ac759ee7354b9eb166e83b6f8":[1,0,138,29]
 };
